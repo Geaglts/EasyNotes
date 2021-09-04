@@ -1,5 +1,11 @@
 import { render } from 'react-dom';
 import './styles/index.scss';
 import Home from './pages/Home';
+import Context from './Context';
 
-render(<Home />, document.getElementById('app'));
+render(
+  <Context.Provider>
+    <Home />
+  </Context.Provider>,
+  document.getElementById('app')
+);

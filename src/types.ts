@@ -11,3 +11,8 @@ export type Note = {
 };
 
 export type Notes = Array<Note>;
+
+export type NotesContextState = {
+  notes: Notes;
+  updateNotes: () => void;
+};

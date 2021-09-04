@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import '../styles/Containers/NoteList.scss';
 
-import { noteStorage } from '../storage';
+import { Context } from '../Context';
 
 interface NoteListProps {
   limit?: number;
 }
 
 function NoteList({ limit }: NoteListProps) {
-  const [notes] = useState(noteStorage.get());
+  const { notes } = useContext(Context);
 
   return (
     <div className="NoteList">

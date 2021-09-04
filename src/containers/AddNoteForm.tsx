@@ -1,4 +1,7 @@
+import { useContext } from 'react';
 import { MdSpa } from 'react-icons/md';
+
+import { Context } from '../Context';
 
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -10,6 +13,8 @@ import '../styles/Containers/AddNoteForm.scss';
 import { noteStorage } from '../storage';
 
 function AddNoteForm() {
+  const { updateNotes } = useContext(Context);
+
   const initialState = {
     title: '',
     content: '',
@@ -17,6 +22,7 @@ function AddNoteForm() {
 
   const submit = (values: typeof initialState) => {
     noteStorage.add(values);
+    updateNotes();
   };
 
   const { handleSubmit, propsByName } = useForm({ initialState, submit });
