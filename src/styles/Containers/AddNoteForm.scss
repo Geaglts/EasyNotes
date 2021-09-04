@@ -1,0 +1,25 @@
+@import '../global';
+
+.AddNoteForm {
+  border: 2px solid $primary;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 1em;
+  box-shadow: $shadow;
+
+  &__Title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+
+    .Input {
+      width: 450px;
+    }
+  }
+
+  &__CopyButton--container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1em;
+  }
+}

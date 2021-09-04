@@ -12,7 +12,7 @@ function Input(props: InputProps) {
   return (
     <div className="Input">
       <div className="Input__Icon">{Icon || <MdSentimentVeryDissatisfied />}</div>
-      <input className="Input__Input" {...rest}></input>
+      <input type="text" className="Input__Input" {...rest}></input>
     </div>
   );
 }

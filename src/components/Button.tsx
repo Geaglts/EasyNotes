@@ -7,7 +7,7 @@ interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 function Button({ label, ...rest }: ButtonInterface) {
   return (
-    <button className="Button" {...rest}>
+    <button type="button" className="Button" {...rest}>
       {label}
     </button>
   );

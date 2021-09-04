@@ -19,6 +19,7 @@
   &__TextArea {
     resize: none;
     @include InputStyles();
+    padding-top: 5px;
 
     &::placeholder {
       color: $placeholder-color;
