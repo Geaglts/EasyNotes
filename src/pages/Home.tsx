@@ -6,7 +6,7 @@ function Home() {
   return (
     <Container>
       <AddNoteForm />
-      <NoteList limit={2} />
+      <NoteList limit={5} />
     </Container>
   );
 }

@@ -7,14 +7,16 @@ import useForm from '../Hooks/useForm';
 
 import '../styles/Containers/AddNoteForm.scss';
 
-function Form() {
+import { noteStorage } from '../storage';
+
+function AddNoteForm() {
   const initialState = {
     title: '',
     content: '',
   };
 
   const submit = (values: typeof initialState) => {
-    console.log(values);
+    noteStorage.add(values);
   };
 
   const { handleSubmit, propsByName } = useForm({ initialState, submit });
@@ -36,4 +38,4 @@ function Form() {
 // JS Styles
 const CopyButtonStyles = { backgroundColor: '#475DED', color: '#EEC643' };
 
-export default Form;
+export default AddNoteForm;

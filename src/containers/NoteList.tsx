@@ -1,17 +1,25 @@
+import { useState } from 'react';
 import '../styles/Containers/NoteList.scss';
+
+import { noteStorage } from '../storage';
 
 interface NoteListProps {
   limit?: number;
 }
 
-const notes = [1, 2, 3, 4, 5, 6];
-
 function NoteList({ limit }: NoteListProps) {
+  const [notes] = useState(noteStorage.get());
+
   return (
     <div className="NoteList">
       <h1 className="NoteList__Title">NoteList</h1>
       {notes.splice(0, limit || notes.length).map((item) => {
-        return <p>{item}</p>;
+        return (
+          <div key={item._id}>
+            <p>{item.title}</p>
+            <p>{item.content}</p>
+          </div>
+        );
       })}
     </div>
   );
