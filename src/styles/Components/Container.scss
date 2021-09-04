@@ -1,0 +1,13 @@
+@import '../global';
+
+.Container {
+  border: 1px solid $warning;
+  width: 50%;
+  margin: 0 auto;
+
+  &__Title {
+    font-size: 32pt;
+    padding: 10px;
+    color: $primary;
+  }
+}

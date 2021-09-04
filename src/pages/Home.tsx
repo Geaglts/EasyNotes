@@ -1,11 +1,11 @@
+import Container from '../components/Container';
 import Form from '../containers/Form';
 
 function Home() {
   return (
-    <div>
-      <h1>EasyNotes</h1>
+    <Container>
       <Form />
-    </div>
+    </Container>
   );
 }
 
