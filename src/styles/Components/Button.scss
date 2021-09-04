@@ -8,8 +8,8 @@
   background: $secondary;
   color: $primary;
   border: none;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba($dark, 0.25);
+  border-radius: $radius;
+  box-shadow: $shadow;
   transition: transform 450ms linear;
 
   &:hover {
