@@ -1,10 +1,10 @@
 import Container from '../components/Container';
-import Form from '../containers/Form';
+import AddNoteForm from '../containers/AddNoteForm';
 
 function Home() {
   return (
     <Container>
-      <Form />
+      <AddNoteForm />
     </Container>
   );
 }

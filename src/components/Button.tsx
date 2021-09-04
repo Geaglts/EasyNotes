@@ -1,6 +1,7 @@
+import { ButtonHTMLAttributes } from 'react';
 import '../styles/Components/Button.scss';
 
-interface ButtonInterface {
+interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: String;
 }
 

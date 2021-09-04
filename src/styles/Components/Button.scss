@@ -11,6 +11,7 @@
   border-radius: $radius;
   box-shadow: $shadow;
   transition: transform 450ms linear;
+  display: block;
 
   &:hover {
     cursor: pointer;
