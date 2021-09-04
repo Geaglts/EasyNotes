@@ -1,0 +1,24 @@
+$primary: #475ded;
+$secondary: #eec643;
+$warning: #ed4747;
+$dark: #141414;
+$gray: #c7c7c7;
+
+.Button {
+  width: 150px;
+  height: 40px;
+  font-weight: 900;
+  font-size: 12pt;
+  background: $secondary;
+  color: $primary;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba($dark, 0.25);
+  transition: transform 450ms linear;
+
+  &:hover {
+    cursor: pointer;
+    transition: transform 250ms linear;
+    transform: scale(1.05);
+  }
+}
