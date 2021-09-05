@@ -6,6 +6,7 @@
   box-shadow: $shadow;
   padding: 1em;
   height: 230px;
+  margin-bottom: 1em;
 
   &__Header {
     display: flex;
@@ -18,6 +19,11 @@
       font-size: 16pt;
       font-weight: 600;
       color: $primary;
+    }
+
+    &--buttons {
+      display: flex;
+      column-gap: 10px;
     }
   }
 

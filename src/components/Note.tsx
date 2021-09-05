@@ -7,7 +7,16 @@ function Note({ content, title }: NoteType) {
     <div className="Note">
       <div className="Note__Header">
         <p className="Note__Header--title">{title}</p>
-        <Button label="Copy" />
+        <div className="Note__Header--buttons">
+          <Button
+            label="Delete"
+            style={{ color: '#FFDF75', backgroundColor: '#ED4747', width: 100 }}
+          />
+          <Button
+            label="Copy"
+            style={{ color: '#FFDF75', backgroundColor: '#475DED', width: 100 }}
+          />
+        </div>
       </div>
       <div className="Note__Content">
         <p className="Note__Content--text">{content}</p>

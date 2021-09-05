@@ -42,6 +42,6 @@ function AddNoteForm() {
 }
 
 // JS Styles
-const CopyButtonStyles = { backgroundColor: '#475DED', color: '#EEC643' };
+const CopyButtonStyles = { backgroundColor: '#475DED', color: '#FFDF75' };
 
 export default AddNoteForm;
