@@ -11,6 +11,7 @@ import useForm from '../Hooks/useForm';
 import '../styles/Containers/AddNoteForm.scss';
 
 import { noteStorage } from '../storage';
+import { Note } from '../types';
 
 function AddNoteForm() {
   const { updateNotes } = useContext(Context);
@@ -29,7 +30,15 @@ function AddNoteForm() {
     }
   };
 
-  const { handleSubmit, propsByName, cantSubmit } = useForm({
+  const handleCopy = () => {
+    if (cantSubmit()) {
+      alert('No hay nada que copiar');
+    } else {
+      noteStorage.copy(values as Note);
+    }
+  };
+
+  const { values, handleSubmit, propsByName, cantSubmit } = useForm({
     initialState,
     submit,
   });
@@ -42,7 +51,7 @@ function AddNoteForm() {
       </div>
       <TextArea placeholder="Note Content" rows={5} {...propsByName('content')} />
       <div className="AddNoteForm__CopyButton--container">
-        <Button label="Copy" style={CopyButtonStyles} />
+        <Button onClick={handleCopy} label="Copy" style={CopyButtonStyles} />
       </div>
     </form>
   );
