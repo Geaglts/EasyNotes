@@ -1,0 +1,33 @@
+@import '../global';
+
+.Note {
+  border: 2px solid $primary;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  padding: 1em;
+  height: 230px;
+
+  &__Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $gray;
+
+    &--title {
+      font-size: 16pt;
+      font-weight: 600;
+      color: $primary;
+    }
+  }
+
+  &__Content {
+    overflow: auto;
+    height: 135px;
+    margin-top: 0.5em;
+
+    &--text {
+      font-size: 14pt;
+    }
+  }
+}
