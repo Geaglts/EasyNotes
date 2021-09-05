@@ -17,6 +17,10 @@ function Note({ content, title, _id = '' }: NoteType) {
     updateNotes();
   };
 
+  const handleCopy = () => {
+    noteStorage.copy({ title, content });
+  };
+
   return (
     <div className="Note">
       <div className="Note__Header">
@@ -29,6 +33,7 @@ function Note({ content, title, _id = '' }: NoteType) {
           />
           <Button
             label="Copy"
+            onClick={handleCopy}
             style={{ color: '#FFDF75', backgroundColor: '#475DED', width: 100 }}
           />
         </div>

@@ -30,4 +30,8 @@ export const noteStorage = {
     const stringNotes = JSON.stringify(filteredNotes);
     localStorage.setItem(NOTES, stringNotes);
   },
+  copy({ title, content }: Note) {
+    const noteCopyTemplate = `${title}\n\n${content}`;
+    navigator.clipboard.writeText(noteCopyTemplate);
+  },
 };
