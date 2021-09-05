@@ -21,11 +21,18 @@ function AddNoteForm() {
   };
 
   const submit = (values: typeof initialState) => {
-    noteStorage.add(values);
-    updateNotes();
+    if (cantSubmit()) {
+      alert('Rellena los campos');
+    } else {
+      noteStorage.add(values);
+      updateNotes();
+    }
   };
 
-  const { handleSubmit, propsByName } = useForm({ initialState, submit });
+  const { handleSubmit, propsByName, cantSubmit } = useForm({
+    initialState,
+    submit,
+  });
 
   return (
     <form onSubmit={handleSubmit} className="AddNoteForm">

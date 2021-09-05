@@ -12,6 +12,12 @@ function useForm({ initialState, submit }: useFormProps) {
   const handleChange = (name: string) => (event: HandleChange) => {
     setValues({ ...values, [name]: event.currentTarget.value });
   };
+  const cantSubmit = () => {
+    for (let key in values) {
+      const value = (<any>values)[key];
+      if (value === '' || value === NaN) return true;
+    }
+  };
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     submit(values);
@@ -23,7 +29,7 @@ function useForm({ initialState, submit }: useFormProps) {
     id: name,
     value: (<any>values)[name],
   });
-  return { values, propsByName, handleSubmit };
+  return { values, propsByName, handleSubmit, cantSubmit };
 }
 
 export default useForm;
