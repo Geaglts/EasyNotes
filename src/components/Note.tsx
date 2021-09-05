@@ -1,8 +1,22 @@
-import { Note as NoteType } from '../types';
+import { useContext } from 'react';
+
 import '../styles/Components/Note.scss';
+
+import { Note as NoteType } from '../types';
+
+import { Context } from '../Context';
 import Button from './Button';
 
-function Note({ content, title }: NoteType) {
+import { noteStorage } from '../storage';
+
+function Note({ content, title, _id = '' }: NoteType) {
+  const { updateNotes } = useContext(Context);
+
+  const handleDelete = () => {
+    noteStorage.remove(_id);
+    updateNotes();
+  };
+
   return (
     <div className="Note">
       <div className="Note__Header">
@@ -10,6 +24,7 @@ function Note({ content, title }: NoteType) {
         <div className="Note__Header--buttons">
           <Button
             label="Delete"
+            onClick={handleDelete}
             style={{ color: '#FFDF75', backgroundColor: '#ED4747', width: 100 }}
           />
           <Button

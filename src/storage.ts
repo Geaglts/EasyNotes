@@ -24,4 +24,10 @@ export const noteStorage = {
     const stringNotes = JSON.stringify(notes);
     localStorage.setItem(NOTES, stringNotes);
   },
+  remove(id: string) {
+    const notes = this.get();
+    const filteredNotes = notes.filter(({ _id }) => _id !== id);
+    const stringNotes = JSON.stringify(filteredNotes);
+    localStorage.setItem(NOTES, stringNotes);
+  },
 };
