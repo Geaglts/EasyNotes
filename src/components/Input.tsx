@@ -1,18 +1,22 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
 import { MdSentimentVeryDissatisfied } from 'react-icons/md';
 
 import '../styles/Components/Input.scss';
+
+interface InputPropsNew extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  Icon?: JSX.Element;
+}
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   Icon?: JSX.Element;
 }
 
-function Input(props: InputProps) {
+function Input(props: InputPropsNew) {
   const { Icon, ...rest } = props;
   return (
     <div className="Input">
       <div className="Input__Icon">{Icon || <MdSentimentVeryDissatisfied />}</div>
-      <input type="text" className="Input__Input" {...rest}></input>
+      <textarea className="Input__TextArea" {...rest}></textarea>
     </div>
   );
 }

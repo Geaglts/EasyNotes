@@ -23,8 +23,10 @@
     }
   }
 
-  &__Input {
+  &__TextArea {
     @include InputStyles();
+    resize: none;
+    padding-top: 5px;
 
     &::placeholder {
       color: $placeholder-color;
