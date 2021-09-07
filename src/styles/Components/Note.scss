@@ -36,5 +36,9 @@
       font-size: 14pt;
       font-weight: 600;
     }
+
+    &--text + &--text {
+      margin-top: 10px;
+    }
   }
 }
