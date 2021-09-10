@@ -39,7 +39,13 @@ function Note({ content, title, _id = '' }: NoteType) {
         </div>
       </div>
       <div className="Note__Content">
-        <p className="Note__Content--text">{content}</p>
+        {content.split('\n').map((line, index) => {
+          return (
+            <p className="Note__Content--text" key={index}>
+              {line}
+            </p>
+          );
+        })}
       </div>
     </div>
   );
