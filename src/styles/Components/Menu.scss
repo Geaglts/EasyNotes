@@ -1,0 +1,21 @@
+@import '../global';
+
+.Menu {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+
+  &__Title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 12pt;
+    font-weight: 600;
+    color: $dark;
+
+    svg {
+      font-size: 16pt;
+      margin-left: 5px;
+    }
+  }
+}
