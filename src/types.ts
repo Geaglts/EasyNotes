@@ -15,4 +15,6 @@ export type Notes = Array<Note>;
 export type NotesContextState = {
   notes: Notes;
   updateNotes: () => void;
+  darkTheme: boolean;
+  changeTheme: () => void;
 };

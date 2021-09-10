@@ -16,5 +16,6 @@ $toggle-size: 22px;
     border-radius: 50%;
     border: 1px solid $dark;
     background-color: $primary;
+    transition: transform 300ms ease-in;
   }
 }
