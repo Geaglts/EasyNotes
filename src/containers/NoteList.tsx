@@ -15,9 +15,7 @@ function NoteList({ limit }: NoteListProps) {
   return (
     <div className="NoteList">
       <h1 className="NoteList__Title">NoteList</h1>
-      {notes.length === 0 && (
-        <Message textMessage="Aún no has creado ninguna nota 🦔" />
-      )}
+      {notes.length === 0 && <Message textMessage="No tienes notas creadas 🦔" />}
       {notes.splice(0, limit || notes.length).map((note) => {
         return <Note key={note._id} {...note} />;
       })}
