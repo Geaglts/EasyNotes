@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import '../styles/Components/Note.scss';
 
-import { Note as NoteType } from '../types';
+import { Note as NoteType, RenderCss } from '../types';
 
 import { Context } from '../Context';
 import Button from './Button';
@@ -10,7 +10,7 @@ import Button from './Button';
 import { noteStorage } from '../storage';
 
 function Note({ content, title, _id = '' }: NoteType) {
-  const { updateNotes } = useContext(Context);
+  const { updateNotes, darkTheme } = useContext(Context);
 
   const handleDelete = () => {
     noteStorage.remove(_id);
@@ -29,12 +29,12 @@ function Note({ content, title, _id = '' }: NoteType) {
           <Button
             label="Delete"
             onClick={handleDelete}
-            style={{ color: '#FFDF75', backgroundColor: '#ED4747', width: 100 }}
+            style={deleteButtonStyles(darkTheme)}
           />
           <Button
             label="Copy"
             onClick={handleCopy}
-            style={{ color: '#FFDF75', backgroundColor: '#475DED', width: 100 }}
+            style={copyButtonStyles(darkTheme)}
           />
         </div>
       </div>
@@ -50,5 +50,31 @@ function Note({ content, title, _id = '' }: NoteType) {
     </div>
   );
 }
+
+const deleteButtonStyles: RenderCss = (darkMode) => {
+  if (darkMode) {
+    return {
+      color: '#ED4747',
+      backgroundColor: '#141414',
+      border: '1px solid #ED4747',
+      width: 100,
+    };
+  } else {
+    return { color: '#FFDF75', backgroundColor: '#ED4747', width: 100 };
+  }
+};
+
+const copyButtonStyles: RenderCss = (darkMode) => {
+  if (darkMode) {
+    return {
+      color: '#475ded',
+      backgroundColor: '#141414',
+      border: '1px solid #475ded',
+      width: 100,
+    };
+  } else {
+    return { color: '#FFDF75', backgroundColor: '#475ded', width: 100 };
+  }
+};
 
 export default Note;
