@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { Context } from '../Context';
+
 import '../styles/Components/Container.scss';
 
 interface ContainerProps {
@@ -5,11 +8,15 @@ interface ContainerProps {
 }
 
 function Container(props: ContainerProps) {
+  const { darkTheme } = useContext(Context);
+
   return (
-    <div className="Container">
-      <h1 className="Container__Title">EasyNotes</h1>
-      {props.children}
-    </div>
+    <main style={{ backgroundColor: darkTheme ? '#141414' : '#fff' }}>
+      <div className="Container">
+        <h1 className="Container__Title">EasyNotes</h1>
+        {props.children}
+      </div>
+    </main>
   );
 }
 

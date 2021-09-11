@@ -11,10 +11,10 @@ import useForm from '../Hooks/useForm';
 import '../styles/Containers/AddNoteForm.scss';
 
 import { noteStorage } from '../storage';
-import { Note } from '../types';
+import { Note, RenderCss } from '../types';
 
 function AddNoteForm() {
-  const { updateNotes } = useContext(Context);
+  const { updateNotes, darkTheme } = useContext(Context);
 
   const initialState = {
     title: '',
@@ -47,17 +47,34 @@ function AddNoteForm() {
     <form onSubmit={handleSubmit} className="AddNoteForm">
       <div className="AddNoteForm__Title">
         <Input Icon={<MdSpa />} placeholder="Note Title" {...propsByName('title')} />
-        <Button type="submit" label="Add Note" />
+        <Button type="submit" label="Add Note" style={CopyButtonStyles(darkTheme)} />
       </div>
       <TextArea placeholder="Note Content" rows={5} {...propsByName('content')} />
       <div className="AddNoteForm__CopyButton--container">
-        <Button onClick={handleCopy} label="Copy" style={CopyButtonStyles} />
+        <Button
+          onClick={handleCopy}
+          label="Copy"
+          style={CopyButtonStyles(darkTheme)}
+        />
       </div>
     </form>
   );
 }
 
 // JS Styles
-const CopyButtonStyles = { backgroundColor: '#475DED', color: '#FFDF75' };
+const CopyButtonStyles: RenderCss = (darkTheme) => {
+  if (darkTheme) {
+    return {
+      backgroundColor: '#141414',
+      color: '#FFDF75',
+      border: '1px solid #ffdf75',
+    };
+  } else {
+    return {
+      backgroundColor: '#475DED',
+      color: '#FFDF75',
+    };
+  }
+};
 
 export default AddNoteForm;

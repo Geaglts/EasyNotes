@@ -10,7 +10,10 @@ function Menu() {
 
   return (
     <div className="Menu">
-      <p className="Menu__Title">
+      <p
+        className="Menu__Title"
+        style={{ color: darkTheme ? '#c7c7c7' : '#141414' }}
+      >
         Change Theme: {darkTheme ? <FaMoon /> : <FaSun />}
       </p>
       <Toggle onClick={changeTheme} status={darkTheme} />

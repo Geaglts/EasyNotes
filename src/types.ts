@@ -1,4 +1,6 @@
-import { FormEvent } from 'react';
+import { FormEvent, CSSProperties } from 'react';
+
+export type RenderCss = (darkTheme: boolean) => CSSProperties;
 
 export type HandleChange =
   | FormEvent<HTMLInputElement>
