@@ -1,9 +1,19 @@
 @import '../global';
 
 .NoteList {
-  padding: 0 1em 1em 1em;
   margin-top: 1em;
   color: $primary;
   overflow: auto;
   height: calc(100vh - 373px);
+}
+
+@media (max-width: 360px) {
+  .NoteList {
+    margin-top: 5px;
+    height: auto;
+
+    &__Title {
+      margin-bottom: 5px;
+    }
+  }
 }

@@ -39,3 +39,15 @@
     }
   }
 }
+
+@media (max-width: 360px) {
+  .Note {
+    &__Header {
+      flex-direction: column;
+
+      &--title {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

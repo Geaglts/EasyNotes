@@ -11,3 +11,19 @@
     color: $primary;
   }
 }
+
+@media (max-width: 700px) {
+  .Container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .Container {
+    padding-top: 5px;
+
+    &__Title {
+      padding: 0;
+    }
+  }
+}
