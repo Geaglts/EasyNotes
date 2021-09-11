@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import { NotesContextState } from './types';
-import { noteStorage } from './storage';
+import { noteStorage, darkThemeStorage } from './storage';
 
 interface ProviderProps {
   children: JSX.Element | JSX.Element[];
@@ -15,10 +15,12 @@ export const Context = createContext<NotesContextState>({
 
 const Provider = ({ children }: ProviderProps) => {
   const [notes, setNotes] = useState(noteStorage.get());
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(darkThemeStorage.get());
 
   const changeTheme = () => {
     setDarkTheme(!darkTheme);
+    darkThemeStorage.set(String(!darkTheme));
+    setNotes(noteStorage.get());
   };
 
   const value = {

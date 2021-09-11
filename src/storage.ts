@@ -1,4 +1,4 @@
-import { NOTES, TOTAL_IDS } from './constants';
+import { DARK_MODE, NOTES, TOTAL_IDS } from './constants';
 import { Note, Notes } from './types';
 
 const idManager = {
@@ -33,5 +33,15 @@ export const noteStorage = {
   copy({ title, content }: Note) {
     const noteCopyTemplate = `${title}\n\n${content}`;
     navigator.clipboard.writeText(noteCopyTemplate);
+  },
+};
+
+export const darkThemeStorage = {
+  get() {
+    const isDarkModeActive = localStorage.getItem(DARK_MODE);
+    return isDarkModeActive === 'true';
+  },
+  set(status: string) {
+    localStorage.setItem(DARK_MODE, status);
   },
 };
