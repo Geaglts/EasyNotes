@@ -47,7 +47,11 @@ function AddNoteForm() {
     <form onSubmit={handleSubmit} className="AddNoteForm">
       <div className="AddNoteForm__Title">
         <Input Icon={<MdSpa />} placeholder="Note Title" {...propsByName('title')} />
-        <Button type="submit" label="Add Note" style={CopyButtonStyles(darkTheme)} />
+        <Button
+          type="submit"
+          label="Add Note"
+          style={AddNoteButtonStyles(darkTheme)}
+        />
       </div>
       <TextArea placeholder="Note Content" rows={5} {...propsByName('content')} />
       <div className="AddNoteForm__CopyButton--container">
@@ -62,6 +66,21 @@ function AddNoteForm() {
 }
 
 // JS Styles
+const AddNoteButtonStyles: RenderCss = (darkTheme) => {
+  if (darkTheme) {
+    return {
+      backgroundColor: '#141414',
+      color: '#FFDF75',
+      border: '1px solid #ffdf75',
+    };
+  } else {
+    return {
+      color: '#475DED',
+      backgroundColor: '#FFDF75',
+    };
+  }
+};
+
 const CopyButtonStyles: RenderCss = (darkTheme) => {
   if (darkTheme) {
     return {
