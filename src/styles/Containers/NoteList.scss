@@ -5,6 +5,11 @@
   color: $primary;
   overflow: auto;
   height: calc(100vh - 373px);
+
+  .Note {
+    margin: 0 3px;
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 360px) {
