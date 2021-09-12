@@ -5,11 +5,13 @@ import NoteList from '../containers/NoteList';
 
 function Home() {
   return (
-    <Container>
+    <>
       <Menu />
-      <AddNoteForm />
-      <NoteList limit={5} />
-    </Container>
+      <Container>
+        <AddNoteForm />
+        <NoteList limit={5} />
+      </Container>
+    </>
   );
 }
 

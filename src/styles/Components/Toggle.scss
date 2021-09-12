@@ -3,19 +3,17 @@
 $toggle-size: 22px;
 
 .Toggle {
-  width: 50px;
-  height: $toggle-size + 2px;
-  background-color: $dark;
+  width: 55px;
+  height: $toggle-size + 6;
   border-radius: 100px;
   cursor: pointer;
-  padding: 1px;
+  padding: 3px;
 
   &__Circle {
     width: $toggle-size;
     height: $toggle-size;
-    border-radius: 50%;
-    border: 1px solid $dark;
-    background-color: $primary;
+    border-radius: 100px;
+    background-color: $secondary;
     transition: transform 300ms ease-in;
   }
 }

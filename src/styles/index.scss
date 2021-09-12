@@ -13,14 +13,13 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: $primary;
+  background-color: $primary;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient($primary, $gray, $primary);
+  background-color: $primary;
 }

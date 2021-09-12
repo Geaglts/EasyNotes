@@ -9,15 +9,22 @@ function Menu() {
   const { darkTheme, changeTheme } = useContext(Context);
 
   return (
-    <div className="Menu">
-      <p
-        className="Menu__Title"
-        style={{ color: darkTheme ? '#c7c7c7' : '#141414' }}
-      >
-        {darkTheme ? <FaMoon /> : <FaSun />}
-      </p>
-      <Toggle onClick={changeTheme} status={darkTheme} />
-    </div>
+    <nav
+      className="Menu__Container"
+      style={{ backgroundColor: darkTheme ? '#141414' : 'rgba(71, 93, 237,.3)' }}
+    >
+      <ul className="Menu">
+        <li className="Menu__Item">
+          <a href="https://google.com" target="_blank">
+            Quiero ir a google
+          </a>
+        </li>
+        <li className="Menu__Item">
+          {darkTheme ? <FaMoon /> : <FaSun />}
+          <Toggle onClick={changeTheme} status={darkTheme} />
+        </li>
+      </ul>
+    </nav>
   );
 }
 

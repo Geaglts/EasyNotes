@@ -1,53 +1,34 @@
 @import '../global';
 
 .Menu {
-  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1em;
+  column-gap: 10px;
 
-  &__Title {
+  &__Item {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: white;
+      font-weight: 900;
+      font-size: 14pt;
+      transition: color 350ms ease-out;
+      text-decoration: none;
+
+      &:hover {
+        transition: color 250ms ease-in;
+        color: $secondary;
+        text-decoration: underline;
+      }
+    }
+
     svg {
       font-size: 16pt;
-      margin-left: 5px;
+      margin-right: 5px;
+      color: $secondary;
     }
-  }
-}
-
-@media (min-width: 981px) {
-  .Menu {
-    left: 20px;
-    top: 20px;
-
-    &__Title {
-      &::before {
-        content: 'Current Theme:';
-      }
-
-      display: flex;
-      align-items: center;
-      margin-bottom: 5px;
-      font-size: 12pt;
-      font-weight: 600;
-      color: $dark;
-    }
-  }
-}
-
-@media (max-width: 980px) {
-  .Menu {
-    right: 25px;
-    top: 30px;
-    display: flex;
-    &__Title {
-      svg {
-        margin: 0;
-        margin-right: 10px;
-      }
-    }
-  }
-}
-
-@media (max-width: 360px) {
-  .Menu {
-    right: 25px;
-    top: 25px;
   }
 }

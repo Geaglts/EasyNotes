@@ -13,7 +13,7 @@ function Toggle(props: ToggleProps) {
     <div
       className="Toggle"
       onClick={props.onClick}
-      style={{ backgroundColor: darkTheme ? '#c7c7c7' : '#141414' }}
+      style={{ backgroundColor: darkTheme ? '#475ded' : '#141414' }}
     >
       <div
         className="Toggle__Circle"
