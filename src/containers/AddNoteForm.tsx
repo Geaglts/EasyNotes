@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { MdSpa } from 'react-icons/md';
+import { MdSpa, MdSort } from 'react-icons/md';
 
 import { Context } from '../Context';
 
@@ -53,7 +53,12 @@ function AddNoteForm() {
           style={AddNoteButtonStyles(darkTheme)}
         />
       </div>
-      <TextArea placeholder="Note Content" rows={5} {...propsByName('content')} />
+      <TextArea
+        Icon={<MdSort />}
+        placeholder="Note Content"
+        rows={5}
+        {...propsByName('content')}
+      />
       <div className="AddNoteForm__CopyButton--container">
         <Button
           onClick={handleCopy}
