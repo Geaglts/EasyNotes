@@ -11,7 +11,7 @@ function Container(props: ContainerProps) {
   const { darkTheme } = useContext(Context);
 
   return (
-    <main style={{ backgroundColor: darkTheme ? '#141414' : '#fff' }}>
+    <main style={{ backgroundColor: darkTheme ? '#1c1b22' : '#fff' }}>
       <div className="Container">
         <h1 className="Container__Title">EasyNotes</h1>
         {props.children}
