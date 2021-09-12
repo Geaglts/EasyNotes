@@ -11,7 +11,7 @@ function Menu() {
   return (
     <nav
       className="Menu__Container"
-      style={{ backgroundColor: darkTheme ? '#141414' : 'rgba(71, 93, 237,.3)' }}
+      style={{ backgroundColor: darkTheme ? '#141414' : 'rgba(71, 93, 237,.8)' }}
     >
       <ul className="Menu">
         <li className="Menu__Item">
