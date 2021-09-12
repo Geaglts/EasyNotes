@@ -26,3 +26,20 @@
     }
   }
 }
+
+.Dark {
+  border: 2px solid $primary;
+  background-color: rgba($primary, 0.3);
+
+  .TextArea__Icon {
+    color: white;
+  }
+
+  .TextArea__TextArea {
+    color: white;
+
+    &::placeholder {
+      color: rgba(#ffffff, 0.8);
+    }
+  }
+}
