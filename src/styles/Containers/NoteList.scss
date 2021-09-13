@@ -3,9 +3,13 @@
 .NoteList {
   margin-top: 1em;
   color: $primary;
-  text-align: center;
   overflow: auto;
   height: calc(100vh - 373px);
+
+  .NoteList__Title,
+  .Message {
+    text-align: center;
+  }
 
   .Note {
     margin: 0 3px;

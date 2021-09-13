@@ -1,4 +1,10 @@
+@import '../global';
+
 .Message {
   font-size: 18pt;
   font-weight: 600;
+}
+
+.MessageDark {
+  color: $white;
 }
