@@ -22,7 +22,7 @@ function Note({ content, title, _id = '' }: NoteType) {
   };
 
   return (
-    <div className="Note">
+    <div className={`Note ${darkTheme ? 'NoteDark' : ''}`}>
       <div className="Note__Header">
         <p className="Note__Header--title">{title}</p>
         <div className="Note__Header--buttons">

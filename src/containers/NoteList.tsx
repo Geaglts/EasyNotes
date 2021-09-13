@@ -10,10 +10,10 @@ interface NoteListProps {
 }
 
 function NoteList({ limit }: NoteListProps) {
-  const { notes } = useContext(Context);
+  const { notes, darkTheme } = useContext(Context);
 
   return (
-    <div className="NoteList">
+    <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
       <h1 className="NoteList__Title">NoteList</h1>
       {notes.length === 0 && <Message textMessage="No tienes notas creadas 🦔" />}
       {notes.splice(0, limit || notes.length).map((note) => {

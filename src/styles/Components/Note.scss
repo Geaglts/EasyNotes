@@ -40,6 +40,22 @@
   }
 }
 
+.NoteDark {
+  border: 2px solid rgba($primary, 0.4);
+
+  .Note__Header {
+    border-bottom: 2px solid $primary;
+
+    &--title {
+      color: $secondary;
+    }
+  }
+
+  .Note__Content {
+    color: $gray;
+  }
+}
+
 @media (max-width: 360px) {
   .Note {
     &__Header {

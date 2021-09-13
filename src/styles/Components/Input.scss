@@ -39,14 +39,14 @@
   background-color: rgba($primary, 0.3);
 
   svg {
-    color: white;
+    color: $white;
   }
 
   .Input__TextArea {
-    color: white;
+    color: $white;
 
     &::placeholder {
-      color: rgba(#ffffff, 0.8);
+      color: rgba($white, 0.8);
     }
   }
 }

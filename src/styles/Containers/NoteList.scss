@@ -3,6 +3,7 @@
 .NoteList {
   margin-top: 1em;
   color: $primary;
+  text-align: center;
   overflow: auto;
   height: calc(100vh - 373px);
 
@@ -10,6 +11,10 @@
     margin: 0 3px;
     margin-bottom: 10px;
   }
+}
+
+.NoteListDark {
+  color: $warning;
 }
 
 @media (max-width: 360px) {
