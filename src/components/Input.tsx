@@ -15,21 +15,11 @@ function Input(props: InputPropsNew) {
   const { darkTheme } = useContext(Context);
   const { Icon, ...rest } = props;
   return (
-    <div
-      className={`Input ${darkTheme ? 'Dark' : ''}`}
-      style={inputDarkStyles(darkTheme)}
-    >
+    <div className={`Input ${darkTheme ? 'InputDark' : ''}`}>
       <div className="Input__Icon">{Icon || <MdSentimentVeryDissatisfied />}</div>
       <textarea className="Input__TextArea" {...rest}></textarea>
     </div>
   );
 }
-
-const inputDarkStyles: RenderCss = (darkTheme) => {
-  if (darkTheme) {
-    return {};
-  }
-  return {};
-};
 
 export default Input;

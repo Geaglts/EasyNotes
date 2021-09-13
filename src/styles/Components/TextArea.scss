@@ -28,8 +28,9 @@
 }
 
 .Dark {
-  border: 2px solid $primary;
-  background-color: rgba($primary, 0.3);
+  border: 2px solid rgba($white, 0.2);
+  background-color: rgba($dark, 0.3);
+  box-shadow: 1px 1px 5px $dark;
 
   .TextArea__Icon {
     color: white;
