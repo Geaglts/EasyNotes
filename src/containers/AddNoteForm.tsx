@@ -44,7 +44,10 @@ function AddNoteForm() {
   });
 
   return (
-    <form onSubmit={handleSubmit} className="AddNoteForm">
+    <form
+      onSubmit={handleSubmit}
+      className={`AddNoteForm ${darkTheme ? 'AddNoteFormDark' : ''}`}
+    >
       <div className="AddNoteForm__Title">
         <Input Icon={<MdSpa />} placeholder="Note Title" {...propsByName('title')} />
         <Button
@@ -60,11 +63,7 @@ function AddNoteForm() {
         {...propsByName('content')}
       />
       <div className="AddNoteForm__CopyButton--container">
-        <Button
-          onClick={handleCopy}
-          label="Copy"
-          style={CopyButtonStyles(darkTheme)}
-        />
+        <Button onClick={handleCopy} label="Copy" />
       </div>
     </form>
   );
@@ -82,21 +81,6 @@ const AddNoteButtonStyles: RenderCss = (darkTheme) => {
     return {
       color: '#475DED',
       backgroundColor: '#FFDF75',
-    };
-  }
-};
-
-const CopyButtonStyles: RenderCss = (darkTheme) => {
-  if (darkTheme) {
-    return {
-      backgroundColor: '#141414',
-      color: '#FFDF75',
-      border: '1px solid #ffdf75',
-    };
-  } else {
-    return {
-      backgroundColor: '#475DED',
-      color: '#FFDF75',
     };
   }
 };
