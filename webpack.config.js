@@ -6,12 +6,13 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'index.bundle.js',
+    publicPath: '/',
   },
   mode: process.env.NODE_ENV || 'development',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  devServer: { port: 3030 },
+  devServer: { port: 3030, historyApiFallback: true },
   module: {
     rules: [
       { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },

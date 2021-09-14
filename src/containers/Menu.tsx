@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Context } from '../Context';
+import { Link } from 'react-router-dom';
 import '../styles/Containers/Menu.scss';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
@@ -14,6 +15,12 @@ function Menu() {
       style={{ backgroundColor: darkTheme ? '#141414' : 'rgba(71, 93, 237,.8)' }}
     >
       <ul className="Menu">
+        <li className="Menu__Item">
+          <Link to="/">EasyNotes</Link>
+        </li>
+        <li className="Menu__Item">
+          <Link to="/fast">Nota rapida</Link>
+        </li>
         <li className="Menu__Item">
           <a href="https://google.com" target="_blank">
             Quiero ir a google

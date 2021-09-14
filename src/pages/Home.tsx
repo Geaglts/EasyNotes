@@ -1,17 +1,8 @@
-import Container from '../components/Container';
-import AddNoteForm from '../containers/AddNoteForm';
-import { Menu } from '../containers/Menu';
-import NoteList from '../containers/NoteList';
-
 function Home() {
   return (
-    <>
-      <Menu />
-      <Container>
-        <AddNoteForm />
-        <NoteList limit={5} />
-      </Container>
-    </>
+    <div>
+      <h1>Holaaaa!!</h1>
+    </div>
   );
 }
 

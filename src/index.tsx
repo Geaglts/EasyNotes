@@ -1,11 +1,11 @@
 import { render } from 'react-dom';
 import './styles/index.scss';
-import Home from './pages/Home';
+import App from './pages/App';
 import Context from './Context';
 
 render(
   <Context.Provider>
-    <Home />
+    <App />
   </Context.Provider>,
   document.getElementById('app')
 );
