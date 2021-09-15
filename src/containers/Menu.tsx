@@ -14,10 +14,12 @@ function Menu() {
       className="Menu__Container"
       style={{ backgroundColor: darkTheme ? '#141414' : 'rgba(71, 93, 237,.8)' }}
     >
-      <ul className="Menu">
+      <ul className="Menu__Left">
         <li className="Menu__Item">
           <Link to="/">EasyNotes</Link>
         </li>
+      </ul>
+      <ul className="Menu">
         <li className="Menu__Item">
           <Link to="/fast">Nota rapida</Link>
         </li>

@@ -1,34 +1,42 @@
 @import '../global';
 
-.Menu {
-  display: flex;
-  justify-content: flex-end;
+.Menu__Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   align-items: center;
-  padding: 1em;
-  column-gap: 10px;
+  height: 60px;
+  padding: 0 1em;
 
-  &__Item {
+  .Menu {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+    column-gap: 10px;
 
-    a {
-      color: white;
-      font-weight: 900;
-      font-size: 14pt;
-      transition: color 350ms ease-out;
-      text-decoration: none;
+    &__Item {
+      display: flex;
+      align-items: center;
 
-      &:hover {
-        transition: color 250ms ease-in;
-        color: $secondary;
-        text-decoration: underline;
+      a {
+        color: white;
+        font-weight: 900;
+        font-size: 14pt;
+        transition: color 350ms ease-out;
+        text-decoration: none;
+
+        &:hover {
+          transition: color 250ms ease-in;
+          color: $secondary;
+          text-decoration: underline;
+        }
       }
-    }
 
-    svg {
-      font-size: 16pt;
-      margin-right: 5px;
-      color: $secondary;
+      svg {
+        font-size: 16pt;
+        margin-right: 5px;
+        color: $secondary;
+      }
     }
   }
 }
