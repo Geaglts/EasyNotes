@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import { useContext } from 'react';
 import '../styles/Containers/NoteList.scss';
 
@@ -5,12 +6,15 @@ import { Context } from '../Context';
 import Note from '../components/Note';
 import { Message } from '../components/Message';
 
+import { Notes } from '../types';
+
 interface NoteListProps {
   limit?: number;
+  notes?: Notes;
 }
 
-function NoteList({ limit }: NoteListProps) {
-  const { notes, darkTheme } = useContext(Context);
+function NoteList({ limit, notes = [] }: NoteListProps) {
+  const { darkTheme } = useContext(Context);
 
   return (
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
@@ -23,4 +27,8 @@ function NoteList({ limit }: NoteListProps) {
   );
 }
 
-export default NoteList;
+const mapStateToProps = (state: NoteListProps) => {
+  return state.notes;
+};
+
+export default connect(mapStateToProps, null)(NoteList);
