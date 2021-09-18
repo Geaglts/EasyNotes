@@ -6,7 +6,7 @@ import { Context } from '../Context';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import TextArea from '../components/TextArea';
-import useForm from '../Hooks/useForm';
+import useForm from '../hooks/useForm';
 
 import '../styles/Containers/AddNoteForm.scss';
 
@@ -21,11 +21,11 @@ function AddNoteForm() {
     content: '',
   };
 
-  const submit = (values: typeof initialState) => {
+  const submit = async (values: typeof initialState) => {
     if (cantSubmit()) {
       alert('Rellena los campos');
     } else {
-      noteStorage.add(values);
+      await noteStorage.add(values);
       updateNotes();
     }
   };

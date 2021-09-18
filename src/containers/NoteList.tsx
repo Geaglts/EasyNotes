@@ -1,5 +1,6 @@
+import { useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useContext } from 'react';
+import { allNotes } from '../redux/actions/NotesActions';
 import '../styles/Containers/NoteList.scss';
 
 import { Context } from '../Context';
@@ -11,10 +12,15 @@ import { Notes } from '../types';
 interface NoteListProps {
   limit?: number;
   notes?: Notes;
+  allNotes?: () => void;
 }
 
-function NoteList({ limit, notes = [] }: NoteListProps) {
+function NoteList({ limit, notes = [], allNotes = () => {} }: NoteListProps) {
   const { darkTheme } = useContext(Context);
+
+  useEffect(() => {
+    allNotes();
+  }, []);
 
   return (
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
@@ -31,4 +37,4 @@ const mapStateToProps = (state: NoteListProps) => {
   return state.notes;
 };
 
-export default connect(mapStateToProps, null)(NoteList);
+export default connect(mapStateToProps, allNotes)(NoteList);

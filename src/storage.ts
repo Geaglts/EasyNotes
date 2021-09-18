@@ -14,18 +14,22 @@ const idManager = {
 };
 
 export const noteStorage = {
-  get(): Notes {
-    return JSON.parse(localStorage.getItem(NOTES) || '[]');
+  get(): Promise<Notes> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(JSON.parse(localStorage.getItem(NOTES) || '[]'));
+      }, 1000);
+    });
   },
-  add(note: Note) {
-    const notes = this.get();
+  async add(note: Note) {
+    const notes = await this.get();
     const _id = idManager.getNewId();
     notes.push({ _id, ...note });
     const stringNotes = JSON.stringify(notes);
     localStorage.setItem(NOTES, stringNotes);
   },
-  remove(id: string) {
-    const notes = this.get();
+  async remove(id: string) {
+    const notes = await this.get();
     const filteredNotes = notes.filter(({ _id }) => _id !== id);
     const stringNotes = JSON.stringify(filteredNotes);
     localStorage.setItem(NOTES, stringNotes);

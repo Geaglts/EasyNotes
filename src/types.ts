@@ -15,7 +15,6 @@ export type Note = {
 export type Notes = Array<Note>;
 
 export type NotesContextState = {
-  notes: Notes;
   updateNotes: () => void;
   darkTheme: boolean;
   changeTheme: () => void;
@@ -23,5 +22,7 @@ export type NotesContextState = {
 
 export type ActionType = {
   type: string;
-  payload: string | object;
+  payload: string | object | number | boolean;
 };
+
+export type DispatchFunction = (args: ActionType) => void;
