@@ -37,4 +37,4 @@ const mapStateToProps = (state: NoteListProps) => {
   return state.notes;
 };
 
-export default connect(mapStateToProps, allNotes)(NoteList);
+export default connect(mapStateToProps, { allNotes })(NoteList);

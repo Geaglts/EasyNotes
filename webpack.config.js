@@ -12,6 +12,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  devtool: 'source-map',
   devServer: { port: 3030, historyApiFallback: true },
   module: {
     rules: [

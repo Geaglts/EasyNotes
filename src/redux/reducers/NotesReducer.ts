@@ -1,6 +1,6 @@
 import { ActionType, Notes } from '../../types';
 
-export enum NoteActions {
+export enum NoteTypes {
   GET_NOTES = 'GET_NOTES',
 }
 
@@ -14,7 +14,7 @@ const INITIAL_STATE: initialStateProps = {
 
 const noteReducer = (state = INITIAL_STATE, action: ActionType) => {
   switch (action.type) {
-    case NoteActions.GET_NOTES:
+    case NoteTypes.GET_NOTES:
       return { ...state, notes: action.payload };
     default:
       return state;
