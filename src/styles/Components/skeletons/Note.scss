@@ -59,6 +59,10 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
       width: 100%;
       background-color: $gray-note-skeleton;
     }
+
+    p:nth-child(2n) {
+      width: 96%;
+    }
   }
 }
 
