@@ -2,6 +2,7 @@
 
 $head-height: 55px;
 $gray-note-skeleton: rgba($dark, 0.4);
+$gray-note-skeleton-dark: rgba($white, 0.4);
 
 .NoteSkeleton {
   background-color: $white;
@@ -9,8 +10,8 @@ $gray-note-skeleton: rgba($dark, 0.4);
   height: 130px;
   width: 100%;
   overflow: hidden;
-  border: 2px solid $dark;
-  padding: 0 15px;
+  border: 2px solid $gray-note-skeleton;
+  padding: 0 10px;
 
   &__Head {
     height: $head-height;
@@ -57,6 +58,31 @@ $gray-note-skeleton: rgba($dark, 0.4);
       height: 9px;
       width: 100%;
       background-color: $gray-note-skeleton;
+    }
+  }
+}
+
+.NoteSkeleton--Dark {
+  background-color: $dark;
+  border: 2px solid $gray-note-skeleton-dark;
+
+  .NoteSkeleton__Head {
+    h1 {
+      background-color: $gray-note-skeleton-dark;
+    }
+
+    & > div {
+      button {
+        background-color: $gray-note-skeleton-dark;
+      }
+    }
+  }
+
+  .NoteSkeleton__Content {
+    border-top: 2px solid $gray-note-skeleton-dark;
+
+    p {
+      background-color: $gray-note-skeleton-dark;
     }
   }
 }
