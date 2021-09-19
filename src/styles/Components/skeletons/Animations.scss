@@ -1,0 +1,22 @@
+@mixin animateSkeleton($duration, $color) {
+  background: linear-gradient(
+    to right,
+    $color 8%,
+    rgba($color, 0.5) 50%,
+    $color 42%
+  );
+  animation-duration: $duration;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: preloadAnimation;
+  animation-timing-function: linear;
+}
+
+@keyframes preloadAnimation {
+  0% {
+    background-position: -769px 0;
+  }
+  100% {
+    background-position: 769px 0;
+  }
+}

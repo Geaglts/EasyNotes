@@ -1,3 +1,4 @@
+@import 'Animations';
 @import '../../global';
 
 $head-height: 55px;
@@ -23,7 +24,7 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
       border-radius: 10px;
       width: 65.5%;
       height: 35px;
-      background-color: $gray-note-skeleton;
+      @include animateSkeleton(5s, $gray-note-skeleton);
     }
 
     & > div {
@@ -38,7 +39,7 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
         border-radius: 10px;
         width: 90px;
         height: 35px;
-        background-color: $gray-note-skeleton;
+        @include animateSkeleton(10s, $gray-note-skeleton);
         border: none;
       }
     }
@@ -57,7 +58,7 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
       border-radius: 5px;
       height: 9px;
       width: 100%;
-      background-color: $gray-note-skeleton;
+      @include animateSkeleton(5s, $gray-note-skeleton);
     }
 
     p:nth-child(2n) {
@@ -72,12 +73,12 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
 
   .NoteSkeleton__Head {
     h1 {
-      background-color: $gray-note-skeleton-dark;
+      @include animateSkeleton(5s, $gray-note-skeleton-dark);
     }
 
     & > div {
       button {
-        background-color: $gray-note-skeleton-dark;
+        @include animateSkeleton(10s, $gray-note-skeleton-dark);
       }
     }
   }
@@ -86,7 +87,7 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
     border-top: 2px solid $gray-note-skeleton-dark;
 
     p {
-      background-color: $gray-note-skeleton-dark;
+      @include animateSkeleton(5s, $gray-note-skeleton-dark);
     }
   }
 }
