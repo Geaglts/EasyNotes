@@ -15,6 +15,10 @@
     margin: 0 3px;
     margin-bottom: 10px;
   }
+
+  .NoteSkeleton + .NoteSkeleton {
+    margin-top: 12px;
+  }
 }
 
 .NoteListDark {
