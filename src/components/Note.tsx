@@ -67,9 +67,9 @@ const deleteButtonStyles: RenderCss = (darkMode) => {
 const copyButtonStyles: RenderCss = (darkMode) => {
   if (darkMode) {
     return {
-      color: '#475ded',
+      color: '#f8f8f8',
       backgroundColor: '#141414',
-      border: '1px solid #475ded',
+      border: '1px solid #f8f8f8',
       width: 100,
     };
   } else {
