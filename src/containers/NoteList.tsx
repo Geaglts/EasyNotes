@@ -12,10 +12,28 @@ import { Notes } from '../types';
 interface NoteListProps {
   limit?: number;
   notes?: Notes;
+  loading?: boolean;
+  error?: string | null;
   allNotes?: () => void;
 }
 
-function NoteList({ limit, notes = [], allNotes = () => {} }: NoteListProps) {
+const loadNotes = ({ notes = [], limit }: NoteListProps) => {
+  if (notes.length === 0) {
+    return <Message textMessage="No tienes notas creadas 🦔" />;
+  } else {
+    return notes.splice(0, limit || notes.length).map((note) => {
+      return <Note key={note._id} {...note} />;
+    });
+  }
+};
+
+function NoteList({
+  limit,
+  notes,
+  loading,
+  error,
+  allNotes = () => {},
+}: NoteListProps) {
   const { darkTheme } = useContext(Context);
 
   useEffect(() => {
@@ -25,10 +43,9 @@ function NoteList({ limit, notes = [], allNotes = () => {} }: NoteListProps) {
   return (
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
       <h1 className="NoteList__Title">NoteList</h1>
-      {notes.length === 0 && <Message textMessage="No tienes notas creadas 🦔" />}
-      {notes.splice(0, limit || notes.length).map((note) => {
-        return <Note key={note._id} {...note} />;
-      })}
+      {loading && <Message textMessage="Cargando... ✈" />}
+      {error && <Message textMessage={error} />}
+      {!loading && !error && loadNotes({ limit, notes })}
     </div>
   );
 }
