@@ -10,6 +10,7 @@ import { Context } from '../Context';
 import { Message } from '../components/Message';
 
 import { NoteSkeleton } from '../components/skeletons/Note';
+import Error from '../components/Error';
 
 interface NoteListProps {
   limit?: number;
@@ -46,7 +47,9 @@ function NoteList({
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
       <h1 className="NoteList__Title">NoteList</h1>
       {loading && <NoteSkeleton />}
-      {error && <Message textMessage={error} />}
+      {true && (
+        <Error errorMessage="Este error ocurrio porque si bro una disculpa" />
+      )}
       {!loading && !error && loadNotes()}
     </div>
   );
