@@ -18,7 +18,7 @@ export const noteStorage = {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const notes = JSON.parse(localStorage.getItem(NOTES) || '[]');
-        if (!notes) reject('A ocurrido un error');
+        if (notes) reject('No se pudieron cargar las notas');
         resolve(notes);
       }, 1000);
     });

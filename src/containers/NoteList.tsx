@@ -47,9 +47,7 @@ function NoteList({
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
       <h1 className="NoteList__Title">NoteList</h1>
       {loading && <NoteSkeleton />}
-      {true && (
-        <Error errorMessage="Este error ocurrio porque si bro una disculpa" />
-      )}
+      {error && <Error errorMessage={error} />}
       {!loading && !error && loadNotes()}
     </div>
   );

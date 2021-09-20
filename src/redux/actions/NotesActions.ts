@@ -8,9 +8,10 @@ export const allNotes = () => async (dispatch: DispatchFunction) => {
     const notes = await noteStorage.get();
     dispatch({ type: NoteTypes.GET_NOTES, payload: notes });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: NoteTypes.ERROR,
-      payload: '🚧: Las notas no se pudieron cargar',
+      payload: '🚧: ' + error,
     });
   }
 };
