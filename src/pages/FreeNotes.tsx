@@ -4,12 +4,10 @@ import NoteList from '../containers/NoteList';
 
 function FreeNotes() {
   return (
-    <>
-      <Container>
-        <AddNoteForm />
-        <NoteList limit={5} />
-      </Container>
-    </>
+    <Container>
+      <AddNoteForm />
+      <NoteList limit={5} />
+    </Container>
   );
 }
 
