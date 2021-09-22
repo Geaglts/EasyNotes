@@ -1,0 +1,60 @@
+@import '../global';
+
+.Error {
+  display: grid;
+  width: 95%;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 1fr;
+  padding: 0 1em;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 1em;
+
+  &__Image {
+    display: flex;
+    align-items: center;
+    & > img {
+      width: 100%;
+    }
+  }
+
+  &__Content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1em;
+    margin: 1em;
+    border-left: 3px solid $primary;
+
+    h2 {
+      font-size: 18pt;
+    }
+
+    p:nth-child(2) {
+      font-size: 12pt;
+      font-weight: 600;
+      color: rgba($dark, 0.9);
+    }
+
+    p:nth-child(3) {
+      margin-top: 5px;
+      border-left: 2px solid $warning;
+      background-color: rgba($warning, 0.1);
+      padding: 10px 1em;
+      color: $warning;
+      font-weight: 600;
+    }
+  }
+}
+
+.ErrorDark {
+  .Error__Content {
+    h2 {
+      color: $secondary;
+    }
+
+    p:nth-child(2) {
+      color: rgba($white, 0.8);
+    }
+  }
+}
