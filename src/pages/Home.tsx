@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../styles/pages/Home.scss';
+import TakingNotesImage from '../assets/images/taking_notes.svg';
 
 function Home() {
   return (
@@ -15,7 +16,9 @@ function Home() {
           </p>
           <Link to="/fast">¡Crear mi primera nota!</Link>
         </section>
-        <section></section>
+        <section>
+          <img src={TakingNotesImage} alt="Persona tomando notas en easy notes" />
+        </section>
       </div>
     </main>
   );

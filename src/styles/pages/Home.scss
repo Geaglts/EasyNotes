@@ -57,5 +57,14 @@
         }
       }
     }
+
+    & > section:last-child {
+      display: flex;
+      align-items: center;
+
+      & > img {
+        width: 80%;
+      }
+    }
   }
 }
