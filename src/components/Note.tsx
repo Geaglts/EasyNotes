@@ -1,20 +1,29 @@
+import { connect } from 'react-redux';
 import { useContext } from 'react';
+// redux
+import { removeNote } from '../redux/actions/NotesActions';
 
 import '../styles/Components/Note.scss';
 
-import { Note as NoteType, RenderCss } from '../types';
+import { RenderCss } from '../types';
 
 import { Context } from '../Context';
 import Button from './Button';
 
 import { noteStorage } from '../storage';
 
-function Note({ content, title, _id = '' }: NoteType) {
-  const { updateNotes, darkTheme } = useContext(Context);
+interface NoteProps {
+  content?: string;
+  title?: string;
+  _id?: string;
+  removeNote?: (id: string) => void;
+}
+
+function Note({ content = '', title = '', _id = '', removeNote }: NoteProps) {
+  const { darkTheme } = useContext(Context);
 
   const handleDelete = () => {
-    noteStorage.remove(_id);
-    updateNotes();
+    if (removeNote) removeNote(_id);
   };
 
   const handleCopy = () => {
@@ -77,4 +86,4 @@ const copyButtonStyles: RenderCss = (darkMode) => {
   }
 };
 
-export default Note;
+export default connect(null, { removeNote })(Note);

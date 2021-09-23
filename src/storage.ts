@@ -20,15 +20,17 @@ export const noteStorage = {
         const notes = JSON.parse(localStorage.getItem(NOTES) || '[]');
         if (!notes) reject('No se pudieron cargar las notas');
         resolve(notes);
-      }, 1000);
+      }, 500);
     });
   },
   async add(note: Note) {
     const notes = await this.get();
     const _id = idManager.getNewId();
-    notes.push({ _id, ...note });
+    const newNote = { _id, ...note };
+    notes.push(newNote);
     const stringNotes = JSON.stringify(notes);
     localStorage.setItem(NOTES, stringNotes);
+    return newNote;
   },
   async remove(id: string) {
     const notes = await this.get();

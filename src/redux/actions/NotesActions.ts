@@ -17,9 +17,19 @@ export const allNotes = () => async (dispatch: DispatchFunction) => {
 
 export const addNote = (note: Note) => async (dispatch: DispatchFunction) => {
   try {
-    await noteStorage.add(note);
-    dispatch({ type: NoteTypes.ADD_NOTES, payload: note });
+    const newNote = await noteStorage.add(note);
+    console.log(newNote);
+    dispatch({ type: NoteTypes.ADD_NOTES, payload: newNote });
   } catch {
     dispatch({ type: NoteTypes.ERROR, payload: 'No se pudo crear la nota' });
+  }
+};
+
+export const removeNote = (id: string) => async (dispatch: DispatchFunction) => {
+  try {
+    await noteStorage.remove(id);
+    dispatch({ type: NoteTypes.REMOVE_NOTES, payload: id });
+  } catch {
+    dispatch({ type: NoteTypes.ERROR, payload: 'No se pudo eliminar la nota' });
   }
 };

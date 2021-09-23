@@ -3,6 +3,7 @@ import { ActionType, Notes } from '../../types';
 export enum NoteTypes {
   GET_NOTES = 'GET_NOTES',
   ADD_NOTES = 'ADD_NOTES',
+  REMOVE_NOTES = 'REMOVE_NOTES',
   LOADING = 'LOADING_NOTES',
   ERROR = 'ERROR_IN_NOTES',
 }
@@ -22,17 +23,17 @@ const INITIAL_STATE: initialStateProps = {
 const noteReducer = (state = INITIAL_STATE, action: ActionType) => {
   switch (action.type) {
     case NoteTypes.GET_NOTES:
-      return <typeof state>{ ...state, notes: action.payload, loading: false };
+      return { ...state, notes: action.payload, loading: false };
     case NoteTypes.ADD_NOTES:
-      return <typeof state>{
-        ...state,
-        notes: [...state.notes, action.payload],
-        loading: false,
-      };
+      console.log(state);
+      return { ...state, notes: [], loading: false };
+    case NoteTypes.REMOVE_NOTES:
+      const newNotes = state.notes.filter((note) => note._id !== action.payload);
+      return { ...state, notes: newNotes, loading: false };
     case NoteTypes.LOADING:
-      return <typeof state>{ ...state, loading: true };
+      return { ...state, loading: true };
     case NoteTypes.ERROR:
-      return <typeof state>{ ...state, error: action.payload, loading: false };
+      return { ...state, error: action.payload, loading: false };
     default:
       return state;
   }
