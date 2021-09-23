@@ -2,6 +2,7 @@ import { ActionType, Notes } from '../../types';
 
 export enum NoteTypes {
   GET_NOTES = 'GET_NOTES',
+  ADD_NOTES = 'ADD_NOTES',
   LOADING = 'LOADING_NOTES',
   ERROR = 'ERROR_IN_NOTES',
 }
@@ -22,6 +23,12 @@ const noteReducer = (state = INITIAL_STATE, action: ActionType) => {
   switch (action.type) {
     case NoteTypes.GET_NOTES:
       return <typeof state>{ ...state, notes: action.payload, loading: false };
+    case NoteTypes.ADD_NOTES:
+      return <typeof state>{
+        ...state,
+        notes: [...state.notes, action.payload],
+        loading: false,
+      };
     case NoteTypes.LOADING:
       return <typeof state>{ ...state, loading: true };
     case NoteTypes.ERROR:

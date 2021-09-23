@@ -1,5 +1,9 @@
 import { useContext } from 'react';
+import { connect } from 'react-redux';
 import { MdSpa, MdSort } from 'react-icons/md';
+
+// actions
+import { addNote } from '../redux/actions/NotesActions';
 
 import { Context } from '../Context';
 
@@ -13,8 +17,12 @@ import '../styles/Containers/AddNoteForm.scss';
 import { noteStorage } from '../storage';
 import { Note, RenderCss } from '../types';
 
-function AddNoteForm() {
-  const { updateNotes, darkTheme } = useContext(Context);
+interface AddNoteFormProps {
+  addNote?: (note: Note) => void;
+}
+
+function AddNoteForm({ addNote }: AddNoteFormProps) {
+  const { darkTheme } = useContext(Context);
 
   const initialState = {
     title: '',
@@ -25,8 +33,7 @@ function AddNoteForm() {
     if (cantSubmit()) {
       alert('Rellena los campos');
     } else {
-      await noteStorage.add(values);
-      updateNotes();
+      if (addNote) addNote(values);
     }
   };
 
@@ -85,4 +92,4 @@ const AddNoteButtonStyles: RenderCss = (darkTheme) => {
   }
 };
 
-export default AddNoteForm;
+export default connect(null, { addNote })(AddNoteForm);
