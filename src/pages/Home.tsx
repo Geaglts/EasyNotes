@@ -1,16 +1,26 @@
+import { useContext } from 'react';
+import { Context } from '../Context';
 import { Link } from 'react-router-dom';
 import '../styles/pages/Home.scss';
 import TakingNotesImage from '../assets/images/taking_notes.svg';
 
 function Home() {
+  const { darkTheme } = useContext(Context);
+
   return (
-    <main className="HomePage__Page">
+    <main
+      className="HomePage__Page"
+      style={{ backgroundColor: darkTheme ? '#1c1b22' : '#fff' }}
+    >
       <div className="Introduction__Section">
         <section>
           <h1>
-            <span>Bienvenido a </span>EasyNotes
+            <span style={{ color: darkTheme ? '#fff' : '#475ded' }}>
+              Bienvenido a{' '}
+            </span>
+            EasyNotes
           </h1>
-          <p>
+          <p style={{ color: darkTheme ? '#fff' : '#1c1b22' }}>
             Crea notas rapidas y seguras de forma rapida y sencilla totalmente
             gratis.
           </p>

@@ -49,7 +49,7 @@
 
         &:hover {
           transition: transform 350ms ease-in-out;
-          transform: scale(1.05);
+          transform: translateY(-8px);
         }
 
         &:focus {
