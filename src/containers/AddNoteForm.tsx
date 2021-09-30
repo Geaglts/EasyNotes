@@ -18,10 +18,10 @@ import { noteStorage } from '../storage';
 import { Note, RenderCss } from '../types';
 
 interface AddNoteFormProps {
-  addNote?: (note: Note) => void;
+  onAddTodo?: (note: Note) => void;
 }
 
-function AddNoteForm({ addNote }: AddNoteFormProps) {
+function AddNoteForm({ onAddTodo }: AddNoteFormProps) {
   const { darkTheme } = useContext(Context);
 
   const initialState = {
@@ -33,7 +33,7 @@ function AddNoteForm({ addNote }: AddNoteFormProps) {
     if (cantSubmit()) {
       alert('Rellena los campos');
     } else {
-      if (addNote) addNote(values);
+      if (onAddTodo) onAddTodo(values);
     }
   };
 
@@ -92,4 +92,12 @@ const AddNoteButtonStyles: RenderCss = (darkTheme) => {
   }
 };
 
-export default connect(null, { addNote })(AddNoteForm);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onAddTodo(note: Note) {
+      dispatch(addNote(note));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(AddNoteForm);

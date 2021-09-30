@@ -7,7 +7,7 @@ import reducers from './redux/reducers';
 import App from './pages/App';
 import Context from './Context';
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = createStore(reducers, applyMiddleware(reduxThunk));
 
 render(
   <Provider store={store}>

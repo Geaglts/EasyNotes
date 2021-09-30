@@ -22,7 +22,7 @@ export type NotesContextState = {
 
 export type ActionType = {
   type: string;
-  payload?: string | object | number | boolean;
+  payload?: string | object | number | boolean | Note;
 };
 
 export type DispatchFunction = (args: ActionType) => void;

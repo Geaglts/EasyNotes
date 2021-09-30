@@ -53,8 +53,8 @@ function NoteList({
   );
 }
 
-const mapStateToProps = (state: NoteListProps) => {
-  return state.notes;
+const mapStateToProps = (state: any) => {
+  return state.noteReducer;
 };
 
 export default connect(mapStateToProps, { allNotes })(NoteList);
