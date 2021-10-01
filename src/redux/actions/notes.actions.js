@@ -11,12 +11,10 @@ export const allNotes = () => async (dispatch) => {
   }
 };
 
-export const addNote = (note) => async (dispatch, getState) => {
+export const addNote = (note) => async (dispatch) => {
   try {
-    const { notes } = getState().noteReducer;
-    const updatedNotes = [...notes, note];
-    await noteStorage.add(note);
-    dispatch({ type: NoteTypes.ADD, payload: updatedNotes });
+    const noteWithId = await noteStorage.add(note);
+    dispatch({ type: NoteTypes.ADD, payload: noteWithId });
   } catch {
     dispatch({ type: NoteTypes.ERROR, payload: 'No se pudo crear la nota' });
   }

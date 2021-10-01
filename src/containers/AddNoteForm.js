@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { MdSpa, MdSort } from 'react-icons/md';
 
 // actions
-import { addNote } from '../redux/actions/NotesActions';
+import { addNote } from '../redux/actions/notes.actions';
 
 import { Context } from '../Context';
 
@@ -28,7 +28,7 @@ function AddNoteForm({ onAddTodo }) {
     if (cantSubmit()) {
       alert('Rellena los campos');
     } else {
-      if (onAddTodo) onAddTodo(values);
+      onAddTodo(values);
     }
   };
 

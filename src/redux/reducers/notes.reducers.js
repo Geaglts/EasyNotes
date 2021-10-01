@@ -1,9 +1,9 @@
 export const NoteTypes = {
-  GET: 'GET_NOTES',
-  ADD: 'ADD_NOTES',
-  REMOVE: 'REMOVE_NOTES',
-  LOADING: 'LOADING_NOTES',
-  ERROR: 'ERROR_IN_NOTES',
+  GET: 'GET_LIST_NOTE',
+  ADD: 'ADD_NOTE',
+  REMOVE: 'REMOVE_NOTE',
+  LOADING: 'LOADING_NOTE',
+  ERROR: 'ERROR_IN_NOTE',
 };
 
 const initialState = {
@@ -13,12 +13,12 @@ const initialState = {
 };
 
 const noteReducer = (state = initialState, action) => {
-  console.log(state, action);
   switch (action.type) {
     case NoteTypes.GET:
       return { ...state, notes: action.payload, loading: false, error: null };
     case NoteTypes.ADD:
-      return { ...state, notes: action.payload, loading: false, error: null };
+      const updatedNotes = [...state.notes, action.payload];
+      return { ...state, notes: updatedNotes, loading: false, error: null };
     case NoteTypes.REMOVE:
       return { ...state, notes: action.payload, loading: false, error: null };
     case NoteTypes.LOADING:

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { allNotes } from '../redux/actions/NotesActions';
+import { allNotes } from '../redux/actions/notes.actions';
 import '../styles/Containers/NoteList.scss';
 
 import Note from '../components/Note';
@@ -10,11 +10,12 @@ import { Message } from '../components/Message';
 import { NoteSkeleton } from '../components/skeletons/Note';
 import Error from '../components/Error';
 
-function NoteList({ limit, notes = [], loading, error, allNotes = () => {} }) {
+function NoteList(props) {
+  const { limit, notes, loading, error, onLoadNotes } = props;
   const { darkTheme } = useContext(Context);
 
   useEffect(() => {
-    allNotes();
+    onLoadNotes();
   }, []);
 
   const loadNotes = () => {
@@ -41,4 +42,12 @@ const mapStateToProps = (state) => {
   return state.noteReducer;
 };
 
-export default connect(mapStateToProps, { allNotes })(NoteList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoadNotes() {
+      dispatch(allNotes());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteList);

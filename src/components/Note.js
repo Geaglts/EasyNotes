@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 // redux
-import { removeNote } from '../redux/actions/NotesActions';
+import { removeNote } from '../redux/actions/notes.actions';
 
 import '../styles/Components/Note.scss';
 
@@ -10,11 +10,11 @@ import Button from './Button';
 
 import { noteStorage } from '../storage';
 
-function Note({ content = '', title = '', _id = '', removeNote }) {
+function Note({ content, title, _id, removeNote }) {
   const { darkTheme } = useContext(Context);
 
   const handleDelete = () => {
-    if (removeNote) removeNote(_id);
+    removeNote(_id);
   };
 
   const handleCopy = () => {
