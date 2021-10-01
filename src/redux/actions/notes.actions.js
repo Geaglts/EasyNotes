@@ -13,6 +13,7 @@ export const allNotes = () => async (dispatch) => {
 
 export const addNote = (note) => async (dispatch) => {
   try {
+    dispatch({ type: NoteTypes.LOADING });
     const noteWithId = await noteStorage.add(note);
     dispatch({ type: NoteTypes.ADD, payload: noteWithId });
   } catch {
@@ -22,8 +23,8 @@ export const addNote = (note) => async (dispatch) => {
 
 export const removeNote = (id) => async (dispatch) => {
   try {
-    await noteStorage.remove(id);
     dispatch({ type: NoteTypes.REMOVE, payload: id });
+    await noteStorage.remove(id);
   } catch (error) {
     dispatch({ type: NoteTypes.ERROR, payload: 'No se pudo eliminar la nota' });
   }
