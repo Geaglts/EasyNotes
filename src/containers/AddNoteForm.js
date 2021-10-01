@@ -51,7 +51,11 @@ function AddNoteForm({ onAddTodo }) {
       className={`AddNoteForm ${darkTheme ? 'AddNoteFormDark' : ''}`}
     >
       <div className="AddNoteForm__Title">
-        <Input Icon={<MdSpa />} placeholder="Note Title" {...propsByName('title')} />
+        <Input
+          Icon={<MdSpa />}
+          placeholder="¿Cuál es el nombre de tu nota?"
+          {...propsByName('title')}
+        />
         <Button
           type="submit"
           label="Add Note"
@@ -60,7 +64,7 @@ function AddNoteForm({ onAddTodo }) {
       </div>
       <TextArea
         Icon={<MdSort />}
-        placeholder="Note Content"
+        placeholder="Bueno, lo que necesito registrar es..."
         rows={5}
         {...propsByName('content')}
       />
