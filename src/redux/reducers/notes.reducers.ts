@@ -1,9 +1,9 @@
-import { ActionType, Notes, Note } from '../../types';
+import { ActionType, Notes } from '../../types';
 
 export enum NoteTypes {
-  GET_NOTES = 'GET_NOTES',
-  ADD_NOTES = 'ADD_NOTES',
-  REMOVE_NOTES = 'REMOVE_NOTES',
+  GET = 'GET_NOTES',
+  ADD = 'ADD_NOTES',
+  REMOVE = 'REMOVE_NOTES',
   LOADING = 'LOADING_NOTES',
   ERROR = 'ERROR_IN_NOTES',
 }
@@ -21,13 +21,13 @@ const INITIAL_STATE: initialStateProps = {
 };
 
 const noteReducer = (state = INITIAL_STATE, action: ActionType) => {
-  console.log(state, action)
+  console.log(state, action);
   switch (action.type) {
-    case NoteTypes.GET_NOTES:
+    case NoteTypes.GET:
       return { ...state, notes: action.payload, loading: false, error: null };
-    case NoteTypes.ADD_NOTES:
-      return { ...state, notes: action.payload, loading: false, error: null};
-    case NoteTypes.REMOVE_NOTES:
+    case NoteTypes.ADD:
+      return { ...state, notes: action.payload, loading: false, error: null };
+    case NoteTypes.REMOVE:
       return { ...state, notes: action.payload, loading: false, error: null };
     case NoteTypes.LOADING:
       return { ...state, loading: true, error: null };
