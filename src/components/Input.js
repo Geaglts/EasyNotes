@@ -1,17 +1,10 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../Context';
-import { TextareaHTMLAttributes } from 'react';
 import { MdSentimentVeryDissatisfied } from 'react-icons/md';
-
-import { RenderCss } from '../types';
 
 import '../styles/Components/Input.scss';
 
-interface InputPropsNew extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  Icon?: JSX.Element;
-}
-
-function Input(props: InputPropsNew) {
+function Input(props) {
   const { darkTheme } = useContext(Context);
   const { Icon, ...rest } = props;
   return (

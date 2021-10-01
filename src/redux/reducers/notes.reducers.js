@@ -1,10 +1,10 @@
 export const NoteTypes = {
-  GET = 'GET_NOTES',
-  ADD = 'ADD_NOTES',
-  REMOVE = 'REMOVE_NOTES',
-  LOADING = 'LOADING_NOTES',
-  ERROR = 'ERROR_IN_NOTES',
-}
+  GET: 'GET_NOTES',
+  ADD: 'ADD_NOTES',
+  REMOVE: 'REMOVE_NOTES',
+  LOADING: 'LOADING_NOTES',
+  ERROR: 'ERROR_IN_NOTES',
+};
 
 const initialState = {
   notes: [],

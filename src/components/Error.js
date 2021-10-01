@@ -1,14 +1,10 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../Context';
 
 import ErrorImage from '../assets/images/error.svg';
 import '../styles/Components/Error.scss';
 
-interface ErrorProps {
-  errorMessage: string;
-}
-
-function Error(props: ErrorProps) {
+function Error(props) {
   const { darkTheme } = useContext(Context);
 
   return (

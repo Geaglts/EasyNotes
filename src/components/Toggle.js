@@ -1,13 +1,8 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../Context';
 import '../styles/Components/Toggle.scss';
 
-interface ToggleProps {
-  status: boolean;
-  onClick: () => void;
-}
-
-function Toggle(props: ToggleProps) {
+function Toggle(props) {
   const { darkTheme } = useContext(Context);
   return (
     <div

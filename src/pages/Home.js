@@ -1,7 +1,8 @@
-import { useContext } from 'react';
-import { Context } from '../Context';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../Context';
 import '../styles/pages/Home.scss';
+
 import TakingNotesImage from '../assets/images/taking_notes.svg';
 
 function Home() {

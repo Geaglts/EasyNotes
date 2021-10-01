@@ -1,9 +1,7 @@
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { allNotes } from '../redux/actions/NotesActions';
 import '../styles/Containers/NoteList.scss';
-
-import { Notes } from '../types';
 
 import Note from '../components/Note';
 import { Context } from '../Context';
@@ -12,21 +10,7 @@ import { Message } from '../components/Message';
 import { NoteSkeleton } from '../components/skeletons/Note';
 import Error from '../components/Error';
 
-interface NoteListProps {
-  limit?: number;
-  notes?: Notes;
-  loading?: boolean;
-  error?: string | null;
-  allNotes?: () => void;
-}
-
-function NoteList({
-  limit,
-  notes = [],
-  loading,
-  error,
-  allNotes = () => {},
-}: NoteListProps) {
+function NoteList({ limit, notes = [], loading, error, allNotes = () => {} }) {
   const { darkTheme } = useContext(Context);
 
   useEffect(() => {
@@ -53,7 +37,7 @@ function NoteList({
   );
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state) => {
   return state.noteReducer;
 };
 

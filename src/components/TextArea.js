@@ -1,14 +1,9 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../Context';
 import { MdSentimentVeryDissatisfied } from 'react-icons/md';
-import React, { TextareaHTMLAttributes } from 'react';
 import '../styles/Components/TextArea.scss';
 
-interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  Icon?: React.ReactNode;
-}
-
-function TextArea(props: TextAreaProps) {
+function TextArea(props) {
   const { darkTheme } = useContext(Context);
   const { Icon, ...rest } = props;
 

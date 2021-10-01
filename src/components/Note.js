@@ -1,25 +1,16 @@
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
-import { useContext } from 'react';
 // redux
 import { removeNote } from '../redux/actions/NotesActions';
 
 import '../styles/Components/Note.scss';
-
-import { RenderCss } from '../types';
 
 import { Context } from '../Context';
 import Button from './Button';
 
 import { noteStorage } from '../storage';
 
-interface NoteProps {
-  content?: string;
-  title?: string;
-  _id?: string;
-  removeNote?: (id: string) => void;
-}
-
-function Note({ content = '', title = '', _id = '', removeNote }: NoteProps) {
+function Note({ content = '', title = '', _id = '', removeNote }) {
   const { darkTheme } = useContext(Context);
 
   const handleDelete = () => {
@@ -60,7 +51,7 @@ function Note({ content = '', title = '', _id = '', removeNote }: NoteProps) {
   );
 }
 
-const deleteButtonStyles: RenderCss = (darkMode) => {
+const deleteButtonStyles = (darkMode) => {
   if (darkMode) {
     return {
       color: '#ED4747',
@@ -73,7 +64,7 @@ const deleteButtonStyles: RenderCss = (darkMode) => {
   }
 };
 
-const copyButtonStyles: RenderCss = (darkMode) => {
+const copyButtonStyles = (darkMode) => {
   if (darkMode) {
     return {
       color: '#f8f8f8',

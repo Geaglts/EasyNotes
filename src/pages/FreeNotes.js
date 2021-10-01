@@ -1,3 +1,4 @@
+import React from 'react';
 import Container from '../components/Container';
 import AddNoteForm from '../containers/AddNoteForm';
 import NoteList from '../containers/NoteList';

@@ -1,33 +1,26 @@
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
 
-import { HandleChange } from '../types';
-
-interface useFormProps {
-  initialState: object;
-  submit: (values: any) => void;
-}
-
-function useForm({ initialState, submit }: useFormProps) {
+function useForm({ initialState, submit }) {
   const [values, setValues] = useState(initialState || {});
-  const handleChange = (name: string) => (event: HandleChange) => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.currentTarget.value });
   };
   const cantSubmit = () => {
     for (let key in values) {
-      const value = (<any>values)[key];
+      const value = values[key];
       if (value === '' || value === NaN) return true;
     }
   };
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     submit(values);
     setValues(initialState);
   };
-  const propsByName = (name: string) => ({
+  const propsByName = (name) => ({
     onChange: handleChange(name),
     name,
     id: name,
-    value: (<any>values)[name],
+    value: values[name],
   });
   return { values, propsByName, handleSubmit, cantSubmit };
 }

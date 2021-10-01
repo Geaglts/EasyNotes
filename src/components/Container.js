@@ -1,14 +1,9 @@
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../Context';
 
 import '../styles/Components/Container.scss';
 
-interface ContainerProps {
-  children: JSX.Element | JSX.Element[];
-}
-
-function Container(props: ContainerProps) {
+function Container(props) {
   const { darkTheme } = useContext(Context);
 
   return (

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { MdSpa, MdSort } from 'react-icons/md';
 
@@ -15,13 +15,8 @@ import useForm from '../hooks/useForm';
 import '../styles/Containers/AddNoteForm.scss';
 
 import { noteStorage } from '../storage';
-import { Note, RenderCss } from '../types';
 
-interface AddNoteFormProps {
-  onAddTodo?: (note: Note) => void;
-}
-
-function AddNoteForm({ onAddTodo }: AddNoteFormProps) {
+function AddNoteForm({ onAddTodo }) {
   const { darkTheme } = useContext(Context);
 
   const initialState = {
@@ -29,7 +24,7 @@ function AddNoteForm({ onAddTodo }: AddNoteFormProps) {
     content: '',
   };
 
-  const submit = async (values: typeof initialState) => {
+  const submit = async (values) => {
     if (cantSubmit()) {
       alert('Rellena los campos');
     } else {
@@ -41,7 +36,7 @@ function AddNoteForm({ onAddTodo }: AddNoteFormProps) {
     if (cantSubmit()) {
       alert('No hay nada que copiar');
     } else {
-      noteStorage.copy(values as Note);
+      noteStorage.copy(values);
     }
   };
 
@@ -77,7 +72,7 @@ function AddNoteForm({ onAddTodo }: AddNoteFormProps) {
 }
 
 // JS Styles
-const AddNoteButtonStyles: RenderCss = (darkTheme) => {
+const AddNoteButtonStyles = (darkTheme) => {
   if (darkTheme) {
     return {
       backgroundColor: '#141414',
@@ -92,9 +87,9 @@ const AddNoteButtonStyles: RenderCss = (darkTheme) => {
   }
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTodo(note: Note) {
+    onAddTodo(note) {
       dispatch(addNote(note));
     },
   };

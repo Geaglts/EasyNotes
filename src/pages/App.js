@@ -1,7 +1,8 @@
-import FreeNotes from './FreeNotes';
-import { Menu } from '../containers/Menu';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import FreeNotes from './FreeNotes';
 import Home from './Home';
+import { Menu } from '../containers/Menu';
 
 function App() {
   return (
