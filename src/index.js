@@ -11,10 +11,10 @@ import Context from './Context';
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 
 render(
-  <Provider store={store}>
-    <Context.Provider>
+  <Context.Provider>
+    <Provider store={store}>
       <App />
-    </Context.Provider>
-  </Provider>,
+    </Provider>
+  </Context.Provider>,
   document.getElementById('app')
 );

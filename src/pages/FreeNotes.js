@@ -7,7 +7,7 @@ function FreeNotes() {
   return (
     <Container>
       <AddNoteForm />
-      <NoteList limit={5} />
+      <NoteList />
     </Container>
   );
 }

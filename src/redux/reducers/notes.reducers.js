@@ -12,22 +12,30 @@ const initialState = {
   error: null,
 };
 
-const noteReducer = (state = initialState, action) => {
+function noteReducer(state = initialState, action) {
   switch (action.type) {
-    case NoteTypes.GET:
-      return { ...state, notes: action.payload, loading: false, error: null };
-    case NoteTypes.ADD:
+    case NoteTypes.GET: {
+      return { notes: action.payload, loading: false, error: null };
+    }
+    case NoteTypes.ADD: {
       const updatedNotes = [...state.notes, action.payload];
-      return { ...state, notes: updatedNotes, loading: false, error: null };
-    case NoteTypes.REMOVE:
-      return { ...state, notes: action.payload, loading: false, error: null };
-    case NoteTypes.LOADING:
+      return { notes: updatedNotes, loading: false, error: null };
+    }
+    case NoteTypes.REMOVE: {
+      const id = action.payload;
+      const updatedNotes = state.notes.filter((note) => note._id !== id);
+      return { notes: updatedNotes, loading: false, error: null };
+    }
+    case NoteTypes.LOADING: {
       return { ...state, loading: true, error: null };
-    case NoteTypes.ERROR:
+    }
+    case NoteTypes.ERROR: {
       return { ...state, error: action.payload, loading: false };
-    default:
+    }
+    default: {
       return state;
+    }
   }
-};
+}
 
 export default noteReducer;

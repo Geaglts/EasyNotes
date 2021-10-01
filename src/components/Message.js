@@ -2,12 +2,10 @@ import React, { useContext } from 'react';
 import { Context } from '../Context';
 import '../styles/Components/Message.scss';
 
-function Message(props) {
+function Message({ textMessage }) {
   const { darkTheme } = useContext(Context);
   return (
-    <p className={`Message ${darkTheme ? 'MessageDark' : ''}`}>
-      {props.textMessage}
-    </p>
+    <p className={`Message ${darkTheme ? 'MessageDark' : ''}`}>{textMessage}</p>
   );
 }
 

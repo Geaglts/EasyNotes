@@ -20,12 +20,10 @@ export const addNote = (note) => async (dispatch) => {
   }
 };
 
-export const removeNote = (id) => async (dispatch, getState) => {
+export const removeNote = (id) => async (dispatch) => {
   try {
-    const { notes } = getState().noteReducer;
-    const updatedNotes = notes.filter((note) => note._id !== id);
     await noteStorage.remove(id);
-    dispatch({ type: NoteTypes.REMOVE, payload: updatedNotes });
+    dispatch({ type: NoteTypes.REMOVE, payload: id });
   } catch (error) {
     dispatch({ type: NoteTypes.ERROR, payload: 'No se pudo eliminar la nota' });
   }

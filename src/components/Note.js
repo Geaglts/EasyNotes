@@ -10,11 +10,11 @@ import Button from './Button';
 
 import { noteStorage } from '../storage';
 
-function Note({ content, title, _id, removeNote }) {
+function Note({ content, title, _id, onRemoveNote }) {
   const { darkTheme } = useContext(Context);
 
   const handleDelete = () => {
-    removeNote(_id);
+    onRemoveNote(_id);
   };
 
   const handleCopy = () => {
@@ -77,4 +77,12 @@ const copyButtonStyles = (darkMode) => {
   }
 };
 
-export default connect(null, { removeNote })(Note);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onRemoveNote(id) {
+      dispatch(removeNote(id));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Note);

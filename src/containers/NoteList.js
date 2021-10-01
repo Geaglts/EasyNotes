@@ -11,29 +11,27 @@ import { NoteSkeleton } from '../components/skeletons/Note';
 import Error from '../components/Error';
 
 function NoteList(props) {
-  const { limit, notes, loading, error, onLoadNotes } = props;
+  const { notes, loading, error, onLoadNotes } = props;
   const { darkTheme } = useContext(Context);
 
   useEffect(() => {
     onLoadNotes();
   }, []);
 
-  const loadNotes = () => {
-    if (notes.length === 0) {
-      return <Message textMessage="No tienes notas creadas 🦔" />;
-    } else {
-      return notes.splice(0, limit || notes.length).map((note) => {
-        return <Note key={note._id} {...note} />;
-      });
-    }
-  };
-
   return (
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
       <h1 className="NoteList__Title">NoteList</h1>
       {loading && <NoteSkeleton />}
       {error && <Error errorMessage={error} />}
-      {!loading && !error && loadNotes()}
+      {!loading && !error && notes.length === 0 && (
+        <Message textMessage="No tienes notas para mostrar" />
+      )}
+      {!loading &&
+        !error &&
+        notes.length > 0 &&
+        notes.map((note) => {
+          return <Note key={note._id} {...note} />;
+        })}
     </div>
   );
 }
