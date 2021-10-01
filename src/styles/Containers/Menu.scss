@@ -40,3 +40,37 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .Menu__Container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 100px;
+    padding-top: 10px;
+    height: 150px;
+
+    .Menu__Left {
+      display: flex;
+      justify-content: center;
+      & > li > a {
+        font-size: 24pt;
+      }
+    }
+
+    .Menu {
+      display: block;
+      text-align: center;
+
+      .Menu__Item:nth-child(1),
+      .Menu__Item:nth-child(2) {
+        display: inline;
+        padding: 0 10px;
+      }
+
+      .Menu__Item:nth-child(3) {
+        display: flex;
+        justify-content: center;
+        padding: 5px 0;
+      }
+    }
+  }
+}
