@@ -12,6 +12,11 @@ $border: 1px solid rgba($primary, 0.6);
 
 $height-top-menu: 60px;
 
+// Fonts
+$font-size-sm: 12pt;
+$font-size-md: 16pt;
+$font-size-lg: 26pt;
+
 @mixin InputStyles {
   width: calc(100% - 35px);
   border: none;
