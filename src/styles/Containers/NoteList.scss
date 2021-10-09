@@ -2,13 +2,14 @@
 
 .NoteList {
   display: grid;
-  height: calc(80vh);
+  height: 80vh;
   grid-template-rows: auto 1fr;
   justify-items: center;
 
   &__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding-bottom: 1rem;
   }
