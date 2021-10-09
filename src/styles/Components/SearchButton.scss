@@ -1,0 +1,37 @@
+@import '../global.scss';
+
+.SearchButton {
+  border-radius: 0.4rem;
+  height: 3.5rem;
+  overflow: hidden;
+  display: flex;
+
+  &__input {
+    display: inline-block;
+    height: inherit;
+    padding-left: 1rem;
+    border: none;
+    font-size: $font-size-sm;
+  }
+
+  &__button {
+    height: inherit;
+    width: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    font-size: $font-size-md;
+    transition: all 350ms ease-in;
+    background-color: $white;
+    color: $dark;
+
+    &:hover {
+      transition: all 250ms ease-in;
+      background-color: $primary;
+      color: $white;
+      box-shadow: 0.2rem 0.4rem 1rem rgba($primary, 1);
+    }
+  }
+}

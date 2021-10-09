@@ -1,8 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { MdSearch } from 'react-icons/md';
+
 import { allNotes } from '../redux/actions/notes.actions';
 import '../styles/Containers/NoteList.scss';
 
+import SearchButton from '../components/SearchButton';
 import Note from '../components/Note';
 import { Context } from '../Context';
 import { Message } from '../components/Message';
@@ -20,7 +23,10 @@ function NoteList(props) {
 
   return (
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
-      <h1 className="NoteList__Title">NoteList</h1>
+      <div className="NoteList__header">
+        <h1 className="NoteList__Title">NoteList</h1>
+        <SearchButton inputPlaceholder="Como iba la nota?" />
+      </div>
       <div className="NoteList__List--Container">
         {loading && <NoteSkeleton />}
         {error && <Error errorMessage={error} />}
