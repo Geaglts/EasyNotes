@@ -21,17 +21,19 @@ function NoteList(props) {
   return (
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
       <h1 className="NoteList__Title">NoteList</h1>
-      {loading && <NoteSkeleton />}
-      {error && <Error errorMessage={error} />}
-      {!loading && !error && notes.length === 0 && (
-        <Message textMessage="No tienes notas para mostrar" />
-      )}
-      {!loading &&
-        !error &&
-        notes.length > 0 &&
-        notes.map((note) => {
-          return <Note key={note._id} {...note} />;
-        })}
+      <div className="NoteList__List--Container">
+        {loading && <NoteSkeleton />}
+        {error && <Error errorMessage={error} />}
+        {!loading && !error && notes.length === 0 && (
+          <Message textMessage="No tienes notas para mostrar" />
+        )}
+        {!loading &&
+          !error &&
+          notes.length > 0 &&
+          notes.map((note) => {
+            return <Note key={note._id} {...note} />;
+          })}
+      </div>
     </div>
   );
 }

@@ -2,7 +2,8 @@
 
 .freeNotes__container {
   width: 100%;
-  height: calc(100vh - $height-top-menu);
+  min-height: calc(100vh - $height-top-menu);
+  height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }

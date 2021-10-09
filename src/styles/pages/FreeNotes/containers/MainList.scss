@@ -1,0 +1,11 @@
+@import '../../../global.scss';
+
+.freenotes__mainlist {
+  width: 90%;
+  justify-self: center;
+  margin: 3rem 0;
+
+  .NoteList__Title {
+    font-size: $font-size-lg;
+  }
+}

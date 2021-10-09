@@ -1,23 +1,13 @@
 @import '../global';
 
 .NoteList {
-  margin-top: 1em;
-  color: $primary;
-  overflow: auto;
-  height: calc(100vh - 373px);
+  display: grid;
+  height: calc(80vh);
+  grid-template-rows: auto 1fr;
+  justify-items: center;
 
-  .NoteList__Title,
-  .Message {
-    text-align: center;
-  }
-
-  .Note {
-    margin: 0 3px;
-    margin-bottom: 10px;
-  }
-
-  .NoteSkeleton + .NoteSkeleton {
-    margin-top: 12px;
+  &__List--Container {
+    overflow: auto;
   }
 }
 
