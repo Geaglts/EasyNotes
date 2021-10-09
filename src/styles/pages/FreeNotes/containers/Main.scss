@@ -14,10 +14,4 @@
 .freeNotes-dark {
   background-color: $dark;
   color: $white;
-
-  & .AddNoteForm__Title {
-    .Input {
-      width: 355px;
-    }
-  }
 }

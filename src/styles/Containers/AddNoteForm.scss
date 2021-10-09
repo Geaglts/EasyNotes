@@ -8,12 +8,13 @@
   box-shadow: $shadow;
 
   &__Title {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    column-gap: 1rem;
+    margin-bottom: 1rem;
 
-    .Input {
-      width: 450px;
+    & > .Input {
+      width: 100%;
     }
   }
 
