@@ -51,6 +51,7 @@
     .Menu__Left {
       display: flex;
       justify-content: center;
+      margin-top: 1rem;
       & > li > a {
         font-size: 24pt;
       }
@@ -62,6 +63,7 @@
       grid-template-columns: 1fr;
       grid-template-rows: repeat(3, 4rem);
       justify-items: center;
+      padding-bottom: 1rem;
 
       &__Item {
         width: 100%;
