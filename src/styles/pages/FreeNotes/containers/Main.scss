@@ -16,3 +16,10 @@
   background-color: $dark;
   color: $white;
 }
+
+@media (max-width: 1080px) {
+  .freeNotes__container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+}

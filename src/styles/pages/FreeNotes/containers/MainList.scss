@@ -9,3 +9,10 @@
     font-size: $font-size-lg;
   }
 }
+
+@media (max-width: 1080px) {
+  .freenotes__mainlist {
+    margin: 0;
+    padding-bottom: 2rem;
+  }
+}

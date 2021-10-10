@@ -2,7 +2,7 @@
 
 .NoteList {
   display: grid;
-  height: 80vh;
+  max-height: 80vh;
   grid-template-rows: auto 1fr;
   justify-items: center;
 
@@ -24,10 +24,25 @@
   color: $primary;
 }
 
+@media (max-width: 720px) {
+  .NoteList {
+    height: auto;
+
+    &__header {
+      flex-direction: column;
+
+      .SearchButton {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        width: 100%;
+      }
+    }
+  }
+}
+
 @media (max-width: 360px) {
   .NoteList {
     margin-top: 5px;
-    height: auto;
 
     &__Title {
       margin-bottom: 5px;
