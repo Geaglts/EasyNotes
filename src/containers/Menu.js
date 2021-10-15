@@ -24,11 +24,6 @@ function Menu() {
           <Link to="/fast">Nota rapida</Link>
         </li>
         <li className="Menu__Item">
-          <a href="https://google.com" target="_blank">
-            Quiero ir a google
-          </a>
-        </li>
-        <li className="Menu__Item">
           {darkTheme ? <FaMoon /> : <FaSun />}
           <Toggle onClick={changeTheme} status={darkTheme} />
         </li>

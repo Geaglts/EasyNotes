@@ -6,7 +6,7 @@
   grid-template-rows: 1fr;
   align-items: center;
   height: $height-top-menu;
-  padding: 0 1em;
+  padding: 0 4rem;
 
   .Menu {
     display: flex;
@@ -21,7 +21,7 @@
       a {
         color: white;
         font-weight: 900;
-        font-size: 14pt;
+        font-size: 18pt;
         transition: color 350ms ease-out;
         text-decoration: none;
 
