@@ -8,3 +8,10 @@
 .MessageDark {
   color: $white;
 }
+
+@media (max-width: 720px) {
+  .Message {
+    font-size: 16pt;
+    text-align: center;
+  }
+}

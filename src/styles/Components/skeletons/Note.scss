@@ -16,13 +16,13 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
 
   &__Head {
     height: $head-height;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: center;
-    justify-content: space-between;
+    gap: 8px;
 
     h1 {
       border-radius: 10px;
-      width: 65.5%;
       height: 35px;
       @include animateSkeleton(5s, $gray-note-skeleton);
     }
@@ -32,7 +32,7 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
       align-items: center;
 
       button + button {
-        margin-left: 10px;
+        margin-left: 8px;
       }
 
       button {
@@ -88,6 +88,23 @@ $gray-note-skeleton-dark: rgba($white, 0.4);
 
     p {
       @include animateSkeleton(5s, $gray-note-skeleton-dark);
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .NoteSkeleton {
+    height: auto;
+
+    &__Head {
+      height: auto;
+      padding: 8px 0;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+
+      & > div {
+        justify-content: center;
+      }
     }
   }
 }
