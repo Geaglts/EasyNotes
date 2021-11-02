@@ -1,82 +1,91 @@
 @import '../global';
 
-.Menu__Container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+.menu__container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
   height: $height-top-menu;
-  padding: 0 4rem;
 
-  .Menu {
+  a {
+    text-decoration: none;
+  }
+
+  &--title {
+    font-size: $font-size-md;
+    font-weight: 600;
+  }
+
+  .menu__list {
+    list-style: none;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    column-gap: 10px;
+    gap: 10px;
 
-    &__Item {
+    &--item {
       display: flex;
       align-items: center;
+      gap: 5px;
+      font-size: $font-size-md;
 
-      a {
-        color: white;
-        font-weight: 900;
-        font-size: 18pt;
-        transition: color 350ms ease-out;
-        text-decoration: none;
-
-        &:hover {
-          transition: color 250ms ease-in;
-          color: $secondary;
-          text-decoration: underline;
-        }
+      a:hover {
+        text-decoration: underline;
       }
+    }
 
-      svg {
-        font-size: 16pt;
-        margin-right: 5px;
-        color: $secondary;
+    &--button {
+      display: none;
+
+      .show_menu {
+        border: none;
+        background-color: transparent;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+
+        & > svg {
+          font-size: 22pt;
+        }
       }
     }
   }
 }
 
+.menu__container.dark {
+  background-color: $dark;
+  color: $white;
+
+  a {
+    color: inherit;
+  }
+
+  svg {
+    color: $white;
+  }
+}
+
+.menu__container.white {
+  background-color: $white;
+  color: $dark;
+
+  a {
+    color: inherit;
+  }
+
+  svg {
+    color: $dark;
+  }
+}
+
 @media (max-width: 720px) {
-  .Menu__Container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    padding: 0;
-    height: auto;
-
-    .Menu__Left {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-      & > li > a {
-        font-size: 24pt;
-      }
-    }
-
-    .Menu {
-      height: auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(3, 4rem);
-      justify-items: center;
-      padding-bottom: 1rem;
-
-      &__Item {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
+  .menu__container {
+    .menu__list {
+      &--item {
+        display: none;
       }
 
-      &__Item:hover {
-        background-color: rgba($white, 0.03);
-        a {
-          text-decoration: none;
-        }
+      &--button {
+        display: block;
       }
     }
   }
