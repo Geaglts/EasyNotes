@@ -13,7 +13,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devtool: 'source-map',
-  devServer: { port: 3030, historyApiFallback: true },
+  devServer: { port: 5000, historyApiFallback: true, open: true },
   module: {
     rules: [
       { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
