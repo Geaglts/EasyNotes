@@ -11,6 +11,9 @@ module.exports = {
   mode: process.env.NODE_ENV || 'development',
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      styles: path.join(__dirname, 'src', 'styles'),
+    },
   },
   devtool: 'source-map',
   devServer: { port: 5000, historyApiFallback: true, open: true },

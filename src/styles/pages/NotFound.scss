@@ -1,0 +1,86 @@
+@import '../global.scss';
+
+.NotFound {
+  height: calc(100vh - 60px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .image {
+    width: 300px;
+  }
+
+  .title {
+    font-weight: 300;
+    font-size: $font-size-lg;
+    text-align: center;
+  }
+
+  .link {
+    margin-top: 0.2em;
+    font-size: $font-size-md;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.4em 1em;
+    border-radius: $radius;
+    transition: all 350ms ease;
+
+    &:hover {
+      transition: all 250ms ease;
+    }
+  }
+}
+
+.NotFound.white-theme {
+  background-color: $white;
+
+  .title {
+    color: $dark;
+  }
+
+  .link {
+    color: $dark;
+    background-color: $secondary;
+
+    &:hover {
+      background-color: $dark;
+      color: $secondary;
+    }
+  }
+}
+
+.NotFound.dark-theme {
+  background-color: $dark;
+
+  .title {
+    color: $white;
+  }
+
+  .link {
+    color: $dark;
+    background-color: $secondary;
+
+    &:hover {
+      background-color: $white;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .NotFound {
+    .image {
+      width: 200px;
+    }
+
+    .title {
+      font-size: $font-size-md;
+      margin: 0.5em 0;
+    }
+
+    .link {
+      font-size: $font-size-sm;
+    }
+  }
+}
