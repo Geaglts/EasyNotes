@@ -1,5 +1,120 @@
 @import '../global';
 
+.FullMenu {
+  position: absolute;
+  z-index: 1;
+  height: 100vh;
+  width: 100%;
+  padding: 3em;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto 1fr auto;
+
+  a {
+    text-decoration: none;
+    display: block;
+  }
+
+  .close-button {
+    $size: 40px;
+    border: none;
+    width: $size;
+    height: $size;
+    font-size: $font-size-sm;
+    border-radius: $size;
+    background-color: transparent;
+    font-weight: 900;
+    padding-top: 2px;
+    justify-self: end;
+  }
+
+  h1 {
+    font-size: $font-size-lg;
+    font-weight: 300;
+  }
+
+  .change-theme {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    align-items: center;
+    margin-bottom: 10px;
+
+    svg {
+      font-size: 18pt;
+      margin-right: 5px;
+    }
+  }
+
+  ul {
+    list-style: none;
+
+    .link {
+      font-size: 16pt;
+      font-weight: 600;
+      padding: 10px 0;
+    }
+  }
+
+  .user-status {
+    font-size: 14pt;
+    text-decoration: underline;
+    font-weight: 300;
+  }
+}
+
+.FullMenu.white {
+  background-color: $white;
+
+  .close-button {
+    background-color: $secondary;
+    color: $dark;
+  }
+
+  .change-theme {
+    color: $dark;
+  }
+
+  ul {
+    border-top: 1px solid $gray;
+    .link {
+      color: $dark;
+    }
+  }
+
+  .user-status {
+    color: $dark;
+  }
+}
+
+.FullMenu.dark {
+  background-color: $dark;
+
+  h1 {
+    color: $white;
+  }
+
+  .close-button {
+    background-color: $secondary;
+    color: $dark;
+  }
+
+  .change-theme {
+    color: $secondary;
+  }
+
+  ul {
+    border-top: 1px solid $gray;
+    .link {
+      color: $secondary;
+    }
+  }
+
+  .user-status {
+    color: $secondary;
+  }
+}
+
 .menu__container {
   display: flex;
   justify-content: space-between;

@@ -1,16 +1,56 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context } from '../Context';
 import { Link } from 'react-router-dom';
-import '../styles/Containers/Menu.scss';
+import 'styles/Containers/Menu.scss';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { BiMenu } from 'react-icons/bi';
 
 import { Toggle } from '../components/Toggle';
 
 function Menu() {
-  const { darkTheme, changeTheme } = useContext(Context);
+  const [fullMenu, setFullMenu] = useState(false);
+  const { darkTheme, changeTheme, hasUser, changeUserStatus } = useContext(Context);
 
   const theme = darkTheme ? ' dark' : ' white';
+
+  const handleMenu = () => {
+    setFullMenu(!fullMenu);
+  };
+
+  if (fullMenu) {
+    return (
+      <nav className={`FullMenu${theme}`}>
+        <button className="close-button" onClick={handleMenu}>
+          X
+        </button>
+        <h1>EasyNotes</h1>
+        <button className="change-theme">
+          {darkTheme ? <FaMoon /> : <FaSun />}
+          <Toggle onClick={changeTheme} status={darkTheme} />
+        </button>
+        <ul>
+          <li>
+            <Link className="link" to="/fast" onClick={handleMenu}>
+              Nota Rapida
+            </Link>
+          </li>
+          <li></li>
+        </ul>
+        <div>
+          {!hasUser && (
+            <>
+              <Link onClick={handleMenu} to="/login" className="user-status">
+                iniciar sesion
+              </Link>
+              <Link onClick={handleMenu} to="/register" className="user-status">
+                registrate
+              </Link>
+            </>
+          )}
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className={'menu__container' + theme}>
@@ -26,7 +66,7 @@ function Menu() {
           <Toggle onClick={changeTheme} status={darkTheme} />
         </li>
         <li className="menu__list--item menu__list--button">
-          <button className="show_menu">
+          <button className="show_menu" onClick={handleMenu}>
             <BiMenu />
           </button>
         </li>
