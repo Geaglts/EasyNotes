@@ -13,6 +13,11 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       styles: path.join(__dirname, 'src', 'styles'),
+      components: path.join(__dirname, 'src', 'components'),
+      containers: path.join(__dirname, 'src', 'containers'),
+      hooks: path.join(__dirname, 'src', 'hooks'),
+      pages: path.join(__dirname, 'src', 'pages'),
+      assets: path.join(__dirname, 'src', 'assets'),
     },
   },
   devtool: 'source-map',

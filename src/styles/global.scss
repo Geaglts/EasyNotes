@@ -4,6 +4,7 @@ $warning: #ed4747;
 $dark: #141414;
 $white: #f8f8f8;
 $gray: #c7c7c7;
+$light-gray: #ebebeb;
 
 $shadow: 2px 2px 5px rgba($dark, 0.25);
 $radius: 5px;
@@ -13,9 +14,13 @@ $border: 1px solid rgba($primary, 0.6);
 $height-top-menu: 60px;
 
 // Fonts
+$font-size-ssm: 11pt;
 $font-size-sm: 12pt;
 $font-size-md: 16pt;
 $font-size-lg: 26pt;
+$font-size-xlg: 34pt;
+
+$font-secondary: 'Roboto', sans-serif;
 
 @mixin InputStyles {
   width: calc(100% - 35px);

@@ -1,0 +1,23 @@
+@import '../global.scss';
+
+.InputLabel {
+  font-size: $font-size-ssm;
+  font-family: $font-secondary;
+  font-weight: 300;
+
+  .InputForm {
+    background-color: $light-gray;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 8px;
+    font-size: $font-size-sm;
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+
+    &::placeholder {
+      color: $dark;
+    }
+  }
+}

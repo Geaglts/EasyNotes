@@ -56,6 +56,24 @@
           outline: 1px solid $primary;
         }
       }
+
+      @mixin top-button($bg, $c, $right, $top) {
+        background-color: $bg;
+        color: $c;
+        position: absolute;
+        right: $right;
+        top: $top;
+        width: 180px;
+        text-align: center;
+      }
+
+      .register__button {
+        @include top-button($white, $warning, 16px, 120px);
+      }
+
+      .login__button {
+        @include top-button($secondary, $dark, 16px, 62px);
+      }
     }
 
     & > section:last-child {
@@ -89,6 +107,11 @@
 
         p {
           width: 100%;
+        }
+
+        .register__button,
+        .login__button {
+          display: none;
         }
       }
 

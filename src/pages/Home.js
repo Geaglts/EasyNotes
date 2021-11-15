@@ -26,6 +26,12 @@ function Home() {
             gratis.
           </p>
           <Link to="/fast">¡Crear mi primera nota!</Link>
+          <Link to="/login" className="login__button">
+            Iniciar sesion
+          </Link>
+          <Link to="/register" className="register__button">
+            Crear una cuenta
+          </Link>
         </section>
         <section>
           <img src={TakingNotesImage} alt="Persona tomando notas en easy notes" />
