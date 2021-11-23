@@ -1,0 +1,44 @@
+@use '../animations';
+@import '../global.scss';
+
+@mixin toast-message-color($color: #475ded) {
+  border-color: $color;
+  background-color: rgba($color, 0.1);
+  color: $color;
+}
+
+.Toast {
+  $position: 20px;
+  position: absolute;
+  left: $position;
+  top: $position * 4;
+  display: grid;
+  row-gap: 16px;
+
+  &-Message {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
+    font-size: $font-size-md !important;
+    font-family: $font-secondary;
+    font-weight: lighter;
+    animation: slide-to-right 300ms ease-out;
+
+    &.info {
+      @include toast-message-color($primary);
+    }
+
+    &.warning {
+      @include toast-message-color($secondary);
+    }
+
+    &.danger {
+      @include toast-message-color($warning);
+    }
+
+    &.success {
+      @include toast-message-color($green);
+    }
+  }
+}
