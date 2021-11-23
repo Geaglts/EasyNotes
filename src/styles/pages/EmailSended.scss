@@ -1,0 +1,64 @@
+@import '../global.scss';
+
+.EmailSended {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 60px);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 12px;
+
+  &.dark {
+    color: white;
+    background-color: $dark;
+  }
+
+  &__Icon {
+    font-size: 100px;
+    color: $primary;
+  }
+
+  &__DescriptionLabel {
+    font-size: $font-size-md;
+    text-align: center;
+  }
+
+  &__Link {
+    padding: 8px 16px;
+    display: block;
+    background-color: $primary;
+    border-radius: 4px;
+    font-size: $font-size-sm;
+    color: $white;
+    text-decoration: none;
+    font-family: $font-secondary;
+    transition: all 300ms ease-out;
+    &:hover {
+      transition: all 200ms ease-in;
+      background-color: rgba($primary, 0.7);
+    }
+  }
+
+  .EmailSended__Resend {
+    text-align: center;
+
+    &Label {
+      font-size: $font-size-md;
+    }
+
+    &Button {
+      text-decoration: underline;
+      border: none;
+      background-color: transparent;
+      color: $primary;
+      font-size: $font-size-sm;
+      font-weight: bold;
+      font-family: $font-secondary;
+      &:hover {
+        transition: all 200ms ease-in;
+        color: rgba($primary, 0.7);
+      }
+    }
+  }
+}

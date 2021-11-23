@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import FreeNotes from './FreeNotes';
-import Home from './Home';
-import NotFound from './NotFound';
-import Login from './Login';
-import Register from './Register';
-import { Menu } from '../containers/Menu';
+import FreeNotes from 'pages/FreeNotes';
+import Home from 'pages/Home';
+import NotFound from 'pages/NotFound';
+import Login from 'pages/Login';
+import Register from 'pages/Register';
+import EmailSended from 'pages/EmailSended';
+
+import { Menu } from 'containers/Menu';
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
         </Route>
         <Route exact path="/register">
           <Register />
+        </Route>
+        <Route exact path="/email-sended">
+          <EmailSended />
         </Route>
         <Route path="*">
           <NotFound />
