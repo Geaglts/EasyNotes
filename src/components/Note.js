@@ -51,7 +51,7 @@ function Note({ content, title, _id, onRemoveNote }) {
           <div className="RemoveNoteModal-icon">
             <BsFillTrashFill />
           </div>
-          <p className="RemoveNoteModal-description">¿Esto eliminará la nota permanentemente, estás segura de realizar esta acción?</p>
+          <p className="RemoveNoteModal-description">Esto eliminará la nota permanentemente, ¿Estás segura de realizar esta acción?</p>
           <button onClick={handleDelete} className="RemoveNoteModal-confirm">
             Sí, elimínala
           </button>
