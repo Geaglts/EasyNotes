@@ -1,0 +1,46 @@
+@import '../global.scss';
+
+.Modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba($dark, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.dark {
+    color: $white;
+
+    .Modal__Content {
+      background-color: $dark;
+    }
+  }
+
+  &.light {
+    .Modal__Content {
+      background-color: $white;
+    }
+  }
+
+  &__Content {
+    padding: 16px 16px 24px 16px;
+    border-radius: 8px;
+    display: grid;
+
+    &--Close {
+      $size: 40px;
+      width: $size;
+      height: $size;
+      color: $warning;
+      cursor: pointer;
+      justify-self: end;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { connect } from 'react-redux';
+import { BsFillTrashFill } from 'react-icons/bs';
 // redux
 import { removeNote } from '../redux/actions/notes.actions';
 
@@ -7,11 +8,17 @@ import '../styles/Components/Note.scss';
 
 import { Context } from '../Context';
 import Button from './Button';
+import Modal from './Modal';
 
 import { noteStorage } from '../storage';
 
 function Note({ content, title, _id, onRemoveNote }) {
   const { darkTheme } = useContext(Context);
+  const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
+
+  const handleConfirmRemoveModal = () => {
+    setConfirmRemoveModal(!confirmRemoveModal);
+  };
 
   const handleDelete = () => {
     onRemoveNote(_id);
@@ -26,16 +33,8 @@ function Note({ content, title, _id, onRemoveNote }) {
       <div className="Note__Header">
         <p className="Note__Header--title">{title}</p>
         <div className="Note__Header--buttons">
-          <Button
-            label="Delete"
-            onClick={handleDelete}
-            style={deleteButtonStyles(darkTheme)}
-          />
-          <Button
-            label="Copy"
-            onClick={handleCopy}
-            style={copyButtonStyles(darkTheme)}
-          />
+          <Button label="Delete" onClick={handleConfirmRemoveModal} style={deleteButtonStyles(darkTheme)} />
+          <Button label="Copy" onClick={handleCopy} style={copyButtonStyles(darkTheme)} />
         </div>
       </div>
       <div className="Note__Content">
@@ -47,6 +46,17 @@ function Note({ content, title, _id, onRemoveNote }) {
           );
         })}
       </div>
+      <Modal active={confirmRemoveModal} changeStatus={handleConfirmRemoveModal}>
+        <div className="RemoveNoteModal">
+          <div className="RemoveNoteModal-icon">
+            <BsFillTrashFill />
+          </div>
+          <p className="RemoveNoteModal-description">¿Esto eliminará la nota permanentemente, estás segura de realizar esta acción?</p>
+          <button onClick={handleDelete} className="RemoveNoteModal-confirm">
+            Sí, elimínala
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }

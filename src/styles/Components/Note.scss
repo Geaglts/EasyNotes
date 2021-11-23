@@ -56,6 +56,60 @@
   }
 }
 
+.RemoveNoteModal {
+  display: grid;
+  place-items: center;
+  row-gap: 16px;
+  width: 320px;
+
+  &-icon {
+    $size: 70px;
+    padding: 12px;
+    border: 2px solid $warning;
+    display: inline-flex;
+    border-radius: $size;
+
+    svg {
+      width: $size;
+      height: $size;
+      color: $warning;
+    }
+  }
+
+  .dark {
+    &-description {
+      color: $white;
+    }
+  }
+
+  .light {
+    &-description {
+      color: $dark;
+    }
+  }
+
+  &-description {
+    font-size: $font-size-md;
+    text-align: center;
+  }
+
+  &-confirm {
+    font-size: $font-size-md;
+    border: none;
+    height: 40px;
+    padding: 0 12px;
+    background-color: $warning;
+    color: $white;
+    font-family: $font-secondary;
+    border-radius: 4px;
+    font-weight: 700;
+    &:hover {
+      background-color: rgba($warning, 0.2);
+      color: $warning;
+    }
+  }
+}
+
 @media (max-width: 360px) {
   .Note {
     &__Header {
