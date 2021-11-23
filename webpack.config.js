@@ -19,6 +19,7 @@ module.exports = {
       pages: path.join(__dirname, 'src', 'pages'),
       routes: path.join(__dirname, 'src', 'routes'),
       assets: path.join(__dirname, 'src', 'assets'),
+      context: path.join(__dirname, 'src', 'Context.js'),
     },
   },
   devtool: 'source-map',

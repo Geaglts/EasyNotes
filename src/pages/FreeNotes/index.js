@@ -1,8 +1,21 @@
-import React from 'react';
-import Main from './containers/Main';
+import React, { useContext } from 'react';
+import { Context } from '../../../Context';
+
+import MainForm from './MainForm';
+import MainList from './MainList';
+
+import 'styles/pages/FreeNotes/containers/Main.scss';
 
 function FreeNotes() {
-  return <Main />;
+  const { darkTheme } = useContext(Context);
+  const themeClass = darkTheme ? 'freeNotes-dark' : 'freeNotes-white';
+
+  return (
+    <main className={`freeNotes__container ${themeClass}`}>
+      <MainForm />
+      <MainList />
+    </main>
+  );
 }
 
 export default FreeNotes;
