@@ -15,8 +15,8 @@
     border-bottom: 2px solid rgba($primary, 0.6);
 
     &--title {
-      font-size: 16pt;
-      font-weight: 900;
+      font-size: $font-size-md;
+      font-weight: bold;
       color: $primary;
     }
 
@@ -30,7 +30,7 @@
     margin-top: 0.5em;
 
     &--text {
-      font-size: 14pt;
+      font-size: $font-size-md;
       font-weight: 600;
     }
 
