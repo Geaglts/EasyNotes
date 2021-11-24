@@ -8,8 +8,6 @@ import { Context } from '../Context';
 const Modal = ({ children, active = false, changeStatus = () => {} }) => {
   const { darkTheme } = useContext(Context);
 
-  console.log(active);
-
   const themeClass = darkTheme ? ' dark' : ' light';
 
   if (!active) return null;

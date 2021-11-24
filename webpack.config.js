@@ -20,6 +20,7 @@ module.exports = {
       routes: path.join(__dirname, 'src', 'routes'),
       assets: path.join(__dirname, 'src', 'assets'),
       context: path.join(__dirname, 'src', 'Context.js'),
+      storage: path.join(__dirname, 'src', 'storage.js'),
     },
   },
   devtool: 'source-map',
