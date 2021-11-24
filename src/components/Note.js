@@ -1,16 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { BsFillTrashFill } from 'react-icons/bs';
-// redux
-import { removeNote } from '../redux/actions/notes.actions';
-
 import '../styles/Components/Note.scss';
+
+import { removeNote } from '../redux/actions/notes.actions';
 
 import { Context } from '../Context';
 import Button from './Button';
 import Modal from './Modal';
 
 import { noteStorage } from '../storage';
+
+import capitalize from 'utils/capitalize';
 
 function Note({ content, title, _id, onRemoveNote }) {
   const { darkTheme } = useContext(Context);
@@ -31,7 +32,7 @@ function Note({ content, title, _id, onRemoveNote }) {
   return (
     <div className={`Note ${darkTheme ? 'NoteDark' : ''}`}>
       <div className="Note__Header">
-        <p className="Note__Header--title">{title}</p>
+        <p className="Note__Header--title">{capitalize(title)}</p>
         <div className="Note__Header--buttons">
           <Button label="Delete" onClick={handleConfirmRemoveModal} style={deleteButtonStyles(darkTheme)} />
           <Button label="Copy" onClick={handleCopy} style={copyButtonStyles(darkTheme)} />
@@ -41,7 +42,7 @@ function Note({ content, title, _id, onRemoveNote }) {
         {content.split('\n').map((line, index) => {
           return (
             <p className="Note__Content--text" key={index}>
-              {line}
+              {capitalize(line)}
             </p>
           );
         })}

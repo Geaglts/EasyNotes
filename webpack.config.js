@@ -19,6 +19,7 @@ module.exports = {
       pages: path.join(__dirname, 'src', 'pages'),
       routes: path.join(__dirname, 'src', 'routes'),
       assets: path.join(__dirname, 'src', 'assets'),
+      utils: path.join(__dirname, 'src', 'utils'),
       context: path.join(__dirname, 'src', 'Context.js'),
       storage: path.join(__dirname, 'src', 'storage.js'),
     },
