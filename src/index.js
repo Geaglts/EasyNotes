@@ -11,6 +11,8 @@ import App from 'routes/App';
 
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 
+console.log(process.env.API_URL);
+
 render(
   <Context.Provider>
     <Provider store={store}>
