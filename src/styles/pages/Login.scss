@@ -58,6 +58,20 @@
           color: $white;
           margin-top: 8px;
         }
+
+        .register-link {
+          font-size: $font-size-sm;
+          color: $primary;
+          font-weight: bold;
+          font-family: $font-secondary;
+          justify-self: center;
+          transition: color 450ms ease;
+          &:hover {
+            transition: color 250ms ease;
+            will-change: color;
+            color: $dark;
+          }
+        }
       }
     }
   }
