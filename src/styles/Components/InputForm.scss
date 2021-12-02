@@ -5,19 +5,45 @@
   font-family: $font-secondary;
   font-weight: 300;
 
-  .InputForm {
+  .InputForm__Container {
+    display: grid;
+    grid-template-columns: 1fr auto;
     background-color: $light-gray;
     height: 40px;
-    border: none;
     border-radius: 5px;
-    padding-left: 8px;
-    font-size: $font-size-sm;
-    display: block;
-    width: 100%;
-    margin-top: 4px;
+    align-items: center;
+    overflow: hidden;
 
-    &::placeholder {
-      color: $dark;
+    .InputForm {
+      height: inherit;
+      background-color: transparent;
+      padding: 0 8px;
+      border: none;
+      font-size: $font-size-sm;
+      display: block;
+      width: 100%;
+
+      &::placeholder {
+        color: $dark;
+      }
+    }
+
+    .InputShowPasswordIcon {
+      height: inherit;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      cursor: pointer;
+
+      svg {
+        font-size: $font-size-md;
+        color: $primary;
+        transition: color 450ms ease;
+        &:hover {
+          transition: color 250ms ease;
+          color: $dark;
+        }
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import axios from 'axios';
 import 'styles/pages/Login.scss';
 
@@ -26,6 +27,8 @@ const Login = () => {
       const response = await axios.post(API_URL, data);
       if (response.data.statusCode === 401) {
         return alert('Usuario y/o contraseña incorrecta');
+      } else {
+        console.log(response.data);
       }
     } catch (error) {
       console.log(error);
@@ -41,7 +44,7 @@ const Login = () => {
           <p>Bienvenido de vuelta</p>
           <form ref={form} onSubmit={onSubmitForm}>
             <InputForm labelName="Correo electronico:" name="email" type="email" placeholder="correo" required />
-            <InputForm labelName="Contraseña" name="password" type="password" placeholder="contraseña" required />
+            <InputForm labelName="Contraseña:" name="password" placeholder="contraseña" isPassword required />
             <Button label="Iniciar sesion" type="submit" />
             <Link to="/register" className="register-link">
               Quero registrarme

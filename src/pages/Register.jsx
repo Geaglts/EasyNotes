@@ -11,19 +11,9 @@ import { Context } from '../Context';
 const Register = () => {
   const { darkTheme } = useContext(Context);
   const form = useRef(null);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errorList, setErrorList] = useState(null);
 
   const themeClass = darkTheme ? ' dark' : ' light';
-
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleShowConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
 
   const onSubmitForm = (event) => {
     const errors = [];
@@ -60,24 +50,8 @@ const Register = () => {
         </div>
         <InputForm name="alias" labelName="Nombre de usuario:" placeholder="Nombre de usuario" />
         <InputForm name="email" labelName="Correo electrónico:" placeholder="Correo electronico" type="email" required />
-        <div className="Password__Div">
-          <InputForm name="password" labelName="Contraseña:" placeholder="Contraseña" type={showPassword ? 'text' : 'password'} required />
-          <span onClick={handleShowPassword} className="ShowPassword__Icon">
-            {showPassword ? <BsEyeSlash /> : <BsEye />}
-          </span>
-        </div>
-        <div className="Password__Div">
-          <InputForm
-            name="confirm-password"
-            labelName="Repite tu contraseña:"
-            placeholder="Repite tu contraseña"
-            type={showConfirmPassword ? 'text' : 'password'}
-            required
-          />
-          <span onClick={handleShowConfirmPassword} className="ShowPassword__Icon">
-            {showConfirmPassword ? <BsEyeSlash /> : <BsEye />}
-          </span>
-        </div>
+        <InputForm name="password" labelName="Contraseña:" placeholder="Contraseña" isPassword required />
+        <InputForm name="confirm-password" labelName="Repite tu contraseña:" isPassword placeholder="Repite tu contraseña" required />
         <Button label="Registrarme" type="submit" />
       </form>
       {errorList && <Toast messages={errorList} />}
