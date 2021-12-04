@@ -1,61 +1,76 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import axios from 'axios';
 import 'styles/pages/Login.scss';
 
 import InputForm from 'components/InputForm';
 import Button from 'components/Button';
+import Toast from 'components/Toast';
 
 import loginLightImage from 'assets/images/login.svg';
 import loginDarkImage from 'assets/images/login__dark.svg';
 
 import { Context } from '../Context';
 
+import validate from 'utils/validate';
+import useformError from 'hooks/useFormError';
+import { loginSchema } from 'schemas/login.schema';
+
 const Login = () => {
   const { darkTheme } = useContext(Context);
+  const { formErrors, addErrors } = useformError();
   const form = useRef(null);
 
   const themeClass = darkTheme ? ' dark' : ' light';
 
   const onSubmitForm = async (event) => {
     event.preventDefault();
+    const API_URL = `${process.env.API_URL}/auth/login`;
     try {
       const formData = new FormData(form.current);
-      const API_URL = `${process.env.API_URL}/auth/login`;
       const data = { email: formData.get('email'), password: formData.get('password') };
-      const response = await axios.post(API_URL, data);
-      if (response.data.statusCode === 401) {
-        return alert('Usuario y/o contraseña incorrecta');
+      const validatedData = await validate({ schema: loginSchema, data });
+      if (!validatedData.approved) {
+        const error = [{ message: validatedData.message, type: 'danger' }];
+        addErrors(error);
+        return;
+      }
+      const response = await axios.post(API_URL, validatedData.data);
+      if (response.data.statusCode === 401 || response.data.statusCode === 400) {
+        const error = [{ message: 'Usuario y/o contraseña incorrecta', type: 'info' }];
+        addErrors(error);
+        return;
       } else {
         console.log(response.data);
       }
     } catch (error) {
-      console.log(error);
-      console.log('Sorry not sorry, check your data');
+      //console.log(error);
     }
   };
 
   return (
-    <div className={`Login${themeClass}`}>
-      <section className="Login__Left">
-        <div className="Login__Form--container">
-          <h1>Ingresa tus datos</h1>
-          <p>Bienvenido de vuelta</p>
-          <form ref={form} onSubmit={onSubmitForm}>
-            <InputForm labelName="Correo electronico:" name="email" type="email" placeholder="correo" required />
-            <InputForm labelName="Contraseña:" name="password" placeholder="contraseña" isPassword required />
-            <Button label="Iniciar sesion" type="submit" />
-            <Link to="/register" className="register-link">
-              Quero registrarme
-            </Link>
-          </form>
-        </div>
-      </section>
-      <section className="Login__Right">
-        <img src={darkTheme ? loginDarkImage : loginLightImage} alt="login easy notes" />
-      </section>
-    </div>
+    <>
+      <div className={`Login${themeClass}`}>
+        <section className="Login__Left">
+          <div className="Login__Form--container">
+            <h1>Ingresa tus datos</h1>
+            <p>Bienvenido de vuelta</p>
+            <form ref={form} onSubmit={onSubmitForm}>
+              <InputForm labelName="Correo electronico:" name="email" type="email" placeholder="correo" required />
+              <InputForm labelName="Contraseña:" name="password" placeholder="contraseña" isPassword required />
+              <Button label="Iniciar sesion" type="submit" />
+              <Link to="/register" className="register-link">
+                Quero registrarme
+              </Link>
+            </form>
+          </div>
+        </section>
+        <section className="Login__Right">
+          <img src={darkTheme ? loginDarkImage : loginLightImage} alt="login easy notes" />
+        </section>
+      </div>
+      <Toast messages={formErrors} />
+    </>
   );
 };
 
