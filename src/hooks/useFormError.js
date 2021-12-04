@@ -13,7 +13,7 @@ function useFormError() {
   }, [formErrors]);
 
   const addErrors = (errors = [{ message: 'Ocurrio un error', type: 'warning' }]) => {
-    setFormErrors(errors);
+    setFormErrors([...formErrors, ...errors]);
   };
 
   return { formErrors, addErrors };

@@ -6,5 +6,4 @@ export const registerSchema = Yup.object().shape({
   email: Yup.string().email('Este no es un correo electrónico válido').required('Su correo es requerido'),
   alias: Yup.string().min(3, 'El alias debe tener al menos 3 caracteres'),
   password: Yup.string().min(8, 'Su contraseña debe tener al menos 8 caracteres').required('Su contraseña es requerida'),
-  passwordToCompare: Yup.string().required('Su contraseña es requerida'),
 });

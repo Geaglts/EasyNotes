@@ -1,6 +1,5 @@
 import React, { useRef, useContext, useState } from 'react';
 import 'styles/pages/Register.scss';
-import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
 import Toast from 'components/Toast';
 import Button from 'components/Button';
@@ -8,19 +7,21 @@ import InputForm from 'components/InputForm';
 
 import { Context } from '../Context';
 
+import useFormError from 'hooks/useFormError';
+import validate from 'utils/validate';
+import { registerSchema } from 'schemas/register.schema';
+
 const Register = () => {
   const { darkTheme } = useContext(Context);
+  const { formErrors, addErrors } = useFormError();
   const form = useRef(null);
-  const [errorList, setErrorList] = useState(null);
 
   const themeClass = darkTheme ? ' dark' : ' light';
 
-  const onSubmitForm = (event) => {
-    const errors = [];
+  const onSubmitForm = async (event) => {
     event.preventDefault();
     const formData = new FormData(form.current);
-    if (formData.get('')) {
-    }
+
     const data = {
       firstName: formData.get('firstName'),
       lastName: formData.get('lastName'),
@@ -29,14 +30,17 @@ const Register = () => {
       password: formData.get('password'),
       passwordToCompare: formData.get('confirm-password'),
     };
-    if (data.password !== data.passwordToCompare) {
-      errors.push({ message: '🔒 Las contraseñas no coinciden', type: 'warning' });
-      setErrorList(errors);
-    } else {
-      delete data.passwordToCompare;
-      console.log(data);
-      form.current.reset();
+
+    const validatedData = await validate({ schema: registerSchema, data });
+    if (!validatedData.approved) {
+      addErrors([{ message: validatedData.message, type: 'danger' }]);
+      return;
+    } else if (data.password !== data.passwordToCompare) {
+      addErrors([{ message: '🔒 Las contraseñas no coinciden', type: 'danger' }]);
+      return;
     }
+    console.log(validatedData.data);
+    //form.current.reset();
   };
 
   return (
@@ -54,7 +58,7 @@ const Register = () => {
         <InputForm name="confirm-password" labelName="Repite tu contraseña:" isPassword placeholder="Repite tu contraseña" required />
         <Button label="Registrarme" type="submit" />
       </form>
-      {errorList && <Toast messages={errorList} />}
+      <Toast messages={formErrors} />
     </div>
   );
 };
