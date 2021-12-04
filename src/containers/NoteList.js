@@ -39,7 +39,7 @@ function NoteList(props) {
   return (
     <div className={`NoteList ${darkTheme ? 'NoteListDark' : ''}`}>
       <div className="NoteList__header">
-        <h1 className="NoteList__Title">NoteList</h1>
+        <h1 className="NoteList__Title">Todas tus notas</h1>
         <SearchButton inputPlaceholder="Como iba la nota?" onChange={onChangeSearchButton} value={searchedValue} />
       </div>
       <div className="NoteList__List--Container">

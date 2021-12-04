@@ -21,12 +21,20 @@ module.exports = {
       routes: path.join(__dirname, 'src', 'routes'),
       assets: path.join(__dirname, 'src', 'assets'),
       utils: path.join(__dirname, 'src', 'utils'),
+      actions: path.join(__dirname, 'src', 'redux/actions'),
+      reducers: path.join(__dirname, 'src', 'redux/reducers'),
+      schemas: path.join(__dirname, 'src', 'schemas'),
       context: path.join(__dirname, 'src', 'Context.js'),
       storage: path.join(__dirname, 'src', 'storage.js'),
     },
   },
   devtool: 'source-map',
-  devServer: { port: 5000, historyApiFallback: true, open: true },
+  devServer: {
+    port: 5000,
+    historyApiFallback: true,
+    open: false,
+    allowedHosts: ['localhost', 'wsl'],
+  },
   module: {
     rules: [
       { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },

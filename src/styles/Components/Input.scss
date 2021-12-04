@@ -2,7 +2,7 @@
 
 .Input {
   display: flex;
-  height: 35px;
+  height: 40px;
   width: 350px;
   background-color: rgba($primary, 0.1);
   border: $border;
@@ -26,7 +26,7 @@
   &__TextArea {
     @include InputStyles();
     resize: none;
-    padding-top: 5px;
+    padding-top: 7px;
 
     &::placeholder {
       color: $placeholder-color;

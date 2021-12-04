@@ -34,8 +34,8 @@ function Note({ content, title, _id, onRemoveNote }) {
       <div className="Note__Header">
         <p className="Note__Header--title">{capitalize(title)}</p>
         <div className="Note__Header--buttons">
-          <Button label="Delete" onClick={handleConfirmRemoveModal} style={deleteButtonStyles(darkTheme)} />
-          <Button label="Copy" onClick={handleCopy} style={copyButtonStyles(darkTheme)} />
+          <Button label="Eliminar" onClick={handleConfirmRemoveModal} style={deleteButtonStyles(darkTheme)} />
+          <Button label="Copiar" onClick={handleCopy} style={copyButtonStyles(darkTheme)} />
         </div>
       </div>
       <div className="Note__Content">
