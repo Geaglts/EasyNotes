@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext } from 'react';
 import 'styles/pages/Register.scss';
 
 import Toast from 'components/Toast';
@@ -8,6 +8,7 @@ import InputForm from 'components/InputForm';
 import { Context } from '../Context';
 
 import useFormError from 'hooks/useFormError';
+import FormControl from 'utils/classes/FormControl';
 import validate from 'utils/validate';
 import { registerSchema } from 'schemas/register.schema';
 
@@ -20,16 +21,7 @@ const Register = () => {
 
   const onSubmitForm = async (event) => {
     event.preventDefault();
-    const formData = new FormData(form.current);
-
-    const data = {
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      email: formData.get('email'),
-      alias: formData.get('alias'),
-      password: formData.get('password'),
-      passwordToCompare: formData.get('confirm-password'),
-    };
+    const { values: data } = new FormControl(form.current);
 
     const validatedData = await validate({ schema: registerSchema, data });
     if (!validatedData.approved) {
@@ -39,7 +31,7 @@ const Register = () => {
       addErrors([{ message: '🔒 Las contraseñas no coinciden', type: 'danger' }]);
       return;
     }
-    console.log(validatedData.data);
+    // console.log(validatedData.data);
     //form.current.reset();
   };
 
