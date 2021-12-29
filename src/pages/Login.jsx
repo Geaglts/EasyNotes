@@ -36,11 +36,11 @@ const Login = () => {
         return;
       }
       const response = await axios.post(API_URL, validatedData.data);
-      if (response.data.statusCode === 401) {
+      if (response.data.message === 'You need to activate your account, please check your email.') {
         const error = [{ message: 'Necesitas activar tu cuenta, revisa tu correo.', type: 'info' }];
         addErrors(error);
         return;
-      } else if (response.data.statusCode === 400) {
+      } else if (response.data.message === 'Unauthorized') {
         const error = [{ message: '🔒 Usuario y/o contraseña incorrecta', type: 'info' }];
         addErrors(error);
         return;
