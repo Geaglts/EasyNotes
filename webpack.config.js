@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: './src/index.js',
@@ -37,7 +40,18 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
+            },
+          },
+        ],
+      },
       {
         test: /\.(css|scss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
@@ -52,5 +66,6 @@ module.exports = {
     new Dotenv({
       systemvars: true,
     }),
-  ],
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
 };
