@@ -36,8 +36,12 @@ const Login = () => {
         return;
       }
       const response = await axios.post(API_URL, validatedData.data);
-      if (response.data.statusCode === 401 || response.data.statusCode === 400) {
-        const error = [{ message: 'Usuario y/o contraseña incorrecta', type: 'info' }];
+      if (response.data.statusCode === 401) {
+        const error = [{ message: 'Necesitas activar tu cuenta, revisa tu correo.', type: 'info' }];
+        addErrors(error);
+        return;
+      } else if (response.data.statusCode === 400) {
+        const error = [{ message: '🔒 Usuario y/o contraseña incorrecta', type: 'info' }];
         addErrors(error);
         return;
       } else {
