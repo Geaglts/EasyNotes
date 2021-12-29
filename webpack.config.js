@@ -49,6 +49,8 @@ module.exports = {
     new HtmlPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
     }),
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+    }),
   ],
 };
