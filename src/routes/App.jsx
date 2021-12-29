@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Switch } from 'react-router-dom';
 import FreeNotes from 'pages/FreeNotes';
 import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
@@ -11,29 +11,17 @@ import { Menu } from 'containers/Menu';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Menu />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/fast">
-          <FreeNotes />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/register">
-          <Register />
-        </Route>
-        <Route exact path="/email-sended">
-          <EmailSended />
-        </Route>
-        <Route path="*">
-          <NotFound />
-        </Route>
-      </Switch>
-    </Router>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/fast" element={<FreeNotes />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        <Route exact path="/email-sended" element={<EmailSended />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
