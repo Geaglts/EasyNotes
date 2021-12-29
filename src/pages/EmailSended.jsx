@@ -17,7 +17,7 @@ const EmailSended = () => {
   return (
     <div className={`EmailSended${themeClass}`}>
       <MdMarkEmailUnread className="EmailSended__Icon" />
-      <p className="EmailSended__DescriptionLabel">Te hemos enviado un correo de confirmación.</p>
+      <p className="EmailSended__DescriptionLabel">Te hemos enviado un correo de confirmación, por favor revisa tu bandeja de entrada.</p>
       <Link className="EmailSended__Link" to="/">
         Ir al inicio
       </Link>

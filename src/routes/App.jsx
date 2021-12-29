@@ -15,10 +15,10 @@ function App() {
       <Menu />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/fast" element={<FreeNotes />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route exact path="/email-sended" element={<EmailSended />} />
+        <Route exact path="fast" element={<FreeNotes />} />
+        <Route exact path="login" element={<Login />} />
+        <Route exact path="register" element={<Register />} />
+        <Route exact path="email-sended" element={<EmailSended />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

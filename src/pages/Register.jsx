@@ -1,4 +1,6 @@
 import React, { useRef, useContext } from 'react';
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import 'styles/pages/Register.scss';
 
 import Toast from 'components/Toast';
@@ -13,6 +15,7 @@ import validate from 'utils/validate';
 import { registerSchema } from 'schemas/register.schema';
 
 const Register = () => {
+  const navigate = useNavigate();
   const { darkTheme } = useContext(Context);
   const { formErrors, addErrors } = useFormError();
   const form = useRef(null);
@@ -21,18 +24,30 @@ const Register = () => {
 
   const onSubmitForm = async (event) => {
     event.preventDefault();
-    const { values: data } = new FormControl(form.current);
+    try {
+      const { values: data } = new FormControl(form.current);
+      const validatedData = await validate({ schema: registerSchema, data });
 
-    const validatedData = await validate({ schema: registerSchema, data });
-    if (!validatedData.approved) {
-      addErrors([{ message: validatedData.message, type: 'danger' }]);
-      return;
-    } else if (data.password !== data.passwordToCompare) {
-      addErrors([{ message: '🔒 Las contraseñas no coinciden', type: 'danger' }]);
-      return;
+      if (!validatedData.approved) {
+        addErrors([{ message: validatedData.message, type: 'danger' }]);
+        return;
+      } else if (data.password !== data.confirmPassword) {
+        addErrors([{ message: '🔒 Las contraseñas no coinciden', type: 'danger' }]);
+        return;
+      } else {
+        const API_URL = `${process.env.API_URL}/api/v1/users/`;
+        delete data.confirmPassword;
+        const response = await Axios.post(API_URL, data);
+        if (response.data.statusCode >= 300) {
+          addErrors([{ message: '🌞 Ya existe una usuaria con esta cuenta', type: 'info' }]);
+          return;
+        }
+        form.current.reset();
+        navigate('/email-sended');
+      }
+    } catch (error) {
+      // console.log(error);
     }
-    // console.log(validatedData.data);
-    //form.current.reset();
   };
 
   return (
@@ -47,7 +62,7 @@ const Register = () => {
         <InputForm name="alias" labelName="Nombre de usuario:" placeholder="Nombre de usuario" />
         <InputForm name="email" labelName="Correo electrónico:" placeholder="Correo electronico" type="email" required />
         <InputForm name="password" labelName="Contraseña:" placeholder="Contraseña" isPassword required />
-        <InputForm name="confirm-password" labelName="Repite tu contraseña:" isPassword placeholder="Repite tu contraseña" required />
+        <InputForm name="confirmPassword" labelName="Repite tu contraseña:" isPassword placeholder="Repite tu contraseña" required />
         <Button label="Registrarme" type="submit" />
       </form>
       <Toast messages={formErrors} />
