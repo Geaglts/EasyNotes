@@ -29,6 +29,7 @@ module.exports = {
       schemas: path.join(__dirname, 'src', 'schemas'),
       context: path.join(__dirname, 'src', 'Context.js'),
       storage: path.join(__dirname, 'src', 'storage.js'),
+      '@fragments': path.join(__dirname, 'src', 'fragments'),
     },
   },
   devtool: 'source-map',

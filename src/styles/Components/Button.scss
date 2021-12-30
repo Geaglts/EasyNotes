@@ -10,12 +10,14 @@
   border: none;
   border-radius: $radius;
   box-shadow: $shadow;
-  transition: transform 450ms linear;
-  display: block;
+  transition: transform 300ms linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     cursor: pointer;
-    transition: transform 250ms linear;
+    transition: transform 200ms linear;
     transform: scale(1.05);
   }
 }

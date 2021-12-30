@@ -13,8 +13,9 @@
       "actions": ["actions/*"],
       "reducers": ["reducers/*"],
       "schemas": ["schemas/*"],
-      "context": ["context/*"],
-      "storage": ["storage/*"]
+      "context": ["context.js"],
+      "storage": ["storage/*"],
+      "@fragments": ["fragments/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

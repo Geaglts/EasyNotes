@@ -27,7 +27,9 @@ function useInitialState() {
     setHasUser(!hasUser);
   };
 
-  return { ...state, changeTheme, changeUserStatus };
+  const theme = state.darkTheme ? 'dark' : 'light';
+
+  return { ...state, changeTheme, changeUserStatus, theme };
 }
 
 export default useInitialState;
