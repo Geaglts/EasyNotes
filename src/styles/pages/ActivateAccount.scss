@@ -1,0 +1,46 @@
+@import '../global.scss';
+
+.ActivateAccount {
+  height: calc(100vh - 60px);
+  display: grid;
+  place-items: center;
+
+  &.dark {
+    background-color: $dark;
+    color: $white;
+  }
+
+  &__Content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__Icon {
+    color: $green;
+    font-size: 120px;
+  }
+
+  &__Info {
+    color: inherit;
+    font-size: $font-size-md;
+    text-align: center;
+    margin: 12px 0;
+  }
+
+  &__LinkToLogin {
+    background-color: $primary;
+    font-size: $font-size-sm;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: $white;
+    font-family: $font-secondary;
+
+    svg {
+      font-size: 20px;
+      margin-left: 4px;
+    }
+  }
+}
