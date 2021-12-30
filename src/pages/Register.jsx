@@ -11,6 +11,7 @@ import { Context } from '../Context';
 
 import useFormError from 'hooks/useFormError';
 import FormControl from 'utils/classes/FormControl';
+import storage, { STORAGE } from 'utils/storage';
 import validate from 'utils/validate';
 import { registerSchema } from 'schemas/register.schema';
 
@@ -42,11 +43,12 @@ const Register = () => {
           addErrors([{ message: '🌞 Ya existe una usuaria con esta cuenta', type: 'info' }]);
           return;
         }
+        storage(STORAGE.TEMP_EMAIL).set(data.email);
         form.current.reset();
         navigate('/email-sended');
       }
     } catch (error) {
-      // console.log(error);
+      //console.log(error);
     }
   };
 
