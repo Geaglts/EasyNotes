@@ -31,9 +31,9 @@ const ActivateAccount = () => {
 
   if (errorCode) {
     switch (errorCode) {
-      case 3:
-        return <TokenExpired />;
       case 4:
+        return <TokenExpired />;
+      case 5:
         return <Navigate to="/" />;
       default:
         return <p>🚜</p>;
