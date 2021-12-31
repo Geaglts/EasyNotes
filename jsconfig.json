@@ -2,20 +2,20 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "styles": ["styles/*"],
-      "components": ["components/*"],
-      "containers": ["containers/*"],
-      "hooks": ["hooks/*"],
-      "pages": ["pages/*"],
-      "routes": ["routes/*"],
-      "assets": ["assets/*"],
-      "utils": ["utils/*"],
-      "actions": ["actions/*"],
-      "reducers": ["reducers/*"],
-      "schemas": ["schemas/*"],
-      "context": ["context.js"],
-      "storage": ["storage/*"],
-      "@fragments": ["fragments/*"]
+      "styles/*": ["styles/*"],
+      "components/*": ["components/*"],
+      "containers/*": ["containers/*"],
+      "hooks/*": ["hooks/*"],
+      "pages/*": ["pages/*"],
+      "routes/*": ["routes/*"],
+      "assets/*": ["assets/*"],
+      "utils/*": ["utils/*"],
+      "actions/*": ["actions/*"],
+      "reducers/*": ["reducers/*"],
+      "schemas/*": ["schemas/*"],
+      "context": ["Context.js"],
+      "storage/*": ["storage/*"],
+      "@fragments/*": ["fragments/*"]
     }
   },
   "exclude": ["node_modules", "dist"]
