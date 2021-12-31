@@ -9,11 +9,14 @@ import Context from 'context';
 
 import App from 'routes/App';
 
+import { GlobalStyle } from './globalStyles';
+
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 
 render(
   <Context.Provider>
     <Provider store={store}>
+      <GlobalStyle />
       <App />
     </Provider>
   </Context.Provider>,
