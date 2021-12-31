@@ -1,6 +1,6 @@
 import React, { useRef, useContext } from 'react';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import 'styles/pages/Register.scss';
 
 import Toast from 'components/Toast';
@@ -66,6 +66,9 @@ const Register = () => {
         <InputForm name="password" labelName="Contraseña:" placeholder="Contraseña" isPassword required />
         <InputForm name="confirmPassword" labelName="Repite tu contraseña:" isPassword placeholder="Repite tu contraseña" required />
         <Button label="Registrarme" type="submit" />
+        <Link to="/login" className="Register__Form--LinkToLogin">
+          Ya tengo una cuenta
+        </Link>
       </form>
       <Toast messages={formErrors} />
     </div>

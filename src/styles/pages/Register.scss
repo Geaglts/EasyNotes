@@ -15,7 +15,7 @@
     font-size: $font-size-md;
   }
 
-  form {
+  .Register__Form {
     margin: 16px 0;
     width: 400px;
     display: grid;
@@ -53,10 +53,18 @@
       background-color: $primary;
       color: $white;
     }
+
+    &--LinkToLogin {
+      color: $primary;
+      font-size: $font-size-sm;
+      font-weight: bold;
+      font-family: $font-secondary;
+    }
   }
 
   &.dark {
     background-color: $dark;
+    color: $white;
     color: $white;
   }
 }
