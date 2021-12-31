@@ -64,9 +64,12 @@ const Login = () => {
               <InputForm labelName="Contraseña:" name="password" placeholder="contraseña" isPassword required />
               <Button label="Iniciar sesion" type="submit" />
               <Link to="/register" className="register-link">
-                Quero registrarme
+                Quiero registrarme
               </Link>
             </form>
+            <Link to="/recovery-password" className="LinkToRecoveryPassword">
+              ¿Se te olvido tu contraseña?
+            </Link>
           </div>
         </section>
         <section className="Login__Right">

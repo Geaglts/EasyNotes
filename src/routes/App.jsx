@@ -7,6 +7,7 @@ import Login from 'pages/Login';
 import Register from 'pages/Register';
 import EmailSended from 'pages/EmailSended';
 import ActivateAccount from 'pages/ActivateAccount';
+import RecoveryPassword from 'pages/RecoveryPassword';
 
 import { Menu } from 'containers/Menu';
 
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="register" element={<Register />} />
         <Route exact path="email-sended" element={<EmailSended />} />
         <Route exact path="activate-account" element={<ActivateAccount />} />
+        <Route exact path="recovery-password" element={<RecoveryPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -65,10 +65,7 @@
           font-weight: bold;
           font-family: $font-secondary;
           justify-self: center;
-          transition: color 450ms ease;
           &:hover {
-            transition: color 250ms ease;
-            will-change: color;
             color: $dark;
           }
         }
@@ -85,6 +82,12 @@
     img {
       width: 80%;
     }
+  }
+
+  .LinkToRecoveryPassword {
+    color: $primary;
+    font-size: $font-size-sm;
+    margin-top: 4px;
   }
 }
 
