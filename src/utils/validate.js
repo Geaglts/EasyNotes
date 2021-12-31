@@ -4,7 +4,7 @@ async function validate({ schema, data }) {
     return { data: approvedValidation, message: 'approved', approved: true };
   } catch (error) {
     const { message } = JSON.parse(JSON.stringify(error));
-    return { data: null, message, approved: false };
+    return { data: null, message, approved: false, error: true };
   }
 }
 

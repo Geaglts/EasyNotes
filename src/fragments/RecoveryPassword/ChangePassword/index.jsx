@@ -1,25 +1,48 @@
 import React, { useRef, useContext } from 'react';
-import { Content, Form, Button } from './styles';
+import { useNavigate } from 'react-router-dom';
+import { Content, Form, Button, Error } from './styles';
+import Axios from 'axios';
 
 import { Context } from 'context';
 
 import { Layout } from 'containers/Layout/Layout';
 import InputForm from 'components/InputForm';
 
+import { changePasswordSchema } from 'schemas/changePassword.schema';
+
 import FormControl from 'utils/classes/FormControl';
 import { isNotEquals } from 'utils/isFunctions';
+import validate from 'utils/validate';
 
-export const ChangePassword = () => {
+import useError from 'hooks/useError';
+
+export const ChangePassword = ({ token }) => {
   const { theme } = useContext(Context);
+  const navigate = useNavigate();
+  const { error, showError } = useError();
   const form = useRef(null);
 
-  const onSubmitChangePassword = (e) => {
+  const onSubmitChangePassword = async (e) => {
     e.preventDefault();
     const { values } = new FormControl(form.current);
-    if (isNotEquals(values.newPassword, values.confirmPassword)) {
-      console.log('no son iguales');
+    const validation = await validate({ schema: changePasswordSchema, data: { newPassword: values.newPassword } });
+    if (validation.error) {
+      showError(validation.message);
     } else {
-      console.log(values);
+      delete values.confirmPassword;
+      values.token = token;
+      const { data } = await Axios.post('/auth/new-password', values);
+      if (data.errorCode) {
+        switch (data.errorCode) {
+          case 4: {
+            navigate('/recovery-password');
+          }
+          case 5: {
+            navigate('/');
+          }
+        }
+      }
+      console.log(data);
     }
   };
 
@@ -33,6 +56,7 @@ export const ChangePassword = () => {
           <InputForm name="confirmPassword" placeholder="Repite tu contraseña" isPassword />
           <Button>Cambiar contraseña</Button>
         </Form>
+        {error && <Error>{error}</Error>}
       </Content>
     </Layout>
   );

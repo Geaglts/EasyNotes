@@ -25,7 +25,7 @@ const RecoveryPassword = () => {
   };
 
   if (query.get('token')) {
-    return <ChangePassword />;
+    return <ChangePassword token={query.get('token')} />;
   }
 
   return (

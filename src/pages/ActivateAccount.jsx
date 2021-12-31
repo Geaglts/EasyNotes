@@ -36,7 +36,7 @@ const ActivateAccount = () => {
       case 5:
         return <Navigate to="/" />;
       default:
-        return <p>🚜</p>;
+        return <Navigate to="/" />;
     }
   }
 

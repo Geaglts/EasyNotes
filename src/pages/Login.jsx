@@ -25,7 +25,6 @@ const Login = () => {
 
   const onSubmitForm = async (event) => {
     event.preventDefault();
-    const API_URL = `${process.env.API_URL}/auth/login`;
     try {
       const formData = new FormData(form.current);
       const data = { email: formData.get('email'), password: formData.get('password') };
@@ -35,7 +34,7 @@ const Login = () => {
         addErrors(error);
         return;
       }
-      const response = await axios.post(API_URL, validatedData.data);
+      const response = await axios.post('/auth/login', validatedData.data);
       if (response.data.message === 'You need to activate your account, please check your email.') {
         const error = [{ message: 'Necesitas activar tu cuenta, revisa tu correo.', type: 'info' }];
         addErrors(error);

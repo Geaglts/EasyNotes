@@ -31,3 +31,8 @@ export const Button = styled.button`
     background-color: var(--white);
   }
 `;
+
+export const Error = styled.p`
+  color: var(--warning);
+  padding: 8px 0;
+`;
