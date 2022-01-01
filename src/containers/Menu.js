@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Context } from '../Context';
-import { Link } from 'react-router-dom';
-import 'styles/Containers/Menu.scss';
+import { useCookies } from 'react-cookie';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { BiMenu } from 'react-icons/bi';
+import 'styles/Containers/Menu.scss';
+
+import { Context } from '../Context';
 
 import { Toggle } from '../components/Toggle';
 
 function Menu() {
+  const navigate = useNavigate();
+  const [, , removeCookie] = useCookies(['auth']);
   const [fullMenu, setFullMenu] = useState(false);
   const { darkTheme, changeTheme, hasUser, changeUserStatus } = useContext(Context);
 
@@ -15,6 +19,13 @@ function Menu() {
 
   const handleMenu = () => {
     setFullMenu(!fullMenu);
+  };
+
+  const onLogout = () => {
+    removeCookie('auth');
+    changeUserStatus();
+    setFullMenu(false);
+    navigate('/');
   };
 
   if (fullMenu) {
@@ -34,7 +45,13 @@ function Menu() {
               Nota Rapida
             </Link>
           </li>
-          <li></li>
+          {hasUser && (
+            <li>
+              <button className="link" onClick={onLogout}>
+                Cerrar sesión
+              </button>
+            </li>
+          )}
         </ul>
         <div>
           {!hasUser && (
@@ -65,6 +82,13 @@ function Menu() {
           {darkTheme ? <FaMoon /> : <FaSun />}
           <Toggle onClick={changeTheme} status={darkTheme} />
         </li>
+        {hasUser && (
+          <li className="menu__list--item">
+            <button className="button" onClick={onLogout}>
+              Cerrar sesión
+            </button>
+          </li>
+        )}
         <li className="menu__list--item menu__list--button">
           <button className="show_menu" onClick={handleMenu}>
             <BiMenu />

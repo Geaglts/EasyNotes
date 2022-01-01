@@ -53,6 +53,15 @@
       font-size: 16pt;
       font-weight: 600;
       padding: 10px 0;
+      display: inline-block;
+      background-color: transparent;
+      border: none;
+      transition: transform 400ms ease;
+
+      &:hover {
+        transition: transform 300ms ease;
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -135,7 +144,7 @@
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 
     &--item {
       display: flex;
@@ -143,8 +152,22 @@
       gap: 5px;
       font-size: $font-size-md;
 
-      a:hover {
+      a {
+        transition: transform 400ms ease;
+      }
+
+      & > .button {
+        background-color: transparent;
+        border: none;
+        font-size: inherit;
+        transition: transform 400ms ease;
+      }
+
+      a:hover,
+      & > .button:hover {
         text-decoration: underline;
+        transition: transform 300ms ease;
+        transform: scale(1.1);
       }
     }
 
@@ -170,7 +193,8 @@
   background-color: $dark;
   color: $white;
 
-  a {
+  a,
+  .button {
     color: inherit;
   }
 
@@ -183,7 +207,8 @@
   background-color: $white;
   color: $dark;
 
-  a {
+  a,
+  .button {
     color: inherit;
   }
 

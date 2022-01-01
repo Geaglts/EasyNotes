@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FreeNotes from 'pages/FreeNotes';
 import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
@@ -8,6 +8,9 @@ import Register from 'pages/Register';
 import EmailSended from 'pages/EmailSended';
 import ActivateAccount from 'pages/ActivateAccount';
 import RecoveryPassword from 'pages/RecoveryPassword';
+import Dashboard from 'pages/Dashboard';
+
+import UserRoute from './UserRoute';
 
 import { Menu } from 'containers/Menu';
 
@@ -23,6 +26,7 @@ function App() {
         <Route exact path="email-sended" element={<EmailSended />} />
         <Route exact path="activate-account" element={<ActivateAccount />} />
         <Route exact path="recovery-password" element={<RecoveryPassword />} />
+        <Route path="/dashboard" element={<UserRoute element={<Dashboard />} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

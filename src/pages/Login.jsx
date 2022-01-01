@@ -1,6 +1,7 @@
 import React, { useRef, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 import 'styles/pages/Login.scss';
 
 import InputForm from 'components/InputForm';
@@ -17,7 +18,9 @@ import useformError from 'hooks/useFormError';
 import { loginSchema } from 'schemas/login.schema';
 
 const Login = () => {
-  const { darkTheme } = useContext(Context);
+  const navigate = useNavigate();
+  const { darkTheme, changeUserStatus } = useContext(Context);
+  const [, setCookie] = useCookies();
   const { formErrors, addErrors } = useformError();
   const form = useRef(null);
 
@@ -47,9 +50,11 @@ const Login = () => {
           }
         }
       }
-      console.log(response.data);
+      changeUserStatus();
+      setCookie('auth', response.data.body.token);
+      navigate('/dashboard');
     } catch (error) {
-      //console.log(error);
+      console.log(error);
     }
   };
 
