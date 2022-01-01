@@ -39,16 +39,22 @@ const Register = () => {
         const API_URL = `${process.env.API_URL}/api/v1/users/`;
         delete data.confirmPassword;
         const response = await Axios.post(API_URL, data);
-        if (response.data.statusCode >= 300) {
-          addErrors([{ message: '🌞 Ya existe una usuaria con esta cuenta', type: 'info' }]);
-          return;
+        if (response.data.errorCode) {
+          const { message } = response.data;
+          switch (response.data.errorCode) {
+            case 9:
+              addErrors([{ message, type: 'info' }]);
+              return;
+            default:
+              console.log('1');
+          }
         }
         storage(STORAGE.TEMP_EMAIL).set(data.email);
         form.current.reset();
         navigate('/email-sended');
       }
     } catch (error) {
-      //console.log(error);
+      console.log(error);
     }
   };
 

@@ -21,7 +21,6 @@ const RecoveryPassword = () => {
     const API_URL = `${process.env.API_URL}/auth/recovery-password`;
     const { values } = new FormControl(form.current);
     const { data } = await Axios.post(API_URL, values);
-    console.log(data);
   };
 
   if (query.get('token')) {

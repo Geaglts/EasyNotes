@@ -14,11 +14,14 @@ const ActivateAccount = () => {
   const { theme } = useContext(Context);
   const [params] = useSearchParams();
   const [errorCode, setErrorCode] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const activateAccount = async () => {
+    setErrorCode(null);
     const URL = `${process.env.API_URL}/auth/activate`;
     const token = params.get('token');
     const { data } = await Axios.post(URL, { token });
+    setLoading(false);
     if (data.errorCode) {
       setErrorCode(data.errorCode);
     }
@@ -38,6 +41,10 @@ const ActivateAccount = () => {
       default:
         return <Navigate to="/" />;
     }
+  }
+
+  if (loading) {
+    return <p>loading</p>;
   }
 
   return (

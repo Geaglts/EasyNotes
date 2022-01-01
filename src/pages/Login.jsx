@@ -30,22 +30,24 @@ const Login = () => {
       const data = { email: formData.get('email'), password: formData.get('password') };
       const validatedData = await validate({ schema: loginSchema, data });
       if (!validatedData.approved) {
-        const error = [{ message: validatedData.message, type: 'danger' }];
-        addErrors(error);
+        addErrors([{ message: validatedData.message, type: 'danger' }]);
         return;
       }
       const response = await axios.post('/auth/login', validatedData.data);
-      if (response.data.message === 'You need to activate your account, please check your email.') {
-        const error = [{ message: 'Necesitas activar tu cuenta, revisa tu correo.', type: 'info' }];
-        addErrors(error);
-        return;
-      } else if (response.data.message === 'Unauthorized') {
-        const error = [{ message: '🔒 Usuario y/o contraseña incorrecta', type: 'info' }];
-        addErrors(error);
-        return;
-      } else {
-        console.log(response.data);
+      if (response.data.errorCode) {
+        const { errorCode, message } = response.data;
+        switch (errorCode) {
+          case 1: {
+            addErrors([{ message, type: 'info' }]);
+            return;
+          }
+          case 3: {
+            addErrors([{ message, type: 'danger' }]);
+            return;
+          }
+        }
       }
+      console.log(response.data);
     } catch (error) {
       //console.log(error);
     }

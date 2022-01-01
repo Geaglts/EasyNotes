@@ -42,7 +42,6 @@ export const ChangePassword = ({ token }) => {
           }
         }
       }
-      console.log(data);
     }
   };
 
