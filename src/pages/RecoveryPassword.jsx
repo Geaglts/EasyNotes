@@ -7,20 +7,28 @@ import { Context } from 'context';
 import 'styles/pages/RecoveryPassword.scss';
 
 import InputForm from 'components/InputForm';
+import Toast from 'components/Toast';
 import { ChangePassword } from '@fragments/RecoveryPassword/ChangePassword';
+
+import useFormError from 'hooks/useFormError';
 
 import FormControl from 'utils/classes/FormControl';
 
 const RecoveryPassword = () => {
   const { theme } = useContext(Context);
   const [query] = useSearchParams();
+  const { addErrors, formErrors } = useFormError();
   const form = useRef(null);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    const API_URL = `${process.env.API_URL}/auth/recovery-password`;
     const { values } = new FormControl(form.current);
-    const { data } = await Axios.post(API_URL, values);
+    const { data } = await Axios.post('/auth/recovery-password', values);
+    if (data.errorCode) {
+      return;
+    }
+    form.current.reset();
+    addErrors([{ message: '📩 Te hemos enviado un correo', type: 'info' }]);
   };
 
   if (query.get('token')) {
@@ -42,6 +50,7 @@ const RecoveryPassword = () => {
           <Link to="/login">Iniciar sesión</Link> o <Link to="/register">Registrarme</Link>
         </p>
       </div>
+      <Toast messages={formErrors} />
     </div>
   );
 };
