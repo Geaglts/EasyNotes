@@ -29,6 +29,9 @@ export const ChangePassword = ({ token }) => {
     if (validation.error) {
       showError(validation.message);
     } else {
+      if (isNotEquals(values.newPassword, values.confirmPassword)) {
+        showError('Las contraseñas no coinciden');
+      }
       delete values.confirmPassword;
       values.token = token;
       const { data } = await Axios.post('/auth/new-password', values);
@@ -37,11 +40,13 @@ export const ChangePassword = ({ token }) => {
           case 4: {
             navigate('/recovery-password');
           }
-          case 5: {
+          case 5:
+          default: {
             navigate('/');
           }
         }
       }
+      navigate('/login');
     }
   };
 
