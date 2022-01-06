@@ -121,3 +121,61 @@
     }
   }
 }
+
+.UserNote {
+  background-color: $white;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: $shadow;
+
+  & abbr {
+    text-decoration: none;
+  }
+
+  &__Title {
+    font-size: 16pt;
+  }
+
+  &__Content {
+    font-size: 14pt;
+    font-weight: 400;
+    font-family: $font-secondary;
+    position: relative;
+  }
+
+  &__Options {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+
+    & > svg {
+      font-size: 30px;
+      cursor: pointer;
+      transition: all 350ms ease;
+
+      &:hover {
+        transition: all 250ms ease;
+        color: $primary;
+      }
+    }
+  }
+}
+
+.NoteMultiline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+
+  &__CopyButton {
+    $size: 23px;
+    height: $size;
+    width: $size;
+    transition: all 350ms ease;
+
+    &:hover {
+      color: $primary;
+      transition: all 250ms ease;
+      cursor: pointer;
+    }
+  }
+}

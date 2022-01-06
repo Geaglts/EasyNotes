@@ -1,3 +1,5 @@
+import CryptoJS from 'crypto-js';
+
 class FormControl extends FormData {
   constructor(form) {
     super(form);
@@ -11,6 +13,28 @@ class FormControl extends FormData {
       values[field] = value;
     }
     return values;
+  }
+
+  get formData() {
+    return this.values;
+  }
+
+  get encryptData() {
+    const keys = Object.keys(this.values);
+    const encryptedData = {};
+    for (let key of keys) {
+      encryptedData[key] = CryptoJS.AES.encrypt(this.values[key], process.env.NOTE_SECRET).toString();
+    }
+    return encryptedData;
+  }
+
+  static decryptData(values) {
+    const keys = Object.keys(values);
+    const decryptedData = {};
+    for (let key of keys) {
+      decryptedData[key] = CryptoJS.AES.decrypt(values[key], process.env.NOTE_SECRET).toString(CryptoJS.enc.Utf8);
+    }
+    return decryptedData;
   }
 }
 

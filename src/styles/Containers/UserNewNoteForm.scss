@@ -1,0 +1,12 @@
+@import '../global.scss';
+
+.UserNewNoteForm {
+  margin-top: 8px;
+  width: 500px;
+  display: grid;
+  gap: 8px;
+
+  .Input {
+    width: 100%;
+  }
+}
