@@ -16,7 +16,7 @@ function useInitialState() {
   useEffect(() => {
     loadState();
     return () => {};
-  }, [state]);
+  }, []);
 
   const changeTheme = () => {
     setState({ ...state, darkTheme: !state.darkTheme });

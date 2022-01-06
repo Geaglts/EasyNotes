@@ -44,3 +44,17 @@
     }
   }
 }
+
+@media (max-width: 572px) {
+  .Modal {
+    display: block;
+
+    &.dark {
+      background-color: $dark;
+    }
+
+    &.light {
+      background-color: $white;
+    }
+  }
+}

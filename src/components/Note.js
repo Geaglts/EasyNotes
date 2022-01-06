@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { BsFillTrashFill } from 'react-icons/bs';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { useCookies } from 'react-cookie';
+
 import '../styles/Components/Note.scss';
 
-import { removeNote } from '../redux/actions/notes.actions';
+import { getNotes, removeNote } from '../redux/actions/userNotes.actions';
 
 import { Context } from '../Context';
-import Button from './Button';
+import Button, { ConfirmButton } from './Button';
 import Modal from './Modal';
 
 import { noteStorage } from '../storage';
@@ -14,7 +18,6 @@ import { noteStorage } from '../storage';
 import capitalize from 'utils/capitalize';
 import FormControl from 'utils/classes/FormControl';
 import { AiOutlineCopy, AiOutlineEye } from 'react-icons/ai';
-import { MdDeleteForever } from 'react-icons/md';
 
 function Note({ content, title, _id, onRemoveNote }) {
   const { darkTheme } = useContext(Context);
@@ -65,7 +68,9 @@ function Note({ content, title, _id, onRemoveNote }) {
   );
 }
 
-export const UserNote = ({ title, content }) => {
+export const UserNote = ({ id, title, content }) => {
+  const dispatch = useDispatch();
+  const [cookies] = useCookies(['auth']);
   const { title: decryptTitle } = FormControl.decryptData({ title });
   const [decryptContent, setDecryptContent] = useState({ show: false, value: null });
 
@@ -79,15 +84,18 @@ export const UserNote = ({ title, content }) => {
     });
   };
 
+  const onDeleteNote = () => {
+    dispatch(removeNote(id, cookies.auth));
+    dispatch(getNotes(cookies.auth));
+  };
+
   return (
     <div className="UserNote">
       <h3 className="UserNote__Title">{decryptTitle}</h3>
-      <div className="UserNote__Content">
-        {decryptContent.show ? <NoteMultiline text={decryptContent.value} /> : <abbr title={content}>{content.slice(0, 18)}</abbr>}
-      </div>
+      <div className="UserNote__Content">{decryptContent.show ? <NoteMultiline text={decryptContent.value} /> : <p>{content.slice(10, 33)}</p>}</div>
       <div className="UserNote__Options">
         <AiOutlineEye onClick={onShowContent} />
-        <MdDeleteForever />
+        <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
       </div>
     </div>
   );

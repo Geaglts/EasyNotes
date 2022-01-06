@@ -16,10 +16,14 @@ const initialState = {
 function userNotesReducer(state = initialState, action) {
   switch (action.type) {
     case USER_NOTES_TYPES.USER_NOTES_GET: {
+      console.log(state, action);
       return { ...state, loading: false, userNotes: action.payload, numberOfNotes: action.payload.length };
     }
     case USER_NOTES_TYPES.USER_NOTES_ADD: {
-      return { ...state, loading: false };
+      return { ...state, loading: false, error: null };
+    }
+    case USER_NOTES_TYPES.USER_NOTES_REMOVE: {
+      return { ...state, loading: false, error: null };
     }
     case USER_NOTES_TYPES.USER_NOTES_LOADING: {
       return { ...state, loading: true, error: null };

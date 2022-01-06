@@ -21,3 +21,53 @@
     transform: scale(1.05);
   }
 }
+
+.ConfirmButton {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__Confirmation {
+    background-color: $white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto auto;
+
+    & > span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4px;
+      height: 35px;
+      font-family: $font-secondary;
+      font-weight: 700;
+      font-size: 11pt;
+      width: 90px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &--Confirm {
+      background-color: $green;
+    }
+
+    &--Cancel {
+      background-color: $warning;
+    }
+  }
+
+  &__Icon {
+    $size: 25px;
+    width: $size;
+    height: $size;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}

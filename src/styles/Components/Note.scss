@@ -147,6 +147,8 @@
     margin-top: 4px;
     display: flex;
     align-items: center;
+    column-gap: 4px;
+    height: 35px;
 
     & > svg {
       font-size: 30px;
