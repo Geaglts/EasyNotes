@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Context } from '../Context';
 import '../styles/pages/Home.scss';
 
 import TakingNotesImage from '../assets/images/taking_notes.svg';
 
 function Home() {
-  const { darkTheme } = useContext(Context);
+  const { darkTheme, hasUser } = useContext(Context);
+
+  if (hasUser) return <Navigate to="/dashboard" />;
 
   return (
     <main className="HomePage__Page" style={{ backgroundColor: darkTheme ? '#1c1b22' : '#fff' }}>

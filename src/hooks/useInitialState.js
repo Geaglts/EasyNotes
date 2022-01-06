@@ -16,7 +16,7 @@ function useInitialState() {
   useEffect(() => {
     loadState();
     return () => {};
-  }, []);
+  }, [state]);
 
   const changeTheme = () => {
     setState({ ...state, darkTheme: !state.darkTheme });
@@ -24,6 +24,7 @@ function useInitialState() {
   };
 
   const changeUserStatus = () => {
+    userStorage.set(!state.hasUser);
     setState({ ...state, hasUser: !state.hasUser });
   };
 
