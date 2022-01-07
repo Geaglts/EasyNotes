@@ -1,0 +1,41 @@
+@import '../global.scss';
+
+@keyframes jump {
+  0%,
+  75% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.Loading {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 4px;
+
+  .circle {
+    $size: 10px;
+    width: $size;
+    height: $size;
+    border-radius: $size;
+    background-color: $green;
+    animation: jump 1s infinite ease;
+  }
+
+  &_1 {
+    @extend .circle;
+  }
+
+  &_2 {
+    @extend .circle;
+  }
+
+  &_3 {
+    @extend .circle;
+  }
+}

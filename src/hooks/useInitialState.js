@@ -15,7 +15,6 @@ function useInitialState() {
 
   useEffect(() => {
     loadState();
-    return () => {};
   }, []);
 
   const changeTheme = () => {
