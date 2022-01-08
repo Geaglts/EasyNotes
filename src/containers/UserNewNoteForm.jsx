@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import TextArea from 'components/TextArea';
 import Input from 'components/Input';
 
-import { addNote, getNotes } from 'actions/userNotes.actions';
+import { addNote } from 'actions/userNotes.actions';
 
 import FormControl from 'utils/classes/FormControl';
 
@@ -21,7 +21,6 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
     e.preventDefault();
     const { encryptData } = new FormControl(form.current);
     dispatch(addNote(encryptData));
-    dispatch(getNotes());
     afterCreate();
   };
 

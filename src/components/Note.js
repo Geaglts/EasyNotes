@@ -84,7 +84,6 @@ export const UserNote = ({ id, title, content }) => {
 
   const onDeleteNote = () => {
     dispatch(removeNote(id));
-    dispatch(getNotes());
   };
 
   return (

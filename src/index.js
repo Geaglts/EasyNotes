@@ -8,8 +8,6 @@ import reducers from './redux/reducers';
 import Context from 'context';
 import Axios from 'axios';
 
-import { userStorage } from 'storage';
-
 Axios.defaults.baseURL = process.env.API_URL;
 
 import App from 'routes/App';
