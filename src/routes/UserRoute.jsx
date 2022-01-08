@@ -1,18 +1,20 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-import PropTypes from 'prop-types';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const UserRoute = ({ element }) => {
-  const [cookies] = useCookies();
-  if (cookies.auth) {
-    return <>{element}</>;
+import { Loading } from 'components/Loading';
+
+import { useAuth } from 'hooks/useAuth';
+
+const UserRoute = () => {
+  const { isLoading, isLogged } = useAuth();
+
+  if (isLoading) return <Loading />;
+
+  if (!isLogged) {
+    return <Navigate to="/login" />;
   }
-  return <Navigate to="/login" />;
-};
 
-UserRoute.propTypes = {
-  element: PropTypes.element,
+  return <Outlet />;
 };
 
 export default UserRoute;

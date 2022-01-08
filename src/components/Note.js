@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { useCookies } from 'react-cookie';
 
 import '../styles/Components/Note.scss';
 
@@ -70,7 +69,6 @@ function Note({ content, title, _id, onRemoveNote }) {
 
 export const UserNote = ({ id, title, content }) => {
   const dispatch = useDispatch();
-  const [cookies] = useCookies(['auth']);
   const { title: decryptTitle } = FormControl.decryptData({ title });
   const [decryptContent, setDecryptContent] = useState({ show: false, value: null });
 
@@ -85,8 +83,8 @@ export const UserNote = ({ id, title, content }) => {
   };
 
   const onDeleteNote = () => {
-    dispatch(removeNote(id, cookies.auth));
-    dispatch(getNotes(cookies.auth));
+    dispatch(removeNote(id));
+    dispatch(getNotes());
   };
 
   return (

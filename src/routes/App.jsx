@@ -10,7 +10,7 @@ import ActivateAccount from 'pages/ActivateAccount';
 import RecoveryPassword from 'pages/RecoveryPassword';
 import Dashboard from 'pages/Dashboard';
 
-import UserRoute from './UserRoute';
+import UserRoutes from './UserRoute';
 
 import { Menu } from 'containers/Menu';
 
@@ -26,7 +26,9 @@ function App() {
         <Route exact path="email-sended" element={<EmailSended />} />
         <Route exact path="activate-account" element={<ActivateAccount />} />
         <Route exact path="recovery-password" element={<RecoveryPassword />} />
-        <Route path="/dashboard" element={<UserRoute element={<Dashboard />} />} />
+        <Route element={<UserRoutes />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

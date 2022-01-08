@@ -4,6 +4,7 @@ import { darkThemeStorage, userStorage } from 'storage';
 const initialState = {
   darkTheme: false,
   hasUser: false,
+  token: null,
 };
 
 function useInitialState() {
@@ -22,9 +23,9 @@ function useInitialState() {
     darkThemeStorage.set(String(!state.darkTheme));
   };
 
-  const changeUserStatus = () => {
-    userStorage.set(!state.hasUser);
-    setState({ ...state, hasUser: !state.hasUser });
+  const changeUserStatus = (token) => {
+    userStorage.set(!state.hasUser, token);
+    setState({ ...state, hasUser: !state.hasUser, token });
   };
 
   const theme = state.darkTheme ? 'dark' : 'light';

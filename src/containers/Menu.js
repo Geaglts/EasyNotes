@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { BiMenu } from 'react-icons/bi';
@@ -11,7 +10,6 @@ import { Toggle } from '../components/Toggle';
 
 function Menu() {
   const navigate = useNavigate();
-  const [, , removeCookie] = useCookies(['auth']);
   const [fullMenu, setFullMenu] = useState(false);
   const { darkTheme, changeTheme, hasUser, changeUserStatus } = useContext(Context);
 
@@ -22,7 +20,6 @@ function Menu() {
   };
 
   const onLogout = () => {
-    removeCookie('auth');
     changeUserStatus();
     setFullMenu(false);
     navigate('/');

@@ -1,4 +1,4 @@
-import { DARK_MODE, NOTES, TOTAL_IDS, USER_LOGGED } from './constants';
+import { DARK_MODE, NOTES, TOTAL_IDS, USER_LOGGED, USER_TOKEN } from './constants';
 
 const idManager = {
   get() {
@@ -54,11 +54,23 @@ export const darkThemeStorage = {
 };
 
 export const userStorage = {
-  set(value) {
+  set(value, token) {
     window.localStorage.setItem(USER_LOGGED, value);
+    window.localStorage.setItem(USER_TOKEN, token);
   },
   get() {
     const hasUser = window.localStorage.getItem(USER_LOGGED);
     return hasUser === 'true';
+  },
+  getToken() {
+    try {
+      const token = window.localStorage.getItem(USER_TOKEN);
+      if (token !== 'undefined') {
+        return token;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
   },
 };

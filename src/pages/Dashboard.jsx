@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useCookies } from 'react-cookie';
 
 import { Layout } from 'containers/Layout/Layout';
 import { UserNoteList } from 'containers/UserNoteList';
@@ -12,11 +11,10 @@ import { getNotes } from 'actions/userNotes.actions';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const [cookies] = useCookies(['auth']);
   const userNotes = useSelector((state) => state.userNotesReducer);
 
   useEffect(() => {
-    dispatch(getNotes(cookies.auth));
+    dispatch(getNotes());
   }, []);
 
   if (userNotes.loading) {
