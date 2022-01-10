@@ -1,12 +1,31 @@
+@import '../global.scss';
+
 .UserNoteList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 300px);
   padding: 20px;
-  gap: 12px;
+
+  &_SearchBar {
+    & > input {
+      border: none;
+      height: 35px;
+      width: 300px;
+      border-radius: 4px;
+      padding: 0 8px;
+      font-size: $font-size-sm;
+      margin-bottom: 20px;
+    }
+  }
+
+  &_NoteList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 12px;
+  }
 }
 
 @media (max-width: 720px) {
   .UserNoteList {
-    grid-template-columns: 1fr;
+    &_NoteList {
+      grid-template-columns: 1fr;
+    }
   }
 }
