@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { BsFillTrashFill } from 'react-icons/bs';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineCopy, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 
 import '../styles/Components/Note.scss';
 
-import { getNotes, removeNote } from '../redux/actions/userNotes.actions';
+import { removeNote } from '../redux/actions/userNotes.actions';
 
 import { Context } from '../Context';
 import Button, { ConfirmButton } from './Button';
@@ -16,7 +16,6 @@ import { noteStorage } from '../storage';
 
 import capitalize from 'utils/capitalize';
 import FormControl from 'utils/classes/FormControl';
-import { AiOutlineCopy, AiOutlineEye } from 'react-icons/ai';
 
 function Note({ content, title, _id, onRemoveNote }) {
   const { darkTheme } = useContext(Context);
@@ -91,7 +90,7 @@ export const UserNote = ({ id, title, content }) => {
       <h3 className="UserNote__Title">{decryptTitle}</h3>
       <div className="UserNote__Content">{decryptContent.show ? <NoteMultiline text={decryptContent.value} /> : <p>{content.slice(10, 33)}</p>}</div>
       <div className="UserNote__Options">
-        <AiOutlineEye onClick={onShowContent} />
+        {decryptContent.show ? <AiOutlineEyeInvisible onClick={onShowContent} /> : <AiOutlineEye onClick={onShowContent} />}
         <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
       </div>
     </div>

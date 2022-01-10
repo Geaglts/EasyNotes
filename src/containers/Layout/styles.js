@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   ${(props) =>
     props.center &&
     css`

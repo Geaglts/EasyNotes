@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  --size: 100px;
   border: none;
   background-color: var(--light-gray);
   display: inline-block;
-  height: 100px;
-  width: 100px;
+  height: var(--size);
+  width: var(--size);
   padding: 12px;
   border-radius: 8px;
   transition: transform 300ms ease;

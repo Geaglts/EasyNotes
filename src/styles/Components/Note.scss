@@ -167,9 +167,11 @@
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
+  overflow-wrap: break-word;
+  word-break: break-all;
 
   &__CopyButton {
-    $size: 23px;
+    $size: 25px;
     height: $size;
     width: $size;
     transition: all 350ms ease;
