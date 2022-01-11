@@ -102,7 +102,7 @@ const NoteMultiline = ({ text }) => {
     navigator.clipboard.writeText(content);
   };
 
-  return text.split('\r\n').map((line, index) => (
+  return text.split(/[\r\n]|\n/).map((line, index) => (
     <p key={`NoteMultiline-${index}`} className="NoteMultiline">
       {line}
       <AiOutlineCopy className="NoteMultiline__CopyButton" onClick={copyToClipboard(line)} />
