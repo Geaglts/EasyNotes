@@ -18,8 +18,6 @@ const filterNotes =
 export const UserNoteList = ({ notes = [] }) => {
   const [noteSearched, setNoteSearched] = useState('');
 
-  const noteListMemo = useMemo(() => notes.filter(filterNotes(noteSearched)), [notes]);
-
   const onChangeNoteSearched = (e) => {
     setNoteSearched(e.target.value);
   };
@@ -31,7 +29,7 @@ export const UserNoteList = ({ notes = [] }) => {
           <input type="text" placeholder="nombre de la nota..." onChange={onChangeNoteSearched} />
         </div>
         <div className="UserNoteList_NoteList">
-          {noteListMemo.map((note) => (
+          {notes.filter(filterNotes(noteSearched)).map((note) => (
             <UserNote {...note} key={note.id} />
           ))}
         </div>
