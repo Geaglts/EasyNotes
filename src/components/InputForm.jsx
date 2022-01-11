@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import 'styles/Components/InputForm.scss';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
-const InputForm = ({ labelName, isPassword = false, type = 'text', ...rest }) => {
+const InputForm = ({ labelName, isPassword = false, type = 'text', error, ...rest }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const isAValidError = error && error.trim().length > 0;
 
   return (
     <label className="InputLabel">
@@ -20,6 +22,11 @@ const InputForm = ({ labelName, isPassword = false, type = 'text', ...rest }) =>
           </span>
         )}
       </div>
+      {isAValidError && (
+        <div className="InputLabel_Error">
+          <p className="InputLabel_Error-Description">{error}</p>
+        </div>
+      )}
     </label>
   );
 };

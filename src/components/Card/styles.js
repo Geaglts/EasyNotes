@@ -27,7 +27,7 @@ export const StatContent = styled.p`
 `;
 
 export const CardButtonLabel = styled.p`
-  font-size: 16pt;
+  font-size: 12pt;
   font-weight: bold;
   text-align: center;
   font-weight: 900;

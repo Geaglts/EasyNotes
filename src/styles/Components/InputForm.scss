@@ -46,4 +46,16 @@
       }
     }
   }
+
+  &_Error {
+    margin-top: 8px;
+    color: $warning;
+    font-family: $font-secondary;
+    text-transform: lowercase;
+
+    &-Description {
+      font-size: $font-size-ssm;
+      text-align: center;
+    }
+  }
 }

@@ -4,6 +4,11 @@
   padding: 20px;
 
   &_SearchBar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    align-items: center;
+
     & > input {
       border: none;
       height: 35px;
@@ -11,7 +16,23 @@
       border-radius: 4px;
       padding: 0 8px;
       font-size: $font-size-sm;
-      margin-bottom: 20px;
+    }
+
+    &-FilterByCategory {
+      display: flex;
+      align-items: center;
+      color: $white;
+      font-size: $font-size-sm;
+      font-family: $font-secondary;
+
+      & > p {
+        margin-right: 8px;
+      }
+
+      & > select {
+        font-size: $font-size-ssm;
+        font-family: $font-secondary;
+      }
     }
   }
 

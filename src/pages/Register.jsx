@@ -47,6 +47,7 @@ const Register = () => {
               return;
             default:
               console.log('1');
+              return;
           }
         }
         storage(STORAGE.TEMP_EMAIL).set(data.email);
@@ -54,7 +55,7 @@ const Register = () => {
         navigate('/email-sended');
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

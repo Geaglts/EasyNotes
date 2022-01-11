@@ -52,7 +52,7 @@ const Login = () => {
       changeUserStatus(response.data.body.token);
       navigate('/dashboard');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
