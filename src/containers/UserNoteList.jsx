@@ -18,7 +18,7 @@ const filterNotes =
 export const UserNoteList = ({ notes = [] }) => {
   const [noteSearched, setNoteSearched] = useState('');
 
-  const noteListMemo = useMemo(() => notes.filter(filterNotes(noteSearched)), [noteSearched]);
+  const noteListMemo = useMemo(() => notes.filter(filterNotes(noteSearched)), [notes]);
 
   const onChangeNoteSearched = (e) => {
     setNoteSearched(e.target.value);
