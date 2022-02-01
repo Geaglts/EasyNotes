@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'styles/Containers/UserNoteList.scss';
 
 import { UserNote } from 'components/Note';
+import { Select } from 'components/Select';
 import FormControl from 'utils/classes/FormControl';
 
 const filterNotes =
@@ -19,6 +20,7 @@ const filterNotes =
 
 export const UserNoteList = ({ notes = [] }) => {
   const [noteSearched, setNoteSearched] = useState('');
+  const [noteList, setNoteList] = useState(notes);
   const [categories, setCategories] = useState([]);
 
   const getCategories = async () => {
@@ -38,11 +40,18 @@ export const UserNoteList = ({ notes = [] }) => {
 
   useEffect(() => {
     getCategories();
-    return () => {};
+    return () => {
+      setCategories([]);
+    };
   }, []);
 
   const onChangeNoteSearched = (e) => {
     setNoteSearched(e.target.value);
+  };
+
+  const onChangeCategory = (e) => {
+    const categoryId = e.target.value;
+    setNoteList();
   };
 
   return (
@@ -52,17 +61,17 @@ export const UserNoteList = ({ notes = [] }) => {
           <input type="text" placeholder="nombre de la nota..." onChange={onChangeNoteSearched} />
           <div className="UserNoteList_SearchBar-FilterByCategory">
             <p>filtrar por:</p>
-            <select>
+            <Select label="Categorias" onChange={onChangeCategory}>
               {categories.map(({ id, name }) => (
                 <option value={id} key={id}>
                   {name}
                 </option>
               ))}
-            </select>
+            </Select>
           </div>
         </div>
         <div className="UserNoteList_NoteList">
-          {notes.filter(filterNotes(noteSearched)).map((note) => (
+          {noteList.filter(filterNotes(noteSearched)).map((note) => (
             <UserNote {...note} key={note.id} />
           ))}
         </div>

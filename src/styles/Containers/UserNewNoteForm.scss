@@ -2,11 +2,25 @@
 
 .UserNewNoteForm {
   margin-top: 8px;
-  width: 500px;
+  height: 100%;
   display: grid;
+  grid-template-rows: auto auto 1fr;
   gap: 8px;
+
+  .unnf_sta {
+    height: 200px;
+  }
 
   .Input {
     width: 100%;
+  }
+
+  .Button {
+    justify-self: center;
+    align-self: flex-end;
+    background-color: $primary;
+    color: $color-dark;
+    font-family: $font-secondary;
+    font-weight: 700;
   }
 }

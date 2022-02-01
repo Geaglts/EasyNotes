@@ -17,9 +17,7 @@
     border-right: $border;
 
     svg {
-      color: rebeccapurple;
       font-size: 14pt;
-      color: $primary;
     }
   }
 
@@ -50,4 +48,42 @@
       color: rgba($white, 0.8);
     }
   }
+}
+
+.SimpleInput {
+  &.light {
+  }
+
+  &.dark {
+    background-color: $color-dark;
+    color: $white;
+
+    &::placeholder {
+      color: $color-gray;
+    }
+  }
+
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-family: $font-secondary;
+  font-size: 12pt;
+
+  &.title {
+    font-size: 11pt;
+    font-weight: 700;
+  }
+
+  &::placeholder {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 10pt;
+  }
+}
+
+.SimpleTextArea {
+  @extend .SimpleInput;
+  padding-top: 12px;
+  resize: none;
 }

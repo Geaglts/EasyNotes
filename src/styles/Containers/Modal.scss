@@ -15,7 +15,7 @@
     color: $white;
 
     .Modal__Content {
-      background-color: $dark;
+      background-color: $color-light-dark;
     }
   }
 
@@ -28,18 +28,38 @@
   &__Content {
     padding: 16px 16px 24px 16px;
     border-radius: 8px;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 60%;
+    max-height: 585px;
 
-    &--Close {
-      $size: 40px;
-      width: $size;
-      height: $size;
-      color: $warning;
-      cursor: pointer;
-      justify-self: end;
+    &_Header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
 
-      &:hover {
-        opacity: 0.8;
+      &_Title {
+        font-size: 12pt;
+        color: $color-gray;
+        font-family: $font-secondary;
+        font-weight: 700;
+      }
+
+      &--Close {
+        $size: 40px;
+        width: $size;
+        height: $size;
+        color: $primary;
+        cursor: pointer;
+        justify-self: end;
+        transition-duration: 0.8s;
+        transform: rotate(0deg) scale(1);
+
+        &:hover {
+          transition-duration: 0.5s;
+          transform: rotate(-180deg) scale(1.2);
+        }
       }
     }
   }

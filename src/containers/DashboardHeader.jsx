@@ -33,7 +33,7 @@ export const DashboardHeader = () => {
       </StatCard>
       <CardButton label="Nueva Categoria" onClick={showMNewCategory} />
       <CardButton label="Nueva nota" onClick={showAddNewNote} />
-      <Modal active={modalState} changeStatus={showAddNewNote}>
+      <Modal active={modalState} changeStatus={showAddNewNote} title="Agregar una nueva nota">
         <UserNewNoteForm afterCreate={afterCreateNote} />
       </Modal>
       <Modal active={mNewCategory} changeStatus={showMNewCategory} fullScreen>

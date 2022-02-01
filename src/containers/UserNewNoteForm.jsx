@@ -1,10 +1,9 @@
 import React, { useRef } from 'react';
-import { AiOutlineBook } from 'react-icons/ai';
 import { BiBookContent } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 
 import TextArea from 'components/TextArea';
-import Input from 'components/Input';
+import { SimpleInput, SimpleTextArea } from 'components/Input';
 
 import { addNote } from 'actions/userNotes.actions';
 
@@ -26,8 +25,8 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
 
   return (
     <form className="UserNewNoteForm" ref={form} onSubmit={createNewNote}>
-      <Input placeholder="Título..." Icon={<AiOutlineBook />} name="title" />
-      <TextArea placeholder="Contenido..." Icon={<BiBookContent />} name="content" />
+      <SimpleInput type="text" placeholder="Titulo de la nota" classes={['title']} name="title" />
+      <SimpleTextArea placeholder="Contenido..." name="content" classes={['unnf_sta']} />
       <Button label="Crear" type="submit" />
     </form>
   );

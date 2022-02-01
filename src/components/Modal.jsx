@@ -5,7 +5,7 @@ import 'styles/Containers/Modal.scss';
 
 import { Context } from '../Context';
 
-const Modal = ({ children, active = false, changeStatus = () => {}, fullScreen = false }) => {
+const Modal = ({ children, active = false, changeStatus = () => {}, fullScreen = false, title }) => {
   const { darkTheme } = useContext(Context);
 
   const themeClass = darkTheme ? ' dark' : ' light';
@@ -15,11 +15,13 @@ const Modal = ({ children, active = false, changeStatus = () => {}, fullScreen =
   if (fullScreen) {
     return (
       <section className="FullScreen_Modal">
-        <button className="FullScreen_Modal-Close" onClick={changeStatus}>
-          <AiOutlineCloseCircle className="FullScreen_Modal-Close-Icon" />
-          Cancelar
-        </button>
-        {children}
+        <div className="FullScreen_Modal_Content">
+          <button className="FullScreen_Modal-Close" onClick={changeStatus}>
+            <AiOutlineCloseCircle className="FullScreen_Modal-Close-Icon" />
+            Cancelar
+          </button>
+          {children}
+        </div>
       </section>
     );
   }
@@ -27,7 +29,10 @@ const Modal = ({ children, active = false, changeStatus = () => {}, fullScreen =
   return createPortal(
     <div className={`Modal${themeClass}`}>
       <div className="Modal__Content">
-        <AiFillCloseSquare className="Modal__Content--Close" onClick={changeStatus} />
+        <div className="Modal__Content_Header">
+          {title && <h2 className="Modal__Content_Header_Title">{title}</h2>}
+          <AiFillCloseSquare className="Modal__Content_Header--Close" onClick={changeStatus} />
+        </div>
         {children}
       </div>
     </div>,
