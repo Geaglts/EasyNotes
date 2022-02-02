@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
-import { BiBookContent } from 'react-icons/bi';
+import React, { useRef, useState, useEffect } from 'react';
+import { BsFolderSymlink } from 'react-icons/bs';
+import { GiSemiClosedEye } from 'react-icons/gi';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
-import TextArea from 'components/TextArea';
 import { SimpleInput, SimpleTextArea } from 'components/Input';
 
 import { addNote } from 'actions/userNotes.actions';
@@ -14,7 +15,20 @@ import Button from 'components/Button';
 
 export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   const dispatch = useDispatch();
+  const [categoriesView, setCategoriesView] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const form = useRef(null);
+
+  const getCategories = async () => {
+    const { data } = await axios.get('/api/v1/categories');
+    setCategories(data.body);
+  };
+
+  useEffect(() => {
+    getCategories();
+    return () => {};
+  }, []);
 
   const createNewNote = async (e) => {
     e.preventDefault();
@@ -23,11 +37,43 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
     afterCreate();
   };
 
+  const toggleCategories = () => {
+    setCategoriesView(!categoriesView);
+  };
+
+  const toggleSelectedCategories = (id) => () => {
+    if (selectedCategories.includes(id)) {
+      const filteredCategories = selectedCategories.filter((idCategory) => idCategory !== id);
+      setSelectedCategories(filteredCategories);
+    } else {
+      setSelectedCategories([...selectedCategories, id]);
+    }
+  };
+
   return (
-    <form className="UserNewNoteForm" ref={form} onSubmit={createNewNote}>
-      <SimpleInput type="text" placeholder="Titulo de la nota" classes={['title']} name="title" />
-      <SimpleTextArea placeholder="Contenido..." name="content" classes={['unnf_sta']} />
-      <Button label="Crear" type="submit" />
-    </form>
+    <>
+      {categoriesView && (
+        <div className="CategoriesNewNoteForm">
+          <GiSemiClosedEye title="Cerrar" size={25} className="icon" onClick={toggleCategories} />
+          <div className="CategoriesNewNoteForm_Container">
+            {categories.map(({ name, description, id }) => {
+              const isSelected = selectedCategories.includes(id);
+              const parsedCategory = FormControl.decryptData({ name, description });
+              return (
+                <p className={`Category ${isSelected} noselect`} key={id} onClick={toggleSelectedCategories(id)}>
+                  {parsedCategory.name}
+                </p>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      <form className="UserNewNoteForm" ref={form} onSubmit={createNewNote}>
+        <BsFolderSymlink title="Enlazar con categoría" size={25} className="icon" onClick={toggleCategories} />
+        <SimpleInput type="text" placeholder="Titulo de la nota" classes={['title']} name="title" />
+        <SimpleTextArea placeholder="Contenido..." name="content" classes={['unnf_sta']} />
+        <Button label="Crear" type="submit" />
+      </form>
+    </>
   );
 };

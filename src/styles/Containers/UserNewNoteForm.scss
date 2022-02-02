@@ -1,11 +1,81 @@
 @import '../global.scss';
 
+.colorIcon {
+  color: $color-gray;
+  cursor: pointer;
+  transition-duration: 0.6s;
+
+  &:hover {
+    transition-duration: 0.5s;
+    transform: scale(1.1);
+    color: $primary;
+  }
+}
+
+.CategoriesNewNoteForm {
+  position: absolute;
+  background-color: $color-dark;
+  border: 1px solid $color-light-dark;
+  padding: 12px;
+  border-radius: 8px;
+  width: 150px;
+  height: 200px;
+  left: 45px;
+  top: 85px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+
+  .icon {
+    @extend .colorIcon;
+    align-self: flex-end;
+  }
+
+  &_Container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .Category {
+      background-color: $color-light-dark;
+      color: $color-gray;
+      font-size: 11pt;
+      text-transform: capitalize;
+      font-family: $font-secondary;
+      padding: 4px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &.true {
+        color: $primary;
+      }
+    }
+  }
+}
+
 .UserNewNoteForm {
   margin-top: 8px;
   height: 100%;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto auto 1fr;
   gap: 8px;
+
+  .icon {
+    @extend .colorIcon;
+    color: $color-gray;
+    cursor: pointer;
+    transition-duration: 0.6s;
+
+    &:hover {
+      transition-duration: 0.5s;
+      transform: scale(1.1);
+      color: $primary;
+    }
+  }
 
   .unnf_sta {
     height: 200px;
