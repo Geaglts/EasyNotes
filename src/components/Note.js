@@ -66,7 +66,7 @@ function Note({ content, title, _id, onRemoveNote }) {
   );
 }
 
-export const UserNote = ({ id, title, content }) => {
+export const UserNote = ({ id, title, content, categories }) => {
   const dispatch = useDispatch();
   const { title: decryptTitle } = FormControl.decryptData({ title });
   const [decryptContent, setDecryptContent] = useState({ show: false, value: null });
@@ -89,6 +89,16 @@ export const UserNote = ({ id, title, content }) => {
     <div className="UserNote">
       <h3 className="UserNote__Title">{decryptTitle}</h3>
       <div className="UserNote__Content">{decryptContent.show ? <NoteMultiline text={decryptContent.value} /> : <p>{content.slice(10, 33)}</p>}</div>
+      <div className="UserNote__Category--Container">
+        {categories.map((category) => {
+          const name = FormControl.decryptData({ name: category.name }).name;
+          return (
+            <p className="UserNote__Category" key={category.id}>
+              {name}
+            </p>
+          );
+        })}
+      </div>
       <div className="UserNote__Options">
         {decryptContent.show ? <AiOutlineEyeInvisible onClick={onShowContent} /> : <AiOutlineEye onClick={onShowContent} />}
         <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />

@@ -33,7 +33,7 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   const createNewNote = async (e) => {
     e.preventDefault();
     const { encryptData } = new FormControl(form.current);
-    dispatch(addNote(encryptData));
+    dispatch(addNote(encryptData, selectedCategories));
     afterCreate();
   };
 
