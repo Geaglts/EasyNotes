@@ -15,7 +15,9 @@ export const addNote = (noteData, category) => async (dispatch) => {
   try {
     dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
     const { data } = await axios.post('/api/v1/notes', noteData);
-    await axios.post('/api/v1/categories/note', { note: data.body.id, category });
+    if (category.length > 0) {
+      await axios.post('/api/v1/categories/note', { note: data.body.id, category });
+    }
     dispatch({ type: USER_NOTES_TYPES.USER_NOTES_ADD });
     dispatch(getNotes());
   } catch (error) {

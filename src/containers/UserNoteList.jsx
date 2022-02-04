@@ -22,6 +22,7 @@ export const UserNoteList = ({ notes = [] }) => {
   const [noteSearched, setNoteSearched] = useState('');
   const [noteList, setNoteList] = useState(notes);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const getCategories = async () => {
     const response = await axios.get('/api/v1/categories');
@@ -51,7 +52,18 @@ export const UserNoteList = ({ notes = [] }) => {
 
   const onChangeCategory = (e) => {
     const categoryId = e.target.value;
-    setNoteList();
+    if (categoryId === 'select_init_value') {
+      setSelectedCategory(null);
+      return;
+    }
+    const filteredNotes = noteList.filter((note) => {
+      return note.categories.some(({ id }) => String(id) === categoryId);
+    });
+    setSelectedCategory({ notes: filteredNotes, categoryId, category: categories.find((category) => String(category.id) === categoryId).name });
+  };
+
+  const resetCategory = () => {
+    setSelectedCategory(null);
   };
 
   return (
@@ -61,17 +73,22 @@ export const UserNoteList = ({ notes = [] }) => {
           <input type="text" placeholder="nombre de la nota..." onChange={onChangeNoteSearched} />
           <div className="UserNoteList_SearchBar-FilterByCategory">
             <p>filtrar por:</p>
-            <Select label="Categorias" onChange={onChangeCategory}>
+            <Select value={selectedCategory?.categoryId || 'select_init_value'} label="Categorias" onChange={onChangeCategory}>
               {categories.map(({ id, name }) => (
                 <option value={id} key={id}>
                   {name}
                 </option>
               ))}
             </Select>
+            {selectedCategory && (
+              <button onClick={resetCategory} className="UserNoteList_SearchBar--SelectedCategory">
+                x {selectedCategory.category}
+              </button>
+            )}
           </div>
         </div>
         <div className="UserNoteList_NoteList">
-          {noteList.filter(filterNotes(noteSearched)).map((note) => (
+          {(selectedCategory ? selectedCategory.notes : noteList.filter(filterNotes(noteSearched))).map((note) => (
             <UserNote {...note} key={note.id} />
           ))}
         </div>
