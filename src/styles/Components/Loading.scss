@@ -1,15 +1,20 @@
 @import '../global.scss';
 
 @keyframes jump {
-  0%,
-  75% {
-    transform: translateY(0px);
+  0% {
+    transform: translateY(-20px);
+  }
+  25% {
+    transform: translateX(20px);
   }
   50% {
-    transform: translateY(5px);
+    transform: translateY(20px);
+  }
+  75% {
+    transform: translateX(-20px);
   }
   100% {
-    transform: translateY(-5px);
+    transform: translateY(-20px);
   }
 }
 
@@ -19,12 +24,12 @@
   gap: 4px;
 
   .circle {
-    $size: 10px;
+    $size: 15px;
     width: $size;
     height: $size;
-    border-radius: $size;
-    background-color: $green;
-    animation: jump 1s infinite ease;
+    border-radius: 4px;
+    background-color: $primary;
+    animation: jump 2s infinite linear;
   }
 
   &_1 {
@@ -36,6 +41,10 @@
   }
 
   &_3 {
+    @extend .circle;
+  }
+
+  &_4 {
     @extend .circle;
   }
 }
