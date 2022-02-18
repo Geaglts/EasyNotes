@@ -46,7 +46,7 @@ const Register = () => {
               addErrors([{ message, type: 'info' }]);
               return;
             default:
-              console.log('1');
+              // console.log('1');
               return;
           }
         }

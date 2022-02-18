@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 import 'styles/Containers/UserNoteList.scss';
@@ -6,6 +7,10 @@ import 'styles/Containers/UserNoteList.scss';
 import { UserNote } from 'components/Note';
 import { Select } from 'components/Select';
 import FormControl from 'utils/classes/FormControl';
+
+import { getCategories } from 'actions/categories.actions';
+import { Layout } from './Layout/Layout';
+import { Loading } from 'components/Loading';
 
 const filterNotes =
   (noteSearched = '') =>
@@ -20,31 +25,23 @@ const filterNotes =
 
 export const UserNoteList = ({ notes = [] }) => {
   const [noteSearched, setNoteSearched] = useState('');
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories);
   const [noteList, setNoteList] = useState(notes);
-  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const getCategories = async () => {
-    const response = await axios.get('/api/v1/categories');
-    if (response.data.body) {
-      const categories = response.data.body.map((category) => {
-        const { description, name } = category;
-        const decryptData = FormControl.decryptData({ description, name });
-        return {
-          ...category,
-          ...decryptData,
-        };
-      });
-      setCategories(categories);
-    }
-  };
-
   useEffect(() => {
-    getCategories();
-    return () => {
-      setCategories([]);
-    };
+    dispatch(getCategories());
+    return () => {};
   }, []);
+
+  if (categories.loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   const onChangeNoteSearched = (e) => {
     setNoteSearched(e.target.value);
@@ -59,7 +56,11 @@ export const UserNoteList = ({ notes = [] }) => {
     const filteredNotes = noteList.filter((note) => {
       return note.categories.some(({ id }) => String(id) === categoryId);
     });
-    setSelectedCategory({ notes: filteredNotes, categoryId, category: categories.find((category) => String(category.id) === categoryId).name });
+    setSelectedCategory({
+      notes: filteredNotes,
+      categoryId,
+      category: categories.categories.find((category) => String(category.id) === categoryId).name,
+    });
   };
 
   const resetCategory = () => {
@@ -74,7 +75,7 @@ export const UserNoteList = ({ notes = [] }) => {
           <div className="UserNoteList_SearchBar-FilterByCategory">
             <p>filtrar por:</p>
             <Select value={selectedCategory?.categoryId || 'select_init_value'} label="Categorias" onChange={onChangeCategory}>
-              {categories.map(({ id, name }) => (
+              {categories.categories.map(({ id, name }) => (
                 <option value={id} key={id}>
                   {name}
                 </option>

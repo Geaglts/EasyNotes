@@ -37,7 +37,7 @@ export const DashboardHeader = () => {
         <UserNewNoteForm afterCreate={afterCreateNote} />
       </Modal>
       <Modal active={mNewCategory} changeStatus={showMNewCategory} fullScreen>
-        <CategoryForm />
+        <CategoryForm afterSubmit={showMNewCategory} />
       </Modal>
     </section>
   );
