@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,6 +7,8 @@ import 'styles/pages/Login.scss';
 import InputForm from 'components/InputForm';
 import Button from 'components/Button';
 import Toast from 'components/Toast';
+import { Loading } from 'components/Loading';
+import { Layout } from 'containers/Layout/Layout';
 
 import loginLightImage from 'assets/images/login.svg';
 import loginDarkImage from 'assets/images/login__dark.svg';
@@ -18,16 +20,18 @@ import useformError from 'hooks/useFormError';
 import { loginSchema } from 'schemas/login.schema';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { darkTheme, changeUserStatus, hasUser } = useContext(Context);
-  const { formErrors, addErrors } = useformError();
   const form = useRef(null);
+  const { darkTheme, changeUserStatus, hasUser } = useContext(Context);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { formErrors, addErrors } = useformError();
 
   const themeClass = darkTheme ? ' dark' : ' light';
 
   const onSubmitForm = async (event) => {
     event.preventDefault();
     try {
+      setLoading(true);
       const formData = new FormData(form.current);
       const data = { email: formData.get('email'), password: formData.get('password') };
       const validatedData = await validate({ schema: loginSchema, data });
@@ -53,8 +57,18 @@ const Login = () => {
       navigate('/dashboard');
     } catch (error) {
       // console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <Layout center>
+        <Loading />
+      </Layout>
+    );
+  }
 
   if (hasUser) return <Navigate to="/dashboard" />;
 

@@ -88,7 +88,9 @@ export const UserNote = ({ id, title, content, categories }) => {
   return (
     <div className="UserNote">
       <h3 className="UserNote__Title">{decryptTitle}</h3>
-      <div className="UserNote__Content">{decryptContent.show ? <NoteMultiline text={decryptContent.value} /> : <p>{content.slice(10, 33)}</p>}</div>
+      <div className="UserNote__Content">
+        {decryptContent.show ? <NoteMultiline text={decryptContent.value} hide={onShowContent} /> : <p>{'🔥🎈'.repeat(5)}</p>}
+      </div>
       <div className="UserNote__Category--Container">
         {categories.map((category) => {
           const name = FormControl.decryptData({ name: category.name }).name;
@@ -107,15 +109,29 @@ export const UserNote = ({ id, title, content, categories }) => {
   );
 };
 
-const NoteMultiline = ({ text }) => {
-  const copyToClipboard = (content) => () => {
+const NoteMultiline = ({ text, hide = () => {} }) => {
+  const lines = text.split(/[\r\n]|\n/);
+
+  if (!lines) {
+    return (
+      <p key={`NoteMultiline-${index}`} className="NoteMultiline">
+        @Vacio@
+        <AiOutlineCopy className="NoteMultiline__CopyButton" />
+      </p>
+    );
+  }
+
+  const copyToClipboard = (content, index) => () => {
+    if (lines.length - 1 === index) {
+      hide();
+    }
     navigator.clipboard.writeText(content);
   };
 
-  return text.split(/[\r\n]|\n/).map((line, index) => (
+  return lines.map((line, index) => (
     <p key={`NoteMultiline-${index}`} className="NoteMultiline">
       {line}
-      <AiOutlineCopy className="NoteMultiline__CopyButton" onClick={copyToClipboard(line)} />
+      <AiOutlineCopy className="NoteMultiline__CopyButton" onClick={copyToClipboard(line, index)} />
     </p>
   ));
 };

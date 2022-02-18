@@ -10,7 +10,7 @@ import Button from 'components/Button';
 import validate from 'utils/validate';
 import { addCategorySchema } from 'schemas/category.schema';
 
-const CategoryForm = () => {
+const CategoryForm = ({ afterSubmit }) => {
   const form = useRef();
   const [error, setError] = useState({});
 
@@ -26,6 +26,7 @@ const CategoryForm = () => {
     if (response.data.body) {
       form.current.reset();
       setError({});
+      afterSubmit();
     }
   };
 
