@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { StatCard, StatCardTitle, StatCardContent, CardButton } from 'components/Card/Card';
 import Modal from 'components/Modal';
+
 import { UserNewNoteForm } from './UserNewNoteForm';
 import CategoryForm from './CategoryForm';
 

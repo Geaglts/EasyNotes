@@ -1,0 +1,47 @@
+@import '../../global.scss';
+
+.MultiSelectOption {
+  background-color: $color-dark;
+  position: relative;
+  height: 30px;
+
+  & > input[type='checkbox'] {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    appearance: none;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .label {
+    @extend .noselect;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 12pt;
+    font-weight: bold;
+  }
+
+  &_Label {
+    &-true {
+      @extend .label;
+      color: $primary;
+    }
+
+    &-false {
+      @extend .label;
+      color: $color-gray;
+    }
+  }
+}
