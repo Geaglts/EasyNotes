@@ -66,7 +66,7 @@ const Login = () => {
             <h1>Ingresa tus datos</h1>
             <p>Bienvenido de vuelta</p>
             <form ref={form} onSubmit={onSubmitForm}>
-              <InputForm labelName="Correo electronico:" name="email" type="email" placeholder="correo" required />
+              <InputForm labelName="Correo electronico o Nombre de usuario:" name="email" type="text" placeholder="correo" required />
               <InputForm labelName="Contraseña:" name="password" placeholder="contraseña" isPassword required />
               <Button label="Iniciar sesion" type="submit" />
               <Link to="/register" className="register-link">
