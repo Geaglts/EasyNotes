@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import 'styles/Components/MultiSelect/MultiSelectOption.scss';
 
-export const MultiSelectOption = ({ label = '' }) => {
-  const [isChecked, setIsChecked] = useState(false);
+export const MultiSelectOption = ({ id, children, currentSelected = [], handleChange }) => {
+  const [isChecked, setIsChecked] = useState(currentSelected.includes(id));
 
   const handleCheck = (event) => {
     setIsChecked(event.target.checked);
+    handleChange(event);
   };
 
   return (
     <div className="MultiSelectOption">
       <input type="checkbox" checked={isChecked} onChange={handleCheck} />
-      <p className={`MultiSelectOption_Label-${isChecked}`}>{label}</p>
+      <p className={`MultiSelectOption_Label-${isChecked}`}>{children}</p>
     </div>
   );
 };

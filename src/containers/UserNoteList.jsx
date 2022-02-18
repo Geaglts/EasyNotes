@@ -26,6 +26,8 @@ const filterNotes =
 
 export const UserNoteList = ({ notes = [] }) => {
   const [noteSearched, setNoteSearched] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [noteList, setNoteList] = useState(notes);
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
 
@@ -33,6 +35,21 @@ export const UserNoteList = ({ notes = [] }) => {
     dispatch(getCategories());
     return () => {};
   }, []);
+
+  useEffect(() => {
+    if (selectedCategories.length > 0) {
+      const filterNotesByCategory = notes.filter((note) => {
+        if (note.categories.length > 0) {
+          return note.categories.some(({ id }) => selectedCategories.includes(id));
+        }
+        return false;
+      });
+      setNoteList(filterNotesByCategory);
+    } else {
+      setNoteList(notes);
+    }
+    return () => setNoteList([]);
+  }, [selectedCategories]);
 
   if (categories.loading) {
     return (
@@ -46,21 +63,42 @@ export const UserNoteList = ({ notes = [] }) => {
     setNoteSearched(e.target.value);
   };
 
+  const onCheckCategory = (categoryId) => (evt) => {
+    if (selectedCategories.includes(categoryId)) {
+      const removedId = selectedCategories.filter((id) => id !== categoryId);
+      setSelectedCategories(removedId);
+      return;
+    }
+    const { categories: categoryList } = categories;
+    const categoryIndex = categoryList.findIndex((category) => category.id === categoryId);
+    if (categoryIndex > -1) {
+      setSelectedCategories([...selectedCategories, categoryId]);
+    }
+  };
+
+  const cleanSelectedCategories = () => {
+    setSelectedCategories([]);
+  };
+
   return (
     <>
       <div className="UserNoteList">
         <div className="UserNoteList_SearchBar">
           <input type="text" placeholder="nombre de la nota..." onChange={onChangeNoteSearched} />
           <div className="UserNoteList_SearchBar-FilterByCategory">
-            <MultiSelect title="Categorias">
-              {categories.categories.map((category) => {
-                return <MultiSelectOption label={category.name} />;
+            <MultiSelect title="Categorias" items={selectedCategories.length} cleanSelection={cleanSelectedCategories}>
+              {categories.categories.map(({ id, name }) => {
+                return (
+                  <MultiSelectOption key={id} id={id} currentSelected={selectedCategories} handleChange={onCheckCategory(id)}>
+                    {name}
+                  </MultiSelectOption>
+                );
               })}
             </MultiSelect>
           </div>
         </div>
         <div className="UserNoteList_NoteList">
-          {notes.filter(filterNotes(noteSearched)).map((note) => (
+          {noteList.filter(filterNotes(noteSearched)).map((note) => (
             <UserNote {...note} key={note.id} />
           ))}
         </div>
