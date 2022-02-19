@@ -52,38 +52,14 @@
     }
   }
 
-  &_DivOptions {
+  &_DivContent {
     z-index: 1;
-    border: 1px solid $primary;
     position: absolute;
-    bottom: -210px;
+    bottom: -275px;
     left: 0;
-    margin-top: 8px;
+    border: 1px solid $primary;
+    background-color: $color-dark;
     border-radius: 4px;
     padding: 8px;
-    background-color: $color-dark;
-    width: 400px;
-    height: 200px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 30px;
-    overflow-y: auto;
-    gap: 8px;
-
-    &-close {
-      z-index: 3;
-      position: absolute;
-      right: 10px;
-      top: 2px;
-      font-size: 14pt;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 350ms;
-
-      &:hover {
-        transition: all 250ms;
-        color: $primary;
-      }
-    }
   }
 }

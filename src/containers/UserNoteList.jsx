@@ -5,8 +5,7 @@ import 'styles/Containers/UserNoteList.scss';
 
 import { UserNote } from 'components/Note';
 import { Loading } from 'components/Loading';
-import { MultiSelect } from 'components/MultiSelect';
-import { MultiSelectOption } from 'components/MultiSelect/MultiSelectOption';
+import { MultiSelect, MultiSelectOption, MultiSelectSearchBar, MultiSelectOptions } from 'components/MultiSelect';
 
 import { getCategories } from 'actions/categories.actions';
 import { Layout } from './Layout/Layout';
@@ -24,10 +23,15 @@ const filterNotes =
     return false;
   };
 
+const filterCategories = (categoryName) => (category) => {
+  return category.name.toLowerCase().trim().includes(categoryName.toLowerCase().trim());
+};
+
 export const UserNoteList = ({ notes = [] }) => {
   const [noteSearched, setNoteSearched] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState([]);
   const [noteList, setNoteList] = useState(notes);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [searchedCategory, setSearchedCategory] = useState('');
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
 
@@ -78,6 +82,7 @@ export const UserNoteList = ({ notes = [] }) => {
 
   const cleanSelectedCategories = () => {
     setSelectedCategories([]);
+    setSearchedCategory('');
   };
 
   return (
@@ -86,14 +91,33 @@ export const UserNoteList = ({ notes = [] }) => {
         <div className="UserNoteList_SearchBar">
           <input type="text" placeholder="nombre de la nota..." onChange={onChangeNoteSearched} />
           <div className="UserNoteList_SearchBar-FilterByCategory">
-            <MultiSelect title="Categorias" items={selectedCategories.length} cleanSelection={cleanSelectedCategories}>
-              {categories.categories.map(({ id, name }) => {
+            <MultiSelect
+              title="Categorias"
+              items={selectedCategories.length}
+              cleanSelection={cleanSelectedCategories}
+              cb={() => setSearchedCategory('')}
+            >
+              {({ handleShowedContent }) => {
                 return (
-                  <MultiSelectOption key={id} id={id} currentSelected={selectedCategories} handleChange={onCheckCategory(id)}>
-                    {name}
-                  </MultiSelectOption>
+                  <>
+                    <MultiSelectSearchBar
+                      type="text"
+                      placeholder="categoria"
+                      onChange={(evt) => setSearchedCategory(evt.target.value)}
+                      value={searchedCategory}
+                    />
+                    <MultiSelectOptions handleShowedContent={handleShowedContent}>
+                      {categories.categories.filter(filterCategories(searchedCategory)).map(({ id, name }) => {
+                        return (
+                          <MultiSelectOption key={id} id={id} currentSelected={selectedCategories} handleChange={onCheckCategory(id)}>
+                            {name}
+                          </MultiSelectOption>
+                        );
+                      })}
+                    </MultiSelectOptions>
+                  </>
                 );
-              })}
+              }}
             </MultiSelect>
           </div>
         </div>

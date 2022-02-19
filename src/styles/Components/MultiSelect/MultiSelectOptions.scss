@@ -1,0 +1,28 @@
+@import '../../global.scss';
+
+.MultiSelectOptions {
+  margin-top: 8px;
+  width: 400px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 30px;
+  overflow-y: auto;
+  gap: 8px;
+
+  &-close {
+    z-index: 3;
+    position: absolute;
+    right: 18px;
+    top: 11px;
+    font-size: 14pt;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 350ms;
+
+    &:hover {
+      transition: all 250ms;
+      color: $primary;
+    }
+  }
+}

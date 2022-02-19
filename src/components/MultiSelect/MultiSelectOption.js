@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'styles/Components/MultiSelect/MultiSelectOption.scss';
 
-export const MultiSelectOption = ({ id, children, currentSelected = [], handleChange }) => {
+const MultiSelectOption = ({ id, children, currentSelected = [], handleChange }) => {
   const [isChecked, setIsChecked] = useState(currentSelected.includes(id));
 
   const handleCheck = (event) => {
@@ -16,3 +16,5 @@ export const MultiSelectOption = ({ id, children, currentSelected = [], handleCh
     </div>
   );
 };
+
+export default MultiSelectOption;
