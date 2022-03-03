@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { CategoryTypes } from 'reducers/categories.reducers';
+import { uiLoading } from './ui.actions';
 import FormControl from 'utils/classes/FormControl';
 
 export const getCategories = () => async (dispatch) => {
@@ -21,21 +22,15 @@ export const getCategories = () => async (dispatch) => {
   }
 };
 
-export const addNote = (note) => async (dispatch) => {
+export const addCategory = (category) => async (dispatch) => {
   try {
-    dispatch({ type: NoteTypes.LOADING });
-    const noteWithId = await noteStorage.add(note);
-    dispatch({ type: NoteTypes.ADD, payload: noteWithId });
-  } catch {
-    dispatch({ type: NoteTypes.ERROR, payload: 'No se pudo crear la nota' });
-  }
-};
-
-export const removeNote = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: NoteTypes.REMOVE, payload: id });
-    await noteStorage.remove(id);
+    dispatch(uiLoading());
+    await axios.post('/api/v1/categories', category);
+    dispatch(getCategories());
   } catch (error) {
-    dispatch({ type: NoteTypes.ERROR, payload: 'No se pudo eliminar la nota' });
+    // console.log('🎃: ', error);
+    dispatch(error.message);
+  } finally {
+    dispatch(uiLoading());
   }
 };

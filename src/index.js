@@ -14,7 +14,9 @@ import App from 'routes/App';
 
 import { GlobalStyle } from './globalStyles';
 
-const store = createStore(reducers, applyMiddleware(reduxThunk));
+const switchCompose = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const composeEnhancers = switchCompose(applyMiddleware(reduxThunk));
+const store = createStore(reducers, composeEnhancers);
 
 render(
   <Context.Provider>

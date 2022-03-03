@@ -10,7 +10,7 @@ function Button({ label, ...rest }) {
   );
 }
 
-export const ConfirmButton = ({ label = '', Icon = GiSandsOfTime, onConfirm }) => {
+export const ConfirmButton = ({ label = '', Icon = GiSandsOfTime, onConfirm, ...rest }) => {
   const [isConfirm, setIsConfirm] = React.useState(false);
 
   const onQuestionConfirm = () => {
@@ -22,7 +22,7 @@ export const ConfirmButton = ({ label = '', Icon = GiSandsOfTime, onConfirm }) =
   };
 
   return (
-    <button className="ConfirmButton">
+    <button className="ConfirmButton" {...rest}>
       {isConfirm && (
         <div className="ConfirmButton__Confirmation">
           <span className="ConfirmButton__Confirmation--Cancel" onClick={onCancel}>
