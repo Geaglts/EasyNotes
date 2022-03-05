@@ -55,11 +55,31 @@
   &_DivContent {
     z-index: 1;
     position: absolute;
-    bottom: -275px;
+    bottom: -290px;
     left: 0;
     border: 1px solid $primary;
     background-color: $color-dark;
     border-radius: 4px;
     padding: 8px;
+  }
+
+  &-ConfigIconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &-ConfigIcon {
+    color: $color-gray;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: all 250ms ease-in;
+
+    &:hover {
+      transition: all 250ms ease-in;
+      opacity: 0.7;
+      transform: scale(1.1) rotate(45deg);
+    }
   }
 }
