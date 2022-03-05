@@ -51,6 +51,15 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 300px);
     gap: 12px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1275px) {
+  .UserNoteList {
+    &_NoteList {
+      grid-template-columns: repeat(auto-fit, 295px);
+    }
   }
 }
 
