@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import FreeNotes from 'pages/FreeNotes';
 import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
@@ -9,6 +10,7 @@ import EmailSended from 'pages/EmailSended';
 import ActivateAccount from 'pages/ActivateAccount';
 import RecoveryPassword from 'pages/RecoveryPassword';
 import Dashboard from 'pages/Dashboard';
+import Categories from 'pages/users/Categories';
 
 import UserRoutes from './UserRoute';
 
@@ -28,6 +30,7 @@ function App() {
         <Route exact path="recovery-password" element={<RecoveryPassword />} />
         <Route element={<UserRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/categories" element={<Categories />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

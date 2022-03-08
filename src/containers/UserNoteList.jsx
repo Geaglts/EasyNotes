@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import 'styles/Containers/UserNoteList.scss';
@@ -33,6 +34,7 @@ export const UserNoteList = ({ notes = [] }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchedCategory, setSearchedCategory] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
 
   useEffect(() => {
@@ -85,6 +87,10 @@ export const UserNoteList = ({ notes = [] }) => {
     setSearchedCategory('');
   };
 
+  const goToCategoriesPage = () => {
+    navigate('/categories');
+  };
+
   return (
     <>
       <div className="UserNoteList">
@@ -96,6 +102,7 @@ export const UserNoteList = ({ notes = [] }) => {
               items={selectedCategories.length}
               cleanSelection={cleanSelectedCategories}
               cb={() => setSearchedCategory('')}
+              onClickConfig={goToCategoriesPage}
             >
               {({ handleShowedContent }) => {
                 return (

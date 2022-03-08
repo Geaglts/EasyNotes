@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BsGearFill } from 'react-icons/bs';
 import 'styles/Components/MultiSelect/MultiSelect.scss';
 
-const MultiSelect = ({ title = '', children, items = 0, cleanSelection = () => {}, cb }) => {
+const MultiSelect = ({ title = '', children, items = 0, cleanSelection = () => {}, cb, onClickConfig = () => {} }) => {
   const [isShowed, setIsShowed] = useState(false);
 
   const handleShowedContent = () => {
@@ -28,7 +28,7 @@ const MultiSelect = ({ title = '', children, items = 0, cleanSelection = () => {
         <div className="MultiSelect_DivContent">
           {children({ handleShowedContent })}
           <div className="MultiSelect-ConfigIconContainer">
-            <BsGearFill className="MultiSelect-ConfigIcon" />
+            <BsGearFill className="MultiSelect-ConfigIcon" onClick={onClickConfig} />
           </div>
         </div>
       )}

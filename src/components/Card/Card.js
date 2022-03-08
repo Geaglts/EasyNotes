@@ -1,5 +1,9 @@
 import React from 'react';
-import { Container, StatTitle, StatContent, CardButtonLabel } from './styles';
+import { Container, StatTitle, StatContent, CardButtonLabel, CardTitle as BasicCardTitle, CardSubTitle as BasicCardSubtitle } from './styles';
+
+export const CardContainer = ({ children, ...props }) => <Container {...props}>{children}</Container>;
+export const CardTitle = ({ label = '' }) => <BasicCardTitle>{label}</BasicCardTitle>;
+export const CardSubtitle = ({ label = '' }) => <BasicCardSubtitle>{label}</BasicCardSubtitle>;
 
 export const StatCard = ({ children }) => {
   return <Container>{children}</Container>;

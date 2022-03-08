@@ -1,0 +1,35 @@
+@import '../global.scss';
+
+.CategoriesTitle {
+  font-size: 22pt;
+}
+
+.CategoriesList {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.Categories {
+  &-light {
+    &-Title {
+      @extend .CategoriesTitle;
+    }
+
+    &-List {
+      @extend .CategoriesList;
+    }
+  }
+
+  &-dark {
+    &-Title {
+      @extend .CategoriesTitle;
+      color: $color-gray;
+    }
+
+    &-List {
+      @extend .CategoriesList;
+    }
+  }
+}
