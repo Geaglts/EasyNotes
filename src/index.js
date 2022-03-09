@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import 'styles/index.scss';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './redux/reducers';
