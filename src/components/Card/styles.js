@@ -3,7 +3,6 @@ import { colors, fonts } from '../../constants';
 
 export const Container = styled.div`
   border: none;
-  background-color: var(--light-gray);
   display: inline-block;
   padding: 12px;
   border-radius: 8px;
@@ -26,24 +25,73 @@ export const Container = styled.div`
       : '';
   }}
 
+  ${(props) => {
+    if (props.theme) {
+      switch (props.theme) {
+        case 'dark': {
+          return css`
+            border-top: 3px solid ${colors.PRIMARY};
+            background-color: ${colors.LIGHT_DARK};
+          `;
+        }
+        case 'light': {
+          return css`
+            border-top: 3px solid ${colors.GRAY};
+            background-color: ${colors.LIGHT_GRAY};
+          `;
+        }
+      }
+    }
+  }}
+
   :hover {
     transition: transform 200ms ease;
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 `;
 
 export const CardTitle = styled.h4`
-  font-size: 16pt;
+  font-size: 15pt;
   font-weight: bold;
   text-transform: capitalize;
-  font-family: ${fonts.secondary};
+  ${(props) => {
+    if (props.theme) {
+      switch (props.theme) {
+        case 'dark': {
+          return css`
+            color: ${colors.PRIMARY};
+          `;
+        }
+        case 'light': {
+          return css`
+            color: ${colors.PRIMARY};
+          `;
+        }
+      }
+    }
+  }}
 `;
 
 export const CardSubTitle = styled.p`
   font-size: 8pt;
-  color: ${colors.GRAY};
   text-transform: uppercase;
   font-family: ${fonts.secondary};
+  ${(props) => {
+    if (props.theme) {
+      switch (props.theme) {
+        case 'dark': {
+          return css`
+            color: ${colors.GRAY};
+          `;
+        }
+        case 'light': {
+          return css`
+            color: ${colors.LIGHT_DARK};
+          `;
+        }
+      }
+    }
+  }}
 `;
 
 export const StatTitle = styled.p`

@@ -8,6 +8,14 @@ export const colors = {
   LIGHT_DARK: '#333842',
   DARK: '#292e37',
   GRAY: '#70737a',
+  PRIMARY: '#5789ff',
+  SECONDARY: '#ffdf75',
+  WARNING: '#ed4747',
+  DARK: '#141414',
+  WHITE: '#f8f8f8',
+  GRAY: '#c7c7c7',
+  LIGHT_GRAY: '#ebebeb',
+  GREEN: '#7bf1a8',
 };
 
 export const fonts = {

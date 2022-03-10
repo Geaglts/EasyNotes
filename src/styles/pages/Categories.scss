@@ -12,8 +12,20 @@
 }
 
 .Categories {
+  &-GoBackButton {
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    color: $color-gray;
+    box-shadow: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &-CardMenuBottom {
-    height: 47px;
+    height: 37px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -22,6 +34,7 @@
   &-light {
     &-Title {
       @extend .CategoriesTitle;
+      color: $primary;
     }
 
     &-List {
@@ -32,7 +45,7 @@
   &-dark {
     &-Title {
       @extend .CategoriesTitle;
-      color: $color-gray;
+      color: $primary;
     }
 
     &-List {

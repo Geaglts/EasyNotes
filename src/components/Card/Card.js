@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, StatTitle, StatContent, CardButtonLabel, CardTitle as BasicCardTitle, CardSubTitle as BasicCardSubtitle } from './styles';
 
-export const CardContainer = ({ children, ...props }) => <Container {...props}>{children}</Container>;
-export const CardTitle = ({ label = '' }) => <BasicCardTitle>{label}</BasicCardTitle>;
-export const CardSubtitle = ({ label = '' }) => <BasicCardSubtitle>{label}</BasicCardSubtitle>;
+import { Context } from 'context';
+
+export const CardContainer = ({ children, ...props }) => {
+  const { theme } = useContext(Context);
+  return (
+    <Container {...props} theme={theme}>
+      {children}
+    </Container>
+  );
+};
+
+export const CardTitle = ({ label = '' }) => {
+  const { theme } = useContext(Context);
+  return <BasicCardTitle theme={theme}>{label}</BasicCardTitle>;
+};
+
+export const CardSubtitle = ({ label = '' }) => {
+  const { theme } = useContext(Context);
+  return <BasicCardSubtitle theme={theme}>{label}</BasicCardSubtitle>;
+};
 
 export const StatCard = ({ children }) => {
   return <Container>{children}</Container>;
