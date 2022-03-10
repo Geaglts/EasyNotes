@@ -34,3 +34,15 @@ export const addCategory = (category) => async (dispatch) => {
     dispatch(uiLoading());
   }
 };
+
+export const removeCategory = (categoryId) => async (dispatch) => {
+  try {
+    dispatch(uiLoading());
+    await axios.delete(`/api/v1/categories/${categoryId}`);
+    dispatch(getCategories());
+  } catch (error) {
+    // console.log(error);
+  } finally {
+    dispatch(uiLoading());
+  }
+};

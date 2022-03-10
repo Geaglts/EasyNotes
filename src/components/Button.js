@@ -36,7 +36,9 @@ export const ConfirmButton = ({ label = '', Icon = GiSandsOfTime, onConfirm, ...
       {!isConfirm && (
         <>
           <Icon className="ConfirmButton__Icon" onClick={onQuestionConfirm} />
-          <span className="ConfirmButton__Label">{label}</span>
+          <span className="ConfirmButton__Label" onClick={onQuestionConfirm}>
+            {label}
+          </span>
         </>
       )}
     </button>

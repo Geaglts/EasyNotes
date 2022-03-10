@@ -12,6 +12,13 @@
 }
 
 .Categories {
+  &-CardMenuBottom {
+    height: 47px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
   &-light {
     &-Title {
       @extend .CategoriesTitle;
