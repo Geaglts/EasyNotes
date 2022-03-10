@@ -117,7 +117,7 @@ export const UserNoteList = ({ notes = [] }) => {
                       {categories.categories.filter(filterCategories(searchedCategory)).map(({ id, name }) => {
                         return (
                           <MultiSelectOption key={id} id={id} currentSelected={selectedCategories} handleChange={onCheckCategory(id)}>
-                            {name}
+                            {name.length < 12 ? name : name.slice(0, 9) + '...'}
                           </MultiSelectOption>
                         );
                       })}

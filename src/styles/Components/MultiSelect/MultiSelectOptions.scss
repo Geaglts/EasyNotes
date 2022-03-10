@@ -1,6 +1,10 @@
 @import '../../global.scss';
 
 .MultiSelectOptions {
+  &.light {
+    color: $color-gray;
+  }
+
   margin-top: 8px;
   width: 400px;
   height: 200px;

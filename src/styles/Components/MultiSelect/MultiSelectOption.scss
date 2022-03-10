@@ -1,7 +1,10 @@
 @import '../../global.scss';
 
 .MultiSelectOption {
-  background-color: $color-dark;
+  &.dark {
+    background-color: $color-dark;
+  }
+
   position: relative;
   height: 30px;
 

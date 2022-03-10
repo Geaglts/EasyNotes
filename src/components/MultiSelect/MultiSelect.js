@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { BsGearFill } from 'react-icons/bs';
 import 'styles/Components/MultiSelect/MultiSelect.scss';
 
+import { Context } from 'context';
+
 const MultiSelect = ({ title = '', children, items = 0, cleanSelection = () => {}, cb, onClickConfig = () => {} }) => {
   const [isShowed, setIsShowed] = useState(false);
+  const { theme } = useContext(Context);
 
   const handleShowedContent = () => {
     if (cb && isShowed) {
@@ -13,7 +16,7 @@ const MultiSelect = ({ title = '', children, items = 0, cleanSelection = () => {
   };
 
   return (
-    <section className="MultiSelect">
+    <section className={`MultiSelect ${theme}`}>
       <div className="MultiSelect_DivHeader">
         <button className="MultiSelect_BtnTitle" onClick={handleShowedContent}>
           {title}
