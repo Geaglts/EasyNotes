@@ -40,6 +40,11 @@ export const Container = styled.div`
             background-color: ${colors.LIGHT_GRAY};
           `;
         }
+        default: {
+          return css`
+            background-color: ${colors.WHITE};
+          `;
+        }
       }
     }
   }}
