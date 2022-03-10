@@ -123,8 +123,59 @@
 }
 
 .UserNote {
+  &.light {
+    .UserNote__Category {
+      color: $primary;
+      border: 1px solid $primary;
+    }
+
+    .UserNote__Title {
+      color: $color-gray;
+    }
+
+    .UserNote__Content {
+      color: $color-gray;
+    }
+
+    .UserNote__Options {
+      & > svg {
+        color: $color-gray;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  &.dark {
+    background-color: $color-dark;
+
+    .UserNote__Category {
+      color: $primary;
+      border: 1px solid $primary;
+    }
+
+    .UserNote__Title {
+      color: $white;
+    }
+
+    .UserNote__Content {
+      color: $color-gray;
+    }
+
+    .UserNote__Options {
+      & > svg {
+        color: $color-gray;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
   border-top: 5px solid $primary;
-  background-color: $color-dark;
   padding: 12px;
   border-radius: 4px;
   box-shadow: $shadow;
@@ -141,20 +192,17 @@
     }
 
     height: 25px;
-    color: $primary;
     font-size: $font-size-ssm;
     text-transform: lowercase;
     text-align: center;
     border-radius: 100px;
     padding: 0 8px;
     margin-top: 4px;
-    border: 1px solid $primary;
   }
 
   &__Title {
     text-transform: uppercase;
     font-size: 10pt;
-    color: $white;
     font-family: $font-secondary;
     margin-bottom: 4px;
   }
@@ -164,7 +212,6 @@
     font-weight: 400;
     font-family: $font-secondary;
     position: relative;
-    color: $color-gray;
   }
 
   &__Options {
@@ -178,11 +225,9 @@
       font-size: 30px;
       cursor: pointer;
       transition: all 350ms ease;
-      color: $color-gray;
 
       &:hover {
         transition: all 250ms ease;
-        color: $primary;
       }
     }
   }

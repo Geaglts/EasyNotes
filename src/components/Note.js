@@ -67,6 +67,7 @@ function Note({ content, title, _id, onRemoveNote }) {
 }
 
 export const UserNote = ({ id, title, content, categories }) => {
+  const { theme } = useContext(Context);
   const dispatch = useDispatch();
   const { title: decryptTitle } = FormControl.decryptData({ title });
   const [decryptContent, setDecryptContent] = useState({ show: false, value: null });
@@ -86,7 +87,7 @@ export const UserNote = ({ id, title, content, categories }) => {
   };
 
   return (
-    <div className="UserNote">
+    <div className={`UserNote ${theme}`}>
       <h3 className="UserNote__Title">{decryptTitle}</h3>
       <div className="UserNote__Content">
         {decryptContent.show ? <NoteMultiline text={decryptContent.value} hide={onShowContent} /> : <p>{'🔥🎈'.repeat(5)}</p>}
