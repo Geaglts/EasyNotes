@@ -49,8 +49,8 @@
 
   &_NoteList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 300px);
-    grid-auto-rows: 140px;
+    grid-template-columns: repeat(auto-fit, 308px);
+    grid-auto-rows: minmax(140px, auto);
     gap: 12px;
     justify-content: center;
   }
