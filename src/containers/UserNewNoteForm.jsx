@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { BsFolderSymlink } from 'react-icons/bs';
-import { GiSemiClosedEye } from 'react-icons/gi';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
@@ -54,7 +54,7 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
     <>
       {categoriesView && (
         <div className="CategoriesNewNoteForm">
-          <GiSemiClosedEye title="Cerrar" size={25} className="icon" onClick={toggleCategories} />
+          <AiOutlineCloseCircle title="Cerrar" size={25} className="icon" onClick={toggleCategories} />
           <div className="CategoriesNewNoteForm_Container">
             {categories.map(({ name, description, id }) => {
               const isSelected = selectedCategories.includes(id);
