@@ -231,6 +231,33 @@
       }
     }
   }
+
+  &_UpdateModal {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+
+    * {
+      &:focus {
+        outline: 2px dotted $color-gray;
+      }
+    }
+
+    &-submit {
+      background-color: $primary;
+      color: $color-dark;
+      justify-self: center;
+      border-radius: 4px;
+
+      &:focus {
+        outline: 2px dotted $color-gray;
+      }
+    }
+
+    &-content {
+      height: 130px;
+    }
+  }
 }
 
 .NoteMultiline {

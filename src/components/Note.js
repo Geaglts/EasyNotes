@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { BsFillTrashFill } from 'react-icons/bs';
+import { BiRefresh } from 'react-icons/bi';
 import { AiOutlineCopy, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 
 import '../styles/Components/Note.scss';
 
 import { removeNote } from '../redux/actions/userNotes.actions';
+
+import UserUpdateNoteForm from 'containers/UserUpdateNoteForm';
 
 import { Context } from '../Context';
 import Button, { ConfirmButton } from './Button';
@@ -69,8 +72,9 @@ function Note({ content, title, _id, onRemoveNote }) {
 export const UserNote = ({ id, title, content, categories }) => {
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
-  const { title: decryptTitle } = FormControl.decryptData({ title });
+  const { title: decryptTitle, content: decryptedContent } = FormControl.decryptData({ title, content });
   const [decryptContent, setDecryptContent] = useState({ show: false, value: null });
+  const [updateNoteModal, setUpdateNoteModal] = useState(false);
 
   const onShowContent = () => {
     const { content: dc } = FormControl.decryptData({ content });
@@ -82,31 +86,47 @@ export const UserNote = ({ id, title, content, categories }) => {
     });
   };
 
+  const toggleUpdateNoteModal = () => {
+    setUpdateNoteModal(!updateNoteModal);
+  };
+
   const onDeleteNote = () => {
     dispatch(removeNote(id));
   };
 
   return (
-    <div className={`UserNote ${theme}`}>
-      <h3 className="UserNote__Title">{decryptTitle}</h3>
-      <div className="UserNote__Content">
-        {decryptContent.show ? <NoteMultiline text={decryptContent.value} hide={onShowContent} /> : <p>{'🔥🎈'.repeat(5)}</p>}
+    <>
+      <div className={`UserNote ${theme}`}>
+        <h3 className="UserNote__Title">{decryptTitle}</h3>
+        <div className="UserNote__Content">
+          {decryptContent.show ? <NoteMultiline text={decryptContent.value} hide={onShowContent} /> : <p>{'🔥🎈'.repeat(5)}</p>}
+        </div>
+        <div className="UserNote__Category--Container">
+          {categories.map((category) => {
+            const name = FormControl.decryptData({ name: category.name }).name;
+            return (
+              <p className="UserNote__Category" key={category.id}>
+                {name}
+              </p>
+            );
+          })}
+        </div>
+        <div className="UserNote__Options">
+          {decryptContent.show ? <AiOutlineEyeInvisible onClick={onShowContent} /> : <AiOutlineEye onClick={onShowContent} />}
+          <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
+          {/* update the note */}
+          <BiRefresh onClick={toggleUpdateNoteModal} title="Actualizar nota" />
+        </div>
+        <UserUpdateNoteForm
+          show={updateNoteModal}
+          toggleShow={toggleUpdateNoteModal}
+          decryptTitle={decryptTitle}
+          decryptedContent={decryptedContent}
+          title={decryptTitle}
+          noteId={id}
+        />
       </div>
-      <div className="UserNote__Category--Container">
-        {categories.map((category) => {
-          const name = FormControl.decryptData({ name: category.name }).name;
-          return (
-            <p className="UserNote__Category" key={category.id}>
-              {name}
-            </p>
-          );
-        })}
-      </div>
-      <div className="UserNote__Options">
-        {decryptContent.show ? <AiOutlineEyeInvisible onClick={onShowContent} /> : <AiOutlineEye onClick={onShowContent} />}
-        <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
-      </div>
-    </div>
+    </>
   );
 };
 
