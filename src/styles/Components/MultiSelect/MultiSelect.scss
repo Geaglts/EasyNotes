@@ -101,3 +101,15 @@
     box-shadow: 0px 0px 5px 1px rgba($color-dark, 0.2);
   }
 }
+
+@media (max-width: 720px) {
+  .MultiSelect {
+    width: 100%;
+    &_DivHeader {
+      width: inherit;
+      button {
+        width: inherit;
+      }
+    }
+  }
+}

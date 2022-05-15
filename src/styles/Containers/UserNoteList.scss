@@ -59,13 +59,24 @@
 @media (max-width: 1275px) {
   .UserNoteList {
     &_NoteList {
-      grid-template-columns: repeat(auto-fit, 295px);
+      grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
     }
   }
 }
 
 @media (max-width: 720px) {
   .UserNoteList {
+    &_SearchBar {
+      flex-direction: column;
+
+      & > input {
+        width: 100%;
+      }
+      &-FilterByCategory {
+        width: 100%;
+      }
+    }
+
     &_NoteList {
       grid-template-columns: 1fr;
     }
