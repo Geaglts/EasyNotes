@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, forwardRef } from 'react';
 import { Context } from '../Context';
 import { MdSentimentVeryDissatisfied } from 'react-icons/md';
 
 import '../styles/Components/Input.scss';
 
-export const SimpleInput = ({ classes, ...rest }) => {
+export const SimpleInput = forwardRef(({ classes, ...rest }, ref) => {
   const { theme } = useContext(Context);
-  return <input className={`SimpleInput ${theme}${!classes ? '' : ' ' + classes.join(' ')}`} {...rest} />;
-};
+  return <input className={`SimpleInput ${theme}${!classes ? '' : ' ' + classes.join(' ')}`} ref={ref} {...rest} />;
+});
 
 export const SimpleTextArea = ({ classes, ...rest }) => {
   const { theme } = useContext(Context);

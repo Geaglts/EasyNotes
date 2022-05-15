@@ -71,6 +71,7 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
       <form className="UserNewNoteForm" ref={form} onSubmit={createNewNote}>
         <BsFolderSymlink title="Enlazar con categoría" size={25} className="icon" onClick={toggleCategories} />
         <SimpleInput type="text" placeholder="Titulo de la nota" classes={['title']} name="title" />
+        <SimpleInput type="text" autoComplete="off" placeholder="Codigo secreto (No Obligatorio)" classes={['pin']} name="pin" />
         <SimpleTextArea placeholder="Contenido..." name="content" classes={['unnf_sta']} />
         <Button label="Crear" type="submit" />
       </form>

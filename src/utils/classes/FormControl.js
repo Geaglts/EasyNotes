@@ -28,6 +28,10 @@ class FormControl extends FormData {
     return encryptedData;
   }
 
+  static encryptValue(value) {
+    return CryptoJS.AES.encrypt(value, process.env.NOTE_SECRET).toString();
+  }
+
   static decryptData(values) {
     const keys = Object.keys(values);
     const decryptedData = {};

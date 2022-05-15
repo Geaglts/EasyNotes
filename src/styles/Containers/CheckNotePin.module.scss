@@ -1,0 +1,14 @@
+@import '../global.scss';
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.Button {
+  background-color: $primary;
+  color: $white;
+  margin: 0 auto;
+  margin-top: 12px;
+}

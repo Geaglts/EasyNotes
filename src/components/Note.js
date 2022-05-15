@@ -4,12 +4,12 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
 import { AiOutlineCopy, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-
 import '../styles/Components/Note.scss';
 
 import { removeNote } from '../redux/actions/userNotes.actions';
 
 import UserUpdateNoteForm from 'containers/UserUpdateNoteForm';
+import CheckNotePin from 'containers/CheckNotePin';
 
 import { Context } from '../Context';
 import Button, { ConfirmButton } from './Button';
@@ -69,14 +69,16 @@ function Note({ content, title, _id, onRemoveNote }) {
   );
 }
 
-export const UserNote = ({ id, title, content, categories }) => {
+export const UserNote = ({ id, title, content, categories, pin }) => {
   const { theme } = useContext(Context);
+  const [checkNotePin, setCheckNotePin] = useState(false);
   const dispatch = useDispatch();
   const { title: decryptTitle, content: decryptedContent } = FormControl.decryptData({ title, content });
+  const [hasAccess] = useState(!Boolean(pin));
   const [decryptContent, setDecryptContent] = useState({ show: false, value: null });
   const [updateNoteModal, setUpdateNoteModal] = useState(false);
 
-  const onShowContent = () => {
+  const toggleData = () => {
     const { content: dc } = FormControl.decryptData({ content });
     setDecryptContent((prevState) => {
       let show = !prevState.show;
@@ -84,6 +86,28 @@ export const UserNote = ({ id, title, content, categories }) => {
       if (show) return { show, value };
       return { show, value: null };
     });
+  };
+
+  const onShowContent = () => {
+    if (decryptContent.value || hasAccess) {
+      toggleData();
+    } else {
+      setCheckNotePin(true);
+    }
+  };
+
+  const onCheckPin = (pinToCheck) => {
+    const { pin: decrypedPin } = FormControl.decryptData({ pin });
+    if (pinToCheck === decrypedPin) {
+      toggleData();
+      toggleCheckNodePinModal();
+    } else {
+      alert('No valido');
+    }
+  };
+
+  const toggleCheckNodePinModal = () => {
+    setCheckNotePin(!checkNotePin);
   };
 
   const toggleUpdateNoteModal = () => {
@@ -126,6 +150,7 @@ export const UserNote = ({ id, title, content, categories }) => {
           noteId={id}
         />
       </div>
+      <CheckNotePin visible={checkNotePin} onChangeVisibility={toggleCheckNodePinModal} onSubmit={onCheckPin} />
     </>
   );
 };
