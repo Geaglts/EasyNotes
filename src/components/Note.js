@@ -74,11 +74,12 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
   const [checkNotePin, setCheckNotePin] = useState(false);
   const dispatch = useDispatch();
   const { title: decryptTitle, content: decryptedContent } = FormControl.decryptData({ title, content });
-  const [hasAccess] = useState(!Boolean(pin));
+  const [hasAccess, setHasAccess] = useState(!Boolean(pin));
   const [decryptContent, setDecryptContent] = useState({ show: false, value: null });
   const [updateNoteModal, setUpdateNoteModal] = useState(false);
 
   const toggleData = () => {
+    if (!hasAccess) setHasAccess(false);
     const { content: dc } = FormControl.decryptData({ content });
     setDecryptContent((prevState) => {
       let show = !prevState.show;
@@ -89,21 +90,7 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
   };
 
   const onShowContent = () => {
-    if (decryptContent.value || hasAccess) {
-      toggleData();
-    } else {
-      setCheckNotePin(true);
-    }
-  };
-
-  const onCheckPin = (pinToCheck) => {
-    const { pin: decrypedPin } = FormControl.decryptData({ pin });
-    if (pinToCheck === decrypedPin) {
-      toggleData();
-      toggleCheckNodePinModal();
-    } else {
-      alert('No valido');
-    }
+    toggleData();
   };
 
   const toggleCheckNodePinModal = () => {
@@ -136,10 +123,18 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
           })}
         </div>
         <div className="UserNote__Options">
-          {decryptContent.show ? <AiOutlineEyeInvisible onClick={onShowContent} /> : <AiOutlineEye onClick={onShowContent} />}
-          <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
+          <CheckNotePin pin={pin} visibility={checkNotePin} changeVisibility={toggleCheckNodePinModal}>
+            {(showValidation) => {
+              return (
+                <>
+                  {decryptContent.show ? <AiOutlineEyeInvisible onClick={onShowContent} /> : <AiOutlineEye onClick={showValidation(onShowContent)} />}
+                  <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
+                  <BiRefresh onClick={showValidation(toggleUpdateNoteModal)} title="Actualizar nota" />
+                </>
+              );
+            }}
+          </CheckNotePin>
           {/* update the note */}
-          <BiRefresh onClick={toggleUpdateNoteModal} title="Actualizar nota" />
         </div>
         <UserUpdateNoteForm
           show={updateNoteModal}
@@ -147,10 +142,10 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
           decryptTitle={decryptTitle}
           decryptedContent={decryptedContent}
           title={decryptTitle}
+          pin={pin && FormControl.decryptData({ pin }).pin}
           noteId={id}
         />
       </div>
-      <CheckNotePin visible={checkNotePin} onChangeVisibility={toggleCheckNodePinModal} onSubmit={onCheckPin} />
     </>
   );
 };

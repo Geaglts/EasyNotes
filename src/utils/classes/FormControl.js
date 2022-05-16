@@ -23,7 +23,11 @@ class FormControl extends FormData {
     const keys = Object.keys(this.values);
     const encryptedData = {};
     for (let key of keys) {
-      encryptedData[key] = CryptoJS.AES.encrypt(this.values[key], process.env.NOTE_SECRET).toString();
+      if (this.values[key].length !== 0) {
+        encryptedData[key] = CryptoJS.AES.encrypt(this.values[key], process.env.NOTE_SECRET).toString();
+      } else {
+        encryptedData[key] = null;
+      }
     }
     return encryptedData;
   }

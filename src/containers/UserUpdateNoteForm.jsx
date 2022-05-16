@@ -15,7 +15,7 @@ import useError from 'hooks/useError';
 import validate from 'utils/validate';
 import { updateNoteSchema } from 'schemas/user.schema';
 
-const UserUpdateNoteForm = ({ show, toggleShow, title, decryptTitle, decryptedContent, noteId }) => {
+const UserUpdateNoteForm = ({ show, toggleShow, title, pin, decryptTitle, decryptedContent, noteId }) => {
   const updateForm = useRef(null);
   const dispatch = useDispatch();
   const { error, showError } = useError();
@@ -37,6 +37,7 @@ const UserUpdateNoteForm = ({ show, toggleShow, title, decryptTitle, decryptedCo
     <Modal active={show} changeStatus={toggleShow} title={`${title}`}>
       <form className="UserNote_UpdateModal" ref={updateForm} onSubmit={onUpdateNote}>
         <SimpleInput classes={['UserNote_UpdateModal-title']} placeholder="Nuevo titulo" defaultValue={decryptTitle} name="title" />
+        <SimpleInput placeholder="Nuevo pin" defaultValue={pin} name="pin" />
         <SimpleTextArea classes={['UserNote_UpdateModal-content']} placeholder="Nuevo contenido" defaultValue={decryptedContent} name="content" />
         <Button classNames={['UserNote_UpdateModal-submit']} type="submit">
           Actualizar nota
