@@ -71,6 +71,16 @@
         }
       }
     }
+
+    .Login__Form--RememberUser {
+      display: flex;
+      align-items: center;
+      column-gap: 4px;
+
+      label {
+        font-size: 11pt;
+      }
+    }
   }
 
   .Login__Right {

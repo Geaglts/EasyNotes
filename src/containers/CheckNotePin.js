@@ -58,7 +58,11 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
       {children(showValidation)}
       <Modal title={`Verificación  de ${forgotPin ? 'Contraseña' : 'PIN'}`} active={visibility} changeStatus={changeVisibility}>
         <div className={styles.Container}>
-          <SimpleInput ref={pinInput} placeholder={`Ingresa ${forgotPin ? 'tu Contraseña' : 'el PIN de tu Nota'}`} />
+          <SimpleInput
+            type={forgotPin ? 'password' : 'text'}
+            ref={pinInput}
+            placeholder={`Ingresa ${forgotPin ? 'tu Contraseña' : 'el PIN de tu Nota'}`}
+          />
           <Button label="Abrir" onClick={verifyPin} classNames={[styles.Button]} />
           <button className={styles.ButtonForgotPin} onClick={toggleFotgotPin}>
             Desbloquear {forgotPin ? 'con PIN' : 'con Contraseña'}
