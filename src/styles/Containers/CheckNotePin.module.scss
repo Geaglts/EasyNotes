@@ -21,3 +21,21 @@
   font-weight: bold;
   text-align: center;
 }
+
+.ButtonForgotPin {
+  text-decoration: underline;
+  font-size: 12pt;
+  font-weight: lighter;
+  color: $primary;
+  text-align: center;
+  margin: 0 auto;
+  background-color: transparent;
+  margin-top: 8px;
+  border: none;
+  transition: all 250ms ease;
+
+  &:hover {
+    transition: all 350ms ease;
+    color: rgba($primary, 0.7);
+  }
+}
