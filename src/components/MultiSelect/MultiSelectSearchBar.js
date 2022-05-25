@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
-import { colors } from '../../constants';
+import { colors } from '@constants';
 
 import { Context } from 'context';
 

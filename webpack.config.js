@@ -30,6 +30,7 @@ module.exports = {
       context: path.join(__dirname, 'src', 'Context.js'),
       storage: path.join(__dirname, 'src', 'storage.js'),
       '@fragments': path.join(__dirname, 'src', 'fragments'),
+      '@constants': path.join(__dirname, 'src', 'constants.js'),
     },
   },
   devtool: 'source-map',

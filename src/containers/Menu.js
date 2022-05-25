@@ -5,6 +5,7 @@ import { BiMenu } from 'react-icons/bi';
 import 'styles/Containers/Menu.scss';
 
 import { Context } from '../Context';
+import { APP_NAME } from '@constants';
 
 import { Toggle } from '../components/Toggle';
 
@@ -31,7 +32,7 @@ function Menu() {
         <button className="close-button" onClick={handleMenu}>
           X
         </button>
-        <h1>EasyNotes</h1>
+        <h1>{APP_NAME}</h1>
         <button className="change-theme">
           {darkTheme ? <FaMoon /> : <FaSun />}
           <Toggle onClick={changeTheme} status={darkTheme} />
@@ -69,7 +70,7 @@ function Menu() {
   return (
     <nav className={'menu__container' + theme}>
       <Link to="/" className="menu__container--title">
-        EasyNotes
+        {APP_NAME}
       </Link>
       <ul className="menu__list">
         <li className="menu__list--item">

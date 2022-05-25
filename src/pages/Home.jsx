@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { Context } from '../Context';
+import { APP_NAME } from '@constants';
 import '../styles/pages/Home.scss';
 
 import TakingNotesImage from '../assets/images/taking_notes.svg';
@@ -17,7 +18,7 @@ function Home() {
         <section>
           <h1>
             <span style={{ color: darkTheme ? '#fff' : '#475ded' }}>Bienvenido a </span>
-            EasyNotes
+            {APP_NAME}
           </h1>
           <p style={{ color: darkTheme ? '#fff' : '#1c1b22' }}>Crea notas rapidas y seguras de forma rapida y sencilla totalmente gratis.</p>
           <Link to="/fast">¡Crear mi primera nota!</Link>

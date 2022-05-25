@@ -22,3 +22,5 @@ export const colors = {
 export const fonts = {
   secondary: "'Roboto', sans-serif",
 };
+
+export const APP_NAME = "Hriaapa'";

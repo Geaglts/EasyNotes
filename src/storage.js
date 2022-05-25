@@ -1,4 +1,4 @@
-import { DARK_MODE, NOTES, TOTAL_IDS, USER_LOGGED, USER_TOKEN } from './constants';
+import { DARK_MODE, NOTES, TOTAL_IDS, USER_LOGGED, USER_TOKEN } from '@constants';
 
 const idManager = {
   get() {

@@ -15,7 +15,7 @@ import loginDarkImage from 'assets/images/login__dark.svg';
 
 import { Context } from '../Context';
 
-import { BROWSER_REMEMBER_USER_NAME } from '../constants';
+import { BROWSER_REMEMBER_USER_NAME } from '@constants';
 import { browserStorage } from 'storage';
 import validate from 'utils/validate';
 import useformError from 'hooks/useFormError';

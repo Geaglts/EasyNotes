@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors, fonts } from '../../constants';
+import { colors, fonts } from '@constants';
 
 export const Container = styled.div`
   border: none;

@@ -1,6 +1,6 @@
-# EasyNotes
+# Hriaapa'
 
-Take temporal notes
+Take secure notes.
 
 # Design 👨‍🎨
 
