@@ -71,7 +71,11 @@ const Login = () => {
       changeUserStatus(response.data.body.token);
       navigate('/dashboard');
     } catch (error) {
-      // console.log(error);
+      const defaultError = {
+        message: '🔐 Usuario y/o Contraseña incorrecta',
+        type: 'danger',
+      };
+      addErrors([defaultError]);
     } finally {
       setLoading(false);
     }

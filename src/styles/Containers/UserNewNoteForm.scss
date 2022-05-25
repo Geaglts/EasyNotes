@@ -94,3 +94,11 @@
     font-weight: 700;
   }
 }
+
+@media (max-height: 617px) {
+  .UserNewNoteForm {
+    .unnf_sta {
+      height: 146px;
+    }
+  }
+}
