@@ -64,6 +64,7 @@ module.exports = {
   plugins: [
     new HtmlPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
+      favicon: path.join(__dirname, 'public', 'favicon.ico'),
     }),
     new Dotenv({
       systemvars: true,
