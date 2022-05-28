@@ -53,6 +53,11 @@ export const Container = styled.div`
     transition: transform 200ms ease;
     transform: scale(1.01);
   }
+
+  @media (max-width: 420px) {
+    --size: 80px;
+    padding: 4px;
+  }
 `;
 
 export const CardTitle = styled.h4`
@@ -102,6 +107,12 @@ export const CardSubTitle = styled.p`
 export const StatTitle = styled.p`
   font-size: 10pt;
   font-weight: bold;
+
+  @media (max-width: 420px) {
+    font-size: 11pt;
+    line-height: 1;
+    margin-top: 4px;
+  }
 `;
 
 export const StatContent = styled.p`
@@ -115,4 +126,8 @@ export const CardButtonLabel = styled.p`
   font-weight: 900;
   line-height: 1;
   color: var(--dark);
+
+  @media (max-width: 420px) {
+    font-size: 10pt;
+  }
 `;

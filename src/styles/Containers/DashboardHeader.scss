@@ -3,3 +3,10 @@
   align-items: center;
   gap: 16px;
 }
+
+@media (max-width: 420px) {
+  .DashboardHeader {
+    justify-content: center;
+    gap: 12px;
+  }
+}

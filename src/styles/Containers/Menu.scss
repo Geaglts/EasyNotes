@@ -218,6 +218,18 @@
 }
 
 @media (max-width: 720px) {
+  .FullMenu {
+    padding: 16px;
+
+    ul {
+      padding-top: 8px;
+
+      .link {
+        padding: 0;
+      }
+    }
+  }
+
   .menu__container {
     .menu__list {
       &--item {
