@@ -59,6 +59,10 @@
       font-size: $font-size-sm;
       font-weight: bold;
       font-family: $font-secondary;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 
@@ -71,14 +75,26 @@
 
 @media (max-width: 720px) {
   .Register {
-    padding: 16px;
+    padding: 0 16px;
 
     p {
       font-size: $font-size-ssm;
     }
+  }
+}
 
-    form {
-      width: auto;
+@media (max-width: 420px) {
+  .Register {
+    h1 {
+      font-size: 18pt;
+    }
+
+    .Register__Form {
+      width: 100%;
+
+      .Button {
+        margin-top: 4px;
+      }
     }
   }
 }
