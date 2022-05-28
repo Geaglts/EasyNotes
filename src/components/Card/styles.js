@@ -19,7 +19,8 @@ export const Container = styled.div`
   ${({ height, width }) => {
     return height && width
       ? css`
-          height: ${height};
+          height: auto;
+          min-height: ${height};
           width: ${width};
         `
       : '';

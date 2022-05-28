@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 12px;
+  padding-bottom: 12px;
 }
 
 .Categories {
@@ -28,7 +29,7 @@
     height: 37px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
   }
 
   &-light {
