@@ -1,29 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
-import 'styles/index.scss';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
-import reduxThunk from 'redux-thunk';
-import reducers from './redux/reducers';
 import Context from 'context';
 import Axios from 'axios';
 
-Axios.defaults.baseURL = process.env.API_URL;
-
 import App from 'routes/App';
+import ReduxProvider from './redux/ReduxProvider';
 
 import { GlobalStyle } from './globalStyles';
+import 'styles/index.scss';
 
-const switchCompose = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-const composeEnhancers = switchCompose(applyMiddleware(reduxThunk));
-const store = createStore(reducers, composeEnhancers);
+Axios.defaults.baseURL = process.env.API_URL;
 
 render(
   <Context.Provider>
-    <Provider store={store}>
+    <ReduxProvider>
       <GlobalStyle />
       <App />
-    </Provider>
+    </ReduxProvider>
   </Context.Provider>,
   document.getElementById('app')
 );

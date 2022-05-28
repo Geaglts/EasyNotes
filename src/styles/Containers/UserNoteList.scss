@@ -1,7 +1,7 @@
 @import '../global.scss';
 
 .UserNoteList {
-  padding: 20px;
+  padding: 20px 0;
 
   &_SearchBar {
     display: flex;
@@ -52,7 +52,6 @@
     grid-template-columns: repeat(auto-fit, 308px);
     grid-auto-rows: minmax(140px, auto);
     gap: 12px;
-    justify-content: center;
   }
 }
 
