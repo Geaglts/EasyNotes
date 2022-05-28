@@ -116,7 +116,8 @@
 
 @media (max-width: 572px) {
   .Modal {
-    display: block;
+    display: flex;
+    padding: 16px;
 
     &.dark {
       background-color: $dark;
@@ -125,5 +126,9 @@
     &.light {
       background-color: $white;
     }
+  }
+
+  .Modal__Content {
+    width: 100%;
   }
 }
