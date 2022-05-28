@@ -43,7 +43,7 @@ const Categories = () => {
   }
 
   return (
-    <Layout padding="16px 24px">
+    <Layout padding="16px 0">
       <Button label="Regresar" classNames={['Categories-GoBackButton']} onClick={onGoBack} />
       <h2 className={`Categories-${theme}-Title`}>Categories</h2>
       <div className={`Categories-${theme}-List ${theme}`}>
