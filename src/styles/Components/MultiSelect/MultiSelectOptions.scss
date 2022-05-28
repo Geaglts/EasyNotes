@@ -30,3 +30,10 @@
     }
   }
 }
+
+@media (max-width: 720px) {
+  .MultiSelectOptions {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    width: 100%;
+  }
+}
