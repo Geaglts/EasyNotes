@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { darkThemeStorage, userStorage } from 'storage';
 
 const initialState = {
-  darkTheme: false,
+  darkTheme: true,
   hasUser: false,
   token: null,
 };
@@ -11,6 +11,10 @@ function useInitialState() {
   const [state, setState] = useState(initialState);
 
   const loadState = () => {
+    const themeIsOnStorage = darkThemeStorage.isOnStorage();
+    if (!themeIsOnStorage) {
+      darkThemeStorage.set(state.darkTheme);
+    }
     setState({ darkTheme: darkThemeStorage.get(), hasUser: userStorage.get() });
   };
 

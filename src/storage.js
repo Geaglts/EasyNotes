@@ -51,6 +51,10 @@ export const darkThemeStorage = {
   set(status) {
     localStorage.setItem(DARK_MODE, status);
   },
+  isOnStorage() {
+    const exists = localStorage.getItem(DARK_MODE);
+    return exists !== null;
+  },
 };
 
 export const userStorage = {

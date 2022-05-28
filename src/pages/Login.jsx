@@ -48,7 +48,7 @@ const Login = () => {
     try {
       setLoading(true);
       const formData = new FormData(form.current);
-      const data = { email: formData.get('email'), password: formData.get('password') };
+      const data = { email: formData.get('email').trim(), password: formData.get('password') };
       const validatedData = await validate({ schema: loginSchema, data });
       if (!validatedData.approved) {
         addErrors([{ message: validatedData.message, type: 'danger' }]);
