@@ -55,8 +55,8 @@ export const Container = styled.div`
   }
 
   @media (max-width: 420px) {
-    --size: 80px;
-    padding: 4px;
+    --size: 85px;
+    padding: 8px;
   }
 `;
 

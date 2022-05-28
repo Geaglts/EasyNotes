@@ -60,14 +60,6 @@
   }
 }
 
-@media (max-width: 1275px) {
-  .UserNoteList {
-    &_NoteList {
-      grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
-    }
-  }
-}
-
 @media (max-width: 720px) {
   .UserNoteList {
     &_SearchBar {
@@ -89,14 +81,10 @@
 
 @media (max-width: 420px) {
   .UserNoteList {
-    &_SearchBar {
-      @include centerWidth(90%);
-    }
+    padding-top: 12px;
 
-    &_NoteList {
-      @include centerWidth(90%);
-      margin-top: 12px;
-      grid-template-columns: 1fr;
+    &_SearchBar {
+      margin-bottom: 12px;
     }
   }
 }
