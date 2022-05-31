@@ -2,12 +2,16 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdEmail } from 'react-icons/md';
 import Axios from 'axios';
-import 'styles/pages/EmailSended.scss';
+import { Helmet } from 'react-helmet';
 
 import { Context } from '../Context';
+
+import { APP_NAME } from '@constants';
 import storage, { STORAGE } from 'utils/storage';
 import Toast from 'components/Toast';
 import useFormError from 'hooks/useFormError';
+
+import 'styles/pages/EmailSended.scss';
 
 const EmailSended = () => {
   const navigate = useNavigate();
@@ -28,20 +32,25 @@ const EmailSended = () => {
   };
 
   return (
-    <div className={`EmailSended${themeClass}`}>
-      <MdEmail className="EmailSended__Icon" />
-      <p className="EmailSended__DescriptionLabel">Te hemos enviado un correo de confirmación, por favor revisa tu bandeja de entrada.</p>
-      <Link className="EmailSended__Link" to="/">
-        Ir al inicio
-      </Link>
-      <div className="EmailSended__Resend">
-        <p className="EmailSended__ResendLabel">¿No recibiste el correo?</p>
-        <button className="EmailSended__ResendButton" onClick={handleResendEmail}>
-          Reenvíame el correo
-        </button>
+    <>
+      <Helmet>
+        <title>{APP_NAME} | Correo de confirmación</title>
+      </Helmet>
+      <div className={`EmailSended${themeClass}`}>
+        <MdEmail className="EmailSended__Icon" />
+        <p className="EmailSended__DescriptionLabel">Te hemos enviado un correo de confirmación, por favor revisa tu bandeja de entrada.</p>
+        <Link className="EmailSended__Link" to="/">
+          Ir al inicio
+        </Link>
+        <div className="EmailSended__Resend">
+          <p className="EmailSended__ResendLabel">¿No recibiste el correo?</p>
+          <button className="EmailSended__ResendButton" onClick={handleResendEmail}>
+            Reenvíame el correo
+          </button>
+        </div>
+        <Toast messages={formErrors} />
       </div>
-      <Toast messages={formErrors} />
-    </div>
+    </>
   );
 };
 

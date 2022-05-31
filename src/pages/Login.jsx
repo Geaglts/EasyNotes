@@ -1,8 +1,7 @@
 import React, { useRef, useContext, useState, useEffect } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
-
-import 'styles/pages/Login.scss';
+import { Helmet } from 'react-helmet';
 
 import InputForm from 'components/InputForm';
 import Button from 'components/Button';
@@ -15,12 +14,14 @@ import loginDarkImage from 'assets/images/login__dark.svg';
 
 import { Context } from '../Context';
 
-import { BROWSER_REMEMBER_USER_NAME } from '@constants';
+import { BROWSER_REMEMBER_USER_NAME, APP_NAME } from '@constants';
 import { browserStorage } from 'storage';
 import validate from 'utils/validate';
 import useformError from 'hooks/useFormError';
 import { loginSchema } from 'schemas/login.schema';
 import { isEmpty } from 'utils/isFunctions';
+
+import 'styles/pages/Login.scss';
 
 const Login = () => {
   const form = useRef(null);
@@ -104,6 +105,9 @@ const Login = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{APP_NAME} | Inicio de sesión</title>
+      </Helmet>
       <div className={`Login${themeClass}`}>
         <section className="Login__Left">
           <div className="Login__Form--container">

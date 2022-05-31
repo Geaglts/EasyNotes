@@ -3,12 +3,14 @@ import { useSearchParams, Navigate, Link } from 'react-router-dom';
 import Axios from 'axios';
 import { BsCheckCircle } from 'react-icons/bs';
 import { BiLogInCircle } from 'react-icons/bi';
+import { Helmet } from 'react-helmet';
 
 import TokenExpired from '@fragments/ActivateAccount/TokenExpired';
-
-import 'styles/pages/ActivateAccount.scss';
+import { APP_NAME } from '@constants';
 
 import { Context } from 'context';
+
+import 'styles/pages/ActivateAccount.scss';
 
 const ActivateAccount = () => {
   const { theme } = useContext(Context);
@@ -48,15 +50,20 @@ const ActivateAccount = () => {
   }
 
   return (
-    <div className={`ActivateAccount ${theme}`}>
-      <div className="ActivateAccount__Content">
-        <BsCheckCircle className="ActivateAccount__Icon" />
-        <p className="ActivateAccount__Info">Bienvenida, Bienvenide, Bienvenido ✨</p>
-        <Link to="/login" className="ActivateAccount__LinkToLogin">
-          Iniciar Sesión <BiLogInCircle />
-        </Link>
+    <>
+      <Helmet>
+        <title>{APP_NAME} | Cuenta activada correctamente</title>
+      </Helmet>
+      <div className={`ActivateAccount ${theme}`}>
+        <div className="ActivateAccount__Content">
+          <BsCheckCircle className="ActivateAccount__Icon" />
+          <p className="ActivateAccount__Info">Bienvenida, Bienvenide, Bienvenido ✨</p>
+          <Link to="/login" className="ActivateAccount__LinkToLogin">
+            Iniciar Sesión <BiLogInCircle />
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
