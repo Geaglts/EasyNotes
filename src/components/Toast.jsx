@@ -1,5 +1,5 @@
 import React from 'react';
-import 'styles/Components/Toast.scss';
+import '@styles/Components/Toast.scss';
 
 const Toast = ({ messages }) => {
   return (

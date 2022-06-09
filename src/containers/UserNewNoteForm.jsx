@@ -10,7 +10,7 @@ import { addNote } from 'actions/userNotes.actions';
 
 import FormControl from 'utils/classes/FormControl';
 
-import 'styles/Containers/UserNewNoteForm.scss';
+import '@styles/Containers/UserNewNoteForm.scss';
 import Button from 'components/Button';
 
 export const UserNewNoteForm = ({ afterCreate = () => {} }) => {

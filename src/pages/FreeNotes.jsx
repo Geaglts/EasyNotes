@@ -6,7 +6,7 @@ import { APP_NAME } from '@constants';
 import AddNoteForm from 'containers/AddNoteForm';
 import NoteList from 'containers/NoteList';
 
-import 'styles/pages/FreeNotes.scss';
+import '@styles/pages/FreeNotes.scss';
 
 function FreeNotes() {
   const { darkTheme } = useContext(Context);

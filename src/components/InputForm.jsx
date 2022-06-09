@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'styles/Components/InputForm.scss';
+import '@styles/Components/InputForm.scss';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
 const InputForm = ({ labelName, isPassword = false, type = 'text', error, ...rest }) => {

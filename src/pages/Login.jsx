@@ -21,7 +21,7 @@ import useformError from 'hooks/useFormError';
 import { loginSchema } from 'schemas/login.schema';
 import { isEmpty } from 'utils/isFunctions';
 
-import 'styles/pages/Login.scss';
+import '@styles/pages/Login.scss';
 
 const Login = () => {
   const form = useRef(null);

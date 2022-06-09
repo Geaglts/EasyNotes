@@ -7,7 +7,7 @@ import App from 'routes/App';
 import ReduxProvider from './redux/ReduxProvider';
 
 import { GlobalStyle } from './globalStyles';
-import 'styles/index.scss';
+import '@styles/index.scss';
 
 Axios.defaults.baseURL = process.env.API_URL;
 

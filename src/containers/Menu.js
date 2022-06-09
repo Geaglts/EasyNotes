@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { BiMenu } from 'react-icons/bi';
-import 'styles/Containers/Menu.scss';
+import '@styles/Containers/Menu.scss';
 
 import { Context } from '../Context';
 import { APP_NAME } from '@constants';

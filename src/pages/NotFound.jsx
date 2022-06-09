@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from '../Context';
 import { Link } from 'react-router-dom';
-import 'styles/pages/NotFound.scss';
+import '@styles/pages/NotFound.scss';
 
 import notFoundImage from '../assets/images/not_found.svg';
 

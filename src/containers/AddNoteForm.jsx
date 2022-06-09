@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { MdSpa, MdSort } from 'react-icons/md';
-import 'styles/Containers/AddNoteForm.scss';
+import '@styles/Containers/AddNoteForm.scss';
 
 import Button from 'components/Button';
 import Input from 'components/Input';

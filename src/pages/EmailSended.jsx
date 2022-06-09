@@ -11,7 +11,7 @@ import storage, { STORAGE } from 'utils/storage';
 import Toast from 'components/Toast';
 import useFormError from 'hooks/useFormError';
 
-import 'styles/pages/EmailSended.scss';
+import '@styles/pages/EmailSended.scss';
 
 const EmailSended = () => {
   const navigate = useNavigate();

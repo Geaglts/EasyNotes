@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import 'styles/Containers/UserNoteList.scss';
+import '@styles/Containers/UserNoteList.scss';
 
 import { UserNote } from 'components/Note';
 import { Loading } from 'components/Loading';

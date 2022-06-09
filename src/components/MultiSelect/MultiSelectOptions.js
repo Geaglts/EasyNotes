@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import 'styles/Components/MultiSelect/MultiSelectOptions.scss';
+import '@styles/Components/MultiSelect/MultiSelectOptions.scss';
 
 import { Context } from 'context';
 

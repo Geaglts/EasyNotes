@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { BsGearFill } from 'react-icons/bs';
-import 'styles/Components/MultiSelect/MultiSelect.scss';
+import '@styles/Components/MultiSelect/MultiSelect.scss';
 
 import { Context } from 'context';
 

@@ -14,7 +14,7 @@ import { APP_NAME } from '@constants';
 import { Context } from 'context';
 import { removeCategory, getCategories } from 'actions/categories.actions';
 
-import 'styles/pages/Categories.scss';
+import '@styles/pages/Categories.scss';
 
 const Categories = () => {
   const { theme } = useContext(Context);

@@ -15,7 +15,7 @@ import useFormError from 'hooks/useFormError';
 import { APP_NAME } from '@constants';
 import FormControl from 'utils/classes/FormControl';
 
-import 'styles/pages/RecoveryPassword.scss';
+import '@styles/pages/RecoveryPassword.scss';
 
 const RecoveryPassword = () => {
   const { theme } = useContext(Context);

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { BiErrorCircle, BiSend, BiHomeAlt } from 'react-icons/bi';
 
-import 'styles/fragments/ActivateAccount/TokenExpired.scss';
+import '@styles/fragments/ActivateAccount/TokenExpired.scss';
 
 import { Context } from 'context';
 

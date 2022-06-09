@@ -7,7 +7,7 @@ import Button from 'components/Button';
 
 import FormControl from 'utils/classes/FormControl';
 
-import styles from 'styles/Containers/CheckNotePin.module.scss';
+import styles from '@styles/Containers/CheckNotePin.module.scss';
 
 const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
   const [callback, setCallback] = useState(null);

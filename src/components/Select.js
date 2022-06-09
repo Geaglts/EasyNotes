@@ -1,5 +1,5 @@
 import React from 'react';
-import 'styles/Components/select.scss';
+import '@styles/Components/select.scss';
 
 export const Select = ({ children, label, ...rest }) => {
   return (

@@ -16,7 +16,7 @@ import storage, { STORAGE } from 'utils/storage';
 import validate from 'utils/validate';
 import { registerSchema } from 'schemas/register.schema';
 
-import 'styles/pages/Register.scss';
+import '@styles/pages/Register.scss';
 
 const Register = () => {
   const navigate = useNavigate();

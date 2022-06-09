@@ -10,7 +10,7 @@ import { addCategory } from 'actions/categories.actions';
 import validate from 'utils/validate';
 import { addCategorySchema } from 'schemas/category.schema';
 
-import 'styles/Containers/CategoryForm.scss';
+import '@styles/Containers/CategoryForm.scss';
 
 const CategoryForm = ({ afterSubmit }) => {
   const form = useRef();

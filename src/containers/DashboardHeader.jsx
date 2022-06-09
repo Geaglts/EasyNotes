@@ -7,7 +7,7 @@ import Modal from 'components/Modal';
 import { UserNewNoteForm } from './UserNewNoteForm';
 import CategoryForm from './CategoryForm';
 
-import 'styles/Containers/DashboardHeader.scss';
+import '@styles/Containers/DashboardHeader.scss';
 
 export const DashboardHeader = () => {
   const userNotes = useSelector((store) => store.userNotesReducer);

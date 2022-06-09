@@ -10,7 +10,7 @@ import { APP_NAME } from '@constants';
 
 import { Context } from 'context';
 
-import 'styles/pages/ActivateAccount.scss';
+import '@styles/pages/ActivateAccount.scss';
 
 const ActivateAccount = () => {
   const { theme } = useContext(Context);

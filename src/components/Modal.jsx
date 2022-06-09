@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { AiFillCloseSquare, AiOutlineCloseCircle } from 'react-icons/ai';
-import 'styles/Containers/Modal.scss';
+import '@styles/Containers/Modal.scss';
 
 import { Context } from '../Context';
 
