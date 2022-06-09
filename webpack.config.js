@@ -3,6 +3,8 @@ const HtmlPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const WebpackPwaManifestPlugin = require('webpack-pwa-manifest');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = (env) => {
   const isDevelopment = env.NODE_ENV !== 'production';
@@ -82,6 +84,34 @@ module.exports = (env) => {
         systemvars: true,
       }),
       isDevelopment && new ReactRefreshWebpackPlugin(),
+      new WebpackPwaManifestPlugin({
+        name: "Hriiapa' | Administra tus notas de manera segura | Administra tus notas de manera segura",
+        short_name: "Hriiapa'",
+        description: "Hriaapa' es un sistema preocupado por tu seguridad que te ayuda a crear y administrar notas de manera segura.",
+        background_color: '#ffffff',
+        theme_color: '#5789ff',
+        start_url: '/',
+        icons: [
+          {
+            src: path.resolve('public/icon.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('icons'),
+            ios: true,
+            purpose: 'maskable',
+          },
+        ],
+      }),
+      new WorkboxWebpackPlugin.GenerateSW({
+        runtimeCaching: [
+          {
+            urlPattern: new RegExp('https://easy-notes-api.herokuapp.com'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'api',
+            },
+          },
+        ],
+      }),
     ].filter(Boolean),
     optimization: {
       minimize: true,

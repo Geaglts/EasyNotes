@@ -30,5 +30,22 @@
   <body>
     <div id="app"></div>
     <div id="modal"></div>
+    <noscript>
+      <h3>Esta aplicación necesita JavaScript para funcionar 🚀</h3>
+    </noscript>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker
+            .register('./service-worker.js')
+            .then((registration) => {
+              console.log('SW Registered');
+            })
+            .catch(() => {
+              console.log("SW can't registered");
+            });
+        });
+      }
+    </script>
   </body>
 </html>
