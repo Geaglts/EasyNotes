@@ -10,3 +10,5 @@ tareitas
 *.todos?
 *.temp
 .env
+
+pnpm-lock.yaml
