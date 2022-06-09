@@ -97,7 +97,7 @@ module.exports = (env) => {
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('icons'),
             ios: true,
-            purpose: 'maskable',
+            purpose: 'any maskable',
           },
         ],
       }),
