@@ -254,8 +254,8 @@
       }
     }
 
-    &-content {
-      height: 130px;
+    &-content.SimpleTextArea {
+      height: 200px;
     }
   }
 }
@@ -278,6 +278,16 @@
       color: $primary;
       transition: all 250ms ease;
       cursor: pointer;
+    }
+  }
+}
+
+@media (max-height: 740px) {
+  .UserNote {
+    &_UpdateModal {
+      &-content.SimpleTextArea {
+        height: 180px;
+      }
     }
   }
 }
