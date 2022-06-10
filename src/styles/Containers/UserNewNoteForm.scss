@@ -61,7 +61,7 @@
   margin-top: 8px;
   height: 100%;
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto auto auto auto;
   gap: 8px;
 
   .icon {
@@ -95,10 +95,11 @@
   }
 }
 
-@media (max-height: 617px) {
+@media (max-height: 750px) {
   .UserNewNoteForm {
+    gap: 4px;
     .unnf_sta {
-      height: 146px;
+      height: 140px;
     }
   }
 }
