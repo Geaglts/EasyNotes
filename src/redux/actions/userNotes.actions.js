@@ -1,6 +1,8 @@
-import { USER_NOTES_TYPES } from '../reducers/userNotes.reducers';
 import axios from 'axios';
+import { USER_NOTES_TYPES } from '../reducers/userNotes.reducers';
 import { getNotesWithPagination } from '@api/notes.api';
+import filterByName from 'utils/filters/byName';
+import FormControl from 'utils/classes/FormControl';
 
 const ROUTE_NOTE_V1 = '/api/v1/notes';
 
@@ -52,4 +54,13 @@ export const updateNote = (updatedNoteValues, id) => async (dispatch) => {
       payload: '🚧: ' + 'No se pudo actualizar',
     });
   }
+};
+
+export const filterLocal = (input) => (dispatch, getState) => {
+  const { userNotes } = getState().userNotesReducer;
+  const notesFinded = input ? filterByName(input, userNotes) : userNotes;
+  dispatch({
+    type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
+    payload: notesFinded,
+  });
 };

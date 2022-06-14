@@ -4,6 +4,7 @@ export const USER_NOTES_TYPES = {
   USER_NOTES_REMOVE: 'USER_NOTES_REMOVE',
   USER_NOTES_LOADING: 'USER_NOTES_LOADING',
   USER_NOTES_ERROR: 'USER_NOTES_ERROR',
+  USER_NOTES_FILTER_LOCAL: 'USER_NOTES_FILTER_LOCAL',
 };
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   numberOfNotes: 0,
   error: null,
   loading: false,
+  filtered: null,
 };
 
 function userNotesReducer(state = initialState, action) {
@@ -23,6 +25,7 @@ function userNotesReducer(state = initialState, action) {
         userNotes: action.payload.noteList,
         numberOfNotes: action.payload.length,
         pagination: action.payload.pagination,
+        filtered: null,
       };
     }
     case USER_NOTES_TYPES.USER_NOTES_ADD: {
@@ -36,6 +39,9 @@ function userNotesReducer(state = initialState, action) {
     }
     case USER_NOTES_TYPES.USER_NOTES_ERROR: {
       return { ...state, error: action.payload, loading: false };
+    }
+    case USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL: {
+      return { ...state, filtered: action.payload };
     }
     default: {
       return state;

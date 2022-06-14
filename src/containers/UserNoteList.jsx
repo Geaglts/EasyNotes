@@ -14,6 +14,7 @@ import {
 } from 'components/MultiSelect';
 
 import { getCategories } from 'actions/categories.actions';
+import { filterLocal } from 'actions/userNotes.actions';
 
 import FormControl from 'utils/classes/FormControl';
 
@@ -43,6 +44,9 @@ export const UserNoteList = ({ children, notes }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
+  const { userNotes, filtered: filteredNotes } = useSelector(
+    (state) => state.userNotesReducer
+  );
 
   useEffect(() => {
     dispatch(getCategories());
@@ -96,7 +100,7 @@ export const UserNoteList = ({ children, notes }) => {
     <>
       <div className="UserNoteList">
         <div className="UserNoteList_SearchBar">
-          <SearchInput />
+          <SearchInput onLocalFilter={filterLocal} />
           {!categories.loading && (
             <div className="UserNoteList_SearchBar-FilterByCategory">
               <MultiSelect
@@ -140,7 +144,7 @@ export const UserNoteList = ({ children, notes }) => {
         </div>
         <div className="UserNoteList_Features">{children}</div>
         <div className="UserNoteList_NoteList">
-          {noteList.filter(filterNotes(noteSearched)).map((note) => (
+          {(filteredNotes || userNotes).map((note) => (
             <UserNote {...note} key={note.id} />
           ))}
         </div>

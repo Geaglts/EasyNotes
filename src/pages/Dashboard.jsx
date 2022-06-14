@@ -30,8 +30,6 @@ const Dashboard = () => {
     setPage(pagination.previous);
   };
 
-  console.log(notes);
-
   return (
     <Layout>
       <Helmet>

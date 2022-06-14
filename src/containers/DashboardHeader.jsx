@@ -31,8 +31,6 @@ export const DashboardHeader = () => {
     showAddNewNote();
   };
 
-  console.log(userNotes.pagination);
-
   return (
     <section className="DashboardHeader">
       {/* <StatCard>
