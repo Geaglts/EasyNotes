@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import '@styles/Containers/UserNoteList.scss';
 
 import { UserNote } from 'components/Note';
+import SearchInput from 'components/SearchInput';
 import {
   MultiSelect,
   MultiSelectOption,
@@ -95,11 +96,7 @@ export const UserNoteList = ({ children, notes }) => {
     <>
       <div className="UserNoteList">
         <div className="UserNoteList_SearchBar">
-          <input
-            type="text"
-            placeholder="nombre de la nota..."
-            onChange={onChangeNoteSearched}
-          />
+          <SearchInput />
           {!categories.loading && (
             <div className="UserNoteList_SearchBar-FilterByCategory">
               <MultiSelect

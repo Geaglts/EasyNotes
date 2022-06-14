@@ -1,0 +1,74 @@
+@import '../global';
+
+.container {
+  height: 35px;
+  min-width: 350px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: $white;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+}
+
+.container * {
+  border: none;
+  font-family: $font-secondary;
+  background-color: transparent;
+}
+
+.input {
+  padding-left: 8px;
+  font-size: 12pt;
+  color: $primary;
+
+  &::placeholder {
+    color: $color-gray;
+  }
+}
+
+.context {
+  margin-right: 4px;
+  background-color: $primary;
+  padding: 0.4em 0.6em;
+  color: $white;
+  font-weight: 11pt;
+  border-radius: 4px;
+}
+
+.clear {
+  margin-right: 4px;
+  width: 20px;
+  height: 20px;
+  font-size: 12pt;
+  color: $primary;
+  font-weight: 700;
+  margin-top: 1px;
+  transition: all 305ms ease-in;
+
+  &:hover {
+    transition: all 205ms ease-in;
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    min-width: 0px;
+  }
+
+  .input {
+    font-size: 11pt;
+  }
+
+  .context {
+    font-size: 10pt;
+    padding: 0.3em 0.5em;
+  }
+}
