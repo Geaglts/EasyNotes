@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { StatCard, StatCardTitle, StatCardContent, CardButton } from 'components/Card/Card';
+import {
+  StatCard,
+  StatCardTitle,
+  StatCardContent,
+  CardButton,
+} from 'components/Card/Card';
 import Modal from 'components/Modal';
 
 import { UserNewNoteForm } from './UserNewNoteForm';
@@ -26,15 +31,23 @@ export const DashboardHeader = () => {
     showAddNewNote();
   };
 
+  console.log(userNotes.pagination);
+
   return (
     <section className="DashboardHeader">
-      <StatCard>
+      {/* <StatCard>
         <StatCardTitle label="Notas creadas:" />
-        <StatCardContent label={userNotes.loading ? 0 : userNotes.numberOfNotes} />
-      </StatCard>
+        <StatCardContent
+          label={userNotes.loading ? 0 : userNotes.pagination.totalItems}
+        />
+      </StatCard> */}
       <CardButton label="Nueva Categoria" onClick={showMNewCategory} />
       <CardButton label="Nueva nota" onClick={showAddNewNote} />
-      <Modal active={modalState} changeStatus={showAddNewNote} title="Agregar una nueva nota">
+      <Modal
+        active={modalState}
+        changeStatus={showAddNewNote}
+        title="Agregar una nueva nota"
+      >
         <UserNewNoteForm afterCreate={afterCreateNote} />
       </Modal>
       <Modal active={mNewCategory} changeStatus={showMNewCategory} fullScreen>

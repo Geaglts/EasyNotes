@@ -25,6 +25,8 @@ module.exports = {
       actions: path.join(__dirname, 'src', 'redux/actions'),
       reducers: path.join(__dirname, 'src', 'redux/reducers'),
       schemas: path.join(__dirname, 'src', 'schemas'),
+      '@api': path.join(__dirname, 'src', 'api'),
+      '@icons': path.join(__dirname, 'src', 'assets', 'icons'),
       context: path.join(__dirname, 'src', 'Context.js'),
       storage: path.join(__dirname, 'src', 'storage.js'),
       '@fragments': path.join(__dirname, 'src', 'fragments'),

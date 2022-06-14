@@ -1,0 +1,27 @@
+@import '../global';
+
+.container {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.changePageButton {
+  cursor: pointer;
+  transition: transform 350ms ease;
+  &:hover {
+    transition: all 250ms ease;
+    transform: scale(1.1);
+    box-shadow: 2px 2px 8px rgba($primary, 0.4);
+  }
+}
+
+p {
+  font-size: 16pt;
+  color: $white;
+  margin: 0 8px;
+  font-weight: bold;
+  font-family: $font-secondary;
+}

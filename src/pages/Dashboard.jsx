@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
 import { Layout } from 'containers/Layout/Layout';
 import { UserNoteList } from 'containers/UserNoteList';
 import { DashboardHeader } from 'containers/DashboardHeader';
-import { Loading } from 'components/Loading';
-import Error from 'components/Error';
+import PaginationMenu from 'components/PaginationMenu';
 
 import { getNotes } from 'actions/userNotes.actions';
 
@@ -14,27 +13,24 @@ import { APP_NAME } from '@constants';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const userNotes = useSelector((state) => state.userNotesReducer);
+  const [page, setPage] = useState(1);
+  const notes = useSelector((state) => state.userNotesReducer.userNotes);
+  const loading = useSelector((state) => state.userNotesReducer.loading);
+  const pagination = useSelector((state) => state.userNotesReducer.pagination);
 
   useEffect(() => {
-    dispatch(getNotes());
-  }, []);
+    dispatch(getNotes(page));
+  }, [page]);
 
-  if (userNotes.loading) {
-    return (
-      <Layout center>
-        <Loading />
-      </Layout>
-    );
-  }
+  const nextPage = () => {
+    setPage(pagination.next);
+  };
 
-  if (userNotes.error) {
-    return (
-      <Layout center>
-        <Error errorMessage="No fue posible cargar sus notas." />
-      </Layout>
-    );
-  }
+  const previouspage = () => {
+    setPage(pagination.previous);
+  };
+
+  console.log(notes);
 
   return (
     <Layout>
@@ -42,7 +38,15 @@ const Dashboard = () => {
         <title>{APP_NAME} | Inicio</title>
       </Helmet>
       <DashboardHeader />
-      <UserNoteList notes={userNotes.userNotes} />
+      {!loading && (
+        <UserNoteList notes={notes}>
+          <PaginationMenu next={nextPage} previous={previouspage}>
+            <p>
+              {page} de {pagination.totalPages}
+            </p>
+          </PaginationMenu>
+        </UserNoteList>
+      )}
     </Layout>
   );
 };

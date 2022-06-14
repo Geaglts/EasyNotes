@@ -8,6 +8,7 @@ export const USER_NOTES_TYPES = {
 
 const initialState = {
   userNotes: [],
+  pagination: {},
   numberOfNotes: 0,
   error: null,
   loading: false,
@@ -16,7 +17,13 @@ const initialState = {
 function userNotesReducer(state = initialState, action) {
   switch (action.type) {
     case USER_NOTES_TYPES.USER_NOTES_GET: {
-      return { ...state, loading: false, userNotes: action.payload, numberOfNotes: action.payload.length };
+      return {
+        ...state,
+        loading: false,
+        userNotes: action.payload.noteList,
+        numberOfNotes: action.payload.length,
+        pagination: action.payload.pagination,
+      };
     }
     case USER_NOTES_TYPES.USER_NOTES_ADD: {
       return { ...state, loading: false, error: null };

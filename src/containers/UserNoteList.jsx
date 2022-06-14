@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import '@styles/Containers/UserNoteList.scss';
 
 import { UserNote } from 'components/Note';
-import { Loading } from 'components/Loading';
-import { MultiSelect, MultiSelectOption, MultiSelectSearchBar, MultiSelectOptions } from 'components/MultiSelect';
+import {
+  MultiSelect,
+  MultiSelectOption,
+  MultiSelectSearchBar,
+  MultiSelectOptions,
+} from 'components/MultiSelect';
 
 import { getCategories } from 'actions/categories.actions';
-import { Layout } from './Layout/Layout';
 
 import FormControl from 'utils/classes/FormControl';
 
@@ -25,14 +28,17 @@ const filterNotes =
   };
 
 const filterCategories = (categoryName) => (category) => {
-  return category.name.toLowerCase().trim().includes(categoryName.toLowerCase().trim());
+  return category.name
+    .toLowerCase()
+    .trim()
+    .includes(categoryName.toLowerCase().trim());
 };
 
-export const UserNoteList = ({ notes = [] }) => {
+export const UserNoteList = ({ children, notes }) => {
   const [noteSearched, setNoteSearched] = useState('');
-  const [noteList, setNoteList] = useState(notes);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchedCategory, setSearchedCategory] = useState('');
+  const [noteList, setNoteList] = useState(notes);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
@@ -57,14 +63,6 @@ export const UserNoteList = ({ notes = [] }) => {
     return () => setNoteList([]);
   }, [selectedCategories]);
 
-  if (categories.loading) {
-    return (
-      <Layout>
-        <Loading />
-      </Layout>
-    );
-  }
-
   const onChangeNoteSearched = (e) => {
     setNoteSearched(e.target.value);
   };
@@ -76,7 +74,9 @@ export const UserNoteList = ({ notes = [] }) => {
       return;
     }
     const { categories: categoryList } = categories;
-    const categoryIndex = categoryList.findIndex((category) => category.id === categoryId);
+    const categoryIndex = categoryList.findIndex(
+      (category) => category.id === categoryId
+    );
     if (categoryIndex > -1) {
       setSelectedCategories([...selectedCategories, categoryId]);
     }
@@ -95,39 +95,53 @@ export const UserNoteList = ({ notes = [] }) => {
     <>
       <div className="UserNoteList">
         <div className="UserNoteList_SearchBar">
-          <input type="text" placeholder="nombre de la nota..." onChange={onChangeNoteSearched} />
-          <div className="UserNoteList_SearchBar-FilterByCategory">
-            <MultiSelect
-              title="Categorias"
-              items={selectedCategories.length}
-              cleanSelection={cleanSelectedCategories}
-              cb={() => setSearchedCategory('')}
-              onClickConfig={goToCategoriesPage}
-            >
-              {({ handleShowedContent }) => {
-                return (
-                  <>
-                    <MultiSelectSearchBar
-                      type="text"
-                      placeholder="categoria"
-                      onChange={(evt) => setSearchedCategory(evt.target.value)}
-                      value={searchedCategory}
-                    />
-                    <MultiSelectOptions handleShowedContent={handleShowedContent}>
-                      {categories.categories.filter(filterCategories(searchedCategory)).map(({ id, name }) => {
-                        return (
-                          <MultiSelectOption key={id} id={id} currentSelected={selectedCategories} handleChange={onCheckCategory(id)}>
-                            {name.length < 12 ? name : name.slice(0, 9) + '...'}
-                          </MultiSelectOption>
-                        );
-                      })}
-                    </MultiSelectOptions>
-                  </>
-                );
-              }}
-            </MultiSelect>
-          </div>
+          <input
+            type="text"
+            placeholder="nombre de la nota..."
+            onChange={onChangeNoteSearched}
+          />
+          {!categories.loading && (
+            <div className="UserNoteList_SearchBar-FilterByCategory">
+              <MultiSelect
+                title="Categorias"
+                items={selectedCategories.length}
+                cleanSelection={cleanSelectedCategories}
+                cb={() => setSearchedCategory('')}
+                onClickConfig={goToCategoriesPage}
+              >
+                {({ handleShowedContent }) => {
+                  return (
+                    <>
+                      <MultiSelectSearchBar
+                        type="text"
+                        placeholder="categoria"
+                        onChange={(evt) => setSearchedCategory(evt.target.value)}
+                        value={searchedCategory}
+                      />
+                      <MultiSelectOptions handleShowedContent={handleShowedContent}>
+                        {categories.categories
+                          .filter(filterCategories(searchedCategory))
+                          .map(({ id, name }) => {
+                            return (
+                              <MultiSelectOption
+                                key={id}
+                                id={id}
+                                currentSelected={selectedCategories}
+                                handleChange={onCheckCategory(id)}
+                              >
+                                {name.length < 12 ? name : name.slice(0, 9) + '...'}
+                              </MultiSelectOption>
+                            );
+                          })}
+                      </MultiSelectOptions>
+                    </>
+                  );
+                }}
+              </MultiSelect>
+            </div>
+          )}
         </div>
+        <div className="UserNoteList_Features">{children}</div>
         <div className="UserNoteList_NoteList">
           {noteList.filter(filterNotes(noteSearched)).map((note) => (
             <UserNote {...note} key={note.id} />
