@@ -2,7 +2,12 @@ import React, { useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
-import { AiOutlineCopy, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineDelete } from 'react-icons/ai';
+import {
+  AiOutlineCopy,
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineDelete,
+} from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import '../styles/Components/Note.scss';
 
@@ -41,8 +46,16 @@ function Note({ content, title, _id, onRemoveNote }) {
       <div className="Note__Header">
         <p className="Note__Header--title">{capitalize(title)}</p>
         <div className="Note__Header--buttons">
-          <Button label="Eliminar" onClick={handleConfirmRemoveModal} style={deleteButtonStyles(darkTheme)} />
-          <Button label="Copiar" onClick={handleCopy} style={copyButtonStyles(darkTheme)} />
+          <Button
+            label="Eliminar"
+            onClick={handleConfirmRemoveModal}
+            style={deleteButtonStyles(darkTheme)}
+          />
+          <Button
+            label="Copiar"
+            onClick={handleCopy}
+            style={copyButtonStyles(darkTheme)}
+          />
         </div>
       </div>
       <div className="Note__Content">
@@ -59,7 +72,10 @@ function Note({ content, title, _id, onRemoveNote }) {
           <div className="RemoveNoteModal-icon">
             <BsFillTrashFill />
           </div>
-          <p className="RemoveNoteModal-description">Esto eliminará la nota permanentemente, ¿Estás segura de realizar esta acción?</p>
+          <p className="RemoveNoteModal-description">
+            Esto eliminará la nota permanentemente, ¿Estás segura de realizar esta
+            acción?
+          </p>
           <button onClick={handleDelete} className="RemoveNoteModal-confirm">
             Sí, elimínala
           </button>
@@ -73,7 +89,9 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
   const { theme } = useContext(Context);
   const [checkNotePin, setCheckNotePin] = useState(false);
   const dispatch = useDispatch();
-  const { title: decryptTitle, content: decryptedContent } = FormControl.decryptData({ title, content });
+  const { title: decryptTitle, content: decryptedContent } = FormControl.decryptData(
+    { title, content }
+  );
   const [hasAccess, setHasAccess] = useState(!Boolean(pin));
   const [decryptContent, setDecryptContent] = useState({ show: false, value: null });
   const [updateNoteModal, setUpdateNoteModal] = useState(false);
@@ -110,10 +128,14 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
       <div className={`UserNote ${theme}`}>
         <h3 className="UserNote__Title">{decryptTitle}</h3>
         <div className="UserNote__Content">
-          {decryptContent.show ? <NoteMultiline text={decryptContent.value} hide={onShowContent} /> : <p>{'🔥🎈'.repeat(5)}</p>}
+          {decryptContent.show ? (
+            <NoteMultiline text={decryptContent.value} hide={onShowContent} />
+          ) : (
+            <p>{'🔥🎈'.repeat(5)}</p>
+          )}
         </div>
         <div className="UserNote__Category--Container">
-          {categories.map((category) => {
+          {categories?.map((category) => {
             const name = FormControl.decryptData({ name: category.name }).name;
             return (
               <p className="UserNote__Category" key={category.id}>
@@ -123,13 +145,24 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
           })}
         </div>
         <div className="UserNote__Options">
-          <CheckNotePin pin={pin} visibility={checkNotePin} changeVisibility={toggleCheckNodePinModal}>
+          <CheckNotePin
+            pin={pin}
+            visibility={checkNotePin}
+            changeVisibility={toggleCheckNodePinModal}
+          >
             {(showValidation) => {
               return (
                 <>
-                  {decryptContent.show ? <AiOutlineEyeInvisible onClick={onShowContent} /> : <AiOutlineEye onClick={showValidation(onShowContent)} />}
+                  {decryptContent.show ? (
+                    <AiOutlineEyeInvisible onClick={onShowContent} />
+                  ) : (
+                    <AiOutlineEye onClick={showValidation(onShowContent)} />
+                  )}
                   <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
-                  <BiRefresh onClick={showValidation(toggleUpdateNoteModal)} title="Actualizar nota" />
+                  <BiRefresh
+                    onClick={showValidation(toggleUpdateNoteModal)}
+                    title="Actualizar nota"
+                  />
                 </>
               );
             }}
@@ -173,7 +206,10 @@ const NoteMultiline = ({ text, hide = () => {} }) => {
     line.length > 0 ? (
       <p key={`NoteMultiline-${index}`} className="NoteMultiline">
         {line}
-        <AiOutlineCopy className="NoteMultiline__CopyButton" onClick={copyToClipboard(line, index)} />
+        <AiOutlineCopy
+          className="NoteMultiline__CopyButton"
+          onClick={copyToClipboard(line, index)}
+        />
       </p>
     ) : (
       <br key={`NoteMultiline-${index}`} />

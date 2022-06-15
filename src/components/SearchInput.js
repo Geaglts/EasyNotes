@@ -1,16 +1,26 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import styles from '@styles/Components/SearchInput.module.scss';
 
-const SearchInput = ({ onLocalFilter }) => {
+const SearchInput = ({ onLocalFilter, onGlobalFilter, globalMode }) => {
   const [searchContext, setSearchContext] = useState(0);
   const [searchValue, setSearchValue] = useState('');
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setSearchValue('');
     dispatch(onLocalFilter(null));
+    if (searchContext === 1) {
+      setLoading(true);
+      dispatch(globalMode());
+      setLoading(false);
+    } else {
+      dispatch(globalMode(true));
+      dispatch(onLocalFilter(null));
+      setSearchValue('');
+    }
   }, [searchContext]);
 
   const handleChangeContext = () => {
@@ -19,15 +29,14 @@ const SearchInput = ({ onLocalFilter }) => {
 
   const onChangeSearchedValue = async (evt) => {
     setSearchValue(evt.target.value);
-    if (searchContext === 0) {
-      dispatch(onLocalFilter(evt.target.value));
-    }
+    dispatch(onLocalFilter(evt.target.value));
   };
 
   const clearSearchedValue = () => {
     setSearchValue('');
+    dispatch(onLocalFilter(null));
     if (searchContext === 0) {
-      dispatch(onLocalFilter(null));
+      dispatch(globalMode(true));
     }
   };
 
@@ -46,7 +55,7 @@ const SearchInput = ({ onLocalFilter }) => {
         </button>
       )}
       <button onClick={handleChangeContext} className={styles.context}>
-        {searchContext === 0 ? 'local' : 'global'}
+        {!loading && searchContext === 0 ? 'local' : 'global'}
       </button>
     </div>
   );

@@ -15,7 +15,8 @@
       "schemas/*": ["schemas/*"],
       "context": ["Context.js"],
       "storage/*": ["storage/*"],
-      "@fragments/*": ["fragments/*"]
+      "@fragments/*": ["fragments/*"],
+      "@api/*": ["api/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

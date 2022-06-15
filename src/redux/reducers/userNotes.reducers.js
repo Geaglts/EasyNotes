@@ -5,6 +5,7 @@ export const USER_NOTES_TYPES = {
   USER_NOTES_LOADING: 'USER_NOTES_LOADING',
   USER_NOTES_ERROR: 'USER_NOTES_ERROR',
   USER_NOTES_FILTER_LOCAL: 'USER_NOTES_FILTER_LOCAL',
+  USER_NOTES_FILL_GLOBAL_NOTES: 'USER_NOTES_FILL_GLOBAL_NOTES',
 };
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   error: null,
   loading: false,
   filtered: null,
+  globalNotes: [],
 };
 
 function userNotesReducer(state = initialState, action) {
@@ -42,6 +44,9 @@ function userNotesReducer(state = initialState, action) {
     }
     case USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL: {
       return { ...state, filtered: action.payload };
+    }
+    case USER_NOTES_TYPES.USER_NOTES_FILL_GLOBAL_NOTES: {
+      return { ...state, globalNotes: action.payload };
     }
     default: {
       return state;

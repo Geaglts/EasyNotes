@@ -14,7 +14,7 @@ import {
 } from 'components/MultiSelect';
 
 import { getCategories } from 'actions/categories.actions';
-import { filterLocal } from 'actions/userNotes.actions';
+import { filterLocal, fillGlobalNotes } from 'actions/userNotes.actions';
 
 import FormControl from 'utils/classes/FormControl';
 
@@ -100,7 +100,7 @@ export const UserNoteList = ({ children, notes }) => {
     <>
       <div className="UserNoteList">
         <div className="UserNoteList_SearchBar">
-          <SearchInput onLocalFilter={filterLocal} />
+          <SearchInput onLocalFilter={filterLocal} globalMode={fillGlobalNotes} />
           {!categories.loading && (
             <div className="UserNoteList_SearchBar-FilterByCategory">
               <MultiSelect

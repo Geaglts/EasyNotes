@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { USER_NOTES_TYPES } from '../reducers/userNotes.reducers';
-import { getNotesWithPagination } from '@api/notes.api';
+import {
+  getNotesWithPagination,
+  getNotesWithCustomAttributess,
+  getManyNotesById,
+} from '@api/notes.api';
 import filterByName from 'utils/filters/byName';
-import FormControl from 'utils/classes/FormControl';
 
 const ROUTE_NOTE_V1 = '/api/v1/notes';
 
@@ -56,11 +59,40 @@ export const updateNote = (updatedNoteValues, id) => async (dispatch) => {
   }
 };
 
-export const filterLocal = (input) => (dispatch, getState) => {
-  const { userNotes } = getState().userNotesReducer;
-  const notesFinded = input ? filterByName(input, userNotes) : userNotes;
-  dispatch({
-    type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
-    payload: notesFinded,
-  });
+export const filterLocal = (input) => async (dispatch, getState) => {
+  if (!input) {
+    dispatch({
+      type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
+      payload: null,
+    });
+  } else {
+    let findIn = null;
+    const { userNotes, globalNotes } = getState().userNotesReducer;
+    const globalNotesHaveItems = globalNotes.length > 0;
+    findIn = globalNotesHaveItems ? globalNotes : userNotes;
+    const notesFinded = input ? filterByName(input, findIn) : userNotes;
+    if (globalNotesHaveItems) {
+      const ids = notesFinded.map(({ id }) => id);
+      const notesWithSameId = await getManyNotesById(ids);
+      dispatch({
+        type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
+        payload: notesWithSameId,
+      });
+    } else {
+      dispatch({
+        type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
+        payload: notesFinded,
+      });
+    }
+  }
 };
+
+export const fillGlobalNotes =
+  (clear = false) =>
+  async (dispatch) => {
+    const notes = await getNotesWithCustomAttributess(['title']);
+    dispatch({
+      type: USER_NOTES_TYPES.USER_NOTES_FILL_GLOBAL_NOTES,
+      payload: clear ? [] : notes,
+    });
+  };
