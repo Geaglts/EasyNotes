@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet';
 import TokenExpired from '@fragments/ActivateAccount/TokenExpired';
 import { APP_NAME } from '@constants';
 
-import { Context } from 'context';
+import { Context } from '@context';
 
 import '@styles/pages/ActivateAccount.scss';
 
@@ -57,7 +57,9 @@ const ActivateAccount = () => {
       <div className={`ActivateAccount ${theme}`}>
         <div className="ActivateAccount__Content">
           <BsCheckCircle className="ActivateAccount__Icon" />
-          <p className="ActivateAccount__Info">Bienvenida, Bienvenide, Bienvenido ✨</p>
+          <p className="ActivateAccount__Info">
+            Bienvenida, Bienvenide, Bienvenido ✨
+          </p>
           <Link to="/login" className="ActivateAccount__LinkToLogin">
             Iniciar Sesión <BiLogInCircle />
           </Link>

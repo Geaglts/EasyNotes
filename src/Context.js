@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext } from 'react';
-import useInitialState from 'hooks/useInitialState';
+import useInitialState from '@hooks/useInitialState';
 
 export const Context = createContext();
 

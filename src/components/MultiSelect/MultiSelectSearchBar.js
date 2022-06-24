@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { colors } from '@constants';
 
-import { Context } from 'context';
+import { Context } from '@context';
 
 export const Input = styled.input`
   width: 100%;

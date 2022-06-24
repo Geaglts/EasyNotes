@@ -3,21 +3,21 @@ import { connect } from 'react-redux';
 import { MdSpa, MdSort } from 'react-icons/md';
 import '@styles/Containers/AddNoteForm.scss';
 
-import Button from 'components/Button';
-import Input from 'components/Input';
-import TextArea from 'components/TextArea';
-import Toast from 'components/Toast';
+import Button from '@components/Button';
+import Input from '@components/Input';
+import TextArea from '@components/TextArea';
+import Toast from '@components/Toast';
 
-import { Context } from 'context';
-import { addNote } from 'actions/notes.actions';
-import useFormError from 'hooks/useFormError';
+import { Context } from '@context';
+import { addNote } from '@actions/notes.actions';
+import useFormError from '@hooks/useFormError';
 
-import { noteStorage } from 'storage';
-import { isEmpty } from 'utils/isFunctions';
+import { noteStorage } from '@storage';
+import { isEmpty } from '@utils/isFunctions';
 
 // Validations
-import validate from 'utils/validate';
-import { newNoteSchema } from 'schemas/newNote.schema';
+import validate from '@utils/validate';
+import { newNoteSchema } from '@schemas/newNote.schema';
 
 function AddNoteForm({ onAddTodo }) {
   const { darkTheme } = useContext(Context);
@@ -28,7 +28,10 @@ function AddNoteForm({ onAddTodo }) {
 
   const handleCopy = () => {
     const formData = new FormData(form.current);
-    const { title, content } = { title: formData.get('title'), content: formData.get('content') };
+    const { title, content } = {
+      title: formData.get('title'),
+      content: formData.get('content'),
+    };
     if (isEmpty(title) || isEmpty(content)) {
       alert('No hay nada que copiar');
     } else {
@@ -52,12 +55,29 @@ function AddNoteForm({ onAddTodo }) {
 
   return (
     <>
-      <form ref={form} onSubmit={onSubmitForm} className={`AddNoteForm ${themeClass}`}>
+      <form
+        ref={form}
+        onSubmit={onSubmitForm}
+        className={`AddNoteForm ${themeClass}`}
+      >
         <div className="AddNoteForm__Title">
-          <Input name="title" Icon={<MdSpa />} placeholder="¿Cuál es el nombre de tu nota?" />
-          <Button type="submit" label="Agregar nota" style={AddNoteButtonStyles(darkTheme)} />
+          <Input
+            name="title"
+            Icon={<MdSpa />}
+            placeholder="¿Cuál es el nombre de tu nota?"
+          />
+          <Button
+            type="submit"
+            label="Agregar nota"
+            style={AddNoteButtonStyles(darkTheme)}
+          />
         </div>
-        <TextArea name="content" Icon={<MdSort />} placeholder="Creo que..." rows={5} />
+        <TextArea
+          name="content"
+          Icon={<MdSort />}
+          placeholder="Creo que..."
+          rows={5}
+        />
         <div className="AddNoteForm__CopyButton--container">
           <Button onClick={handleCopy} label="Copiar" />
         </div>

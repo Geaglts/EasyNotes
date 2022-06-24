@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { darkThemeStorage, userStorage } from 'storage';
+import { darkThemeStorage, userStorage } from '@storage';
 
 const initialState = {
   darkTheme: true,

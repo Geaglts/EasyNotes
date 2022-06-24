@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { CategoryTypes } from 'reducers/categories.reducers';
+import { CategoryTypes } from '@reducers/categories.reducers';
 import { uiLoading } from './ui.actions';
-import FormControl from 'utils/classes/FormControl';
+import FormControl from '@utils/classes/FormControl';
 
 export const getCategories = () => async (dispatch) => {
   try {

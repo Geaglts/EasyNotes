@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-import { Layout } from 'containers/Layout/Layout';
-import { UserNoteList } from 'containers/UserNoteList';
-import { DashboardHeader } from 'containers/DashboardHeader';
-import PaginationMenu from 'components/PaginationMenu';
+import { Layout } from '@containers/Layout/Layout';
+import { UserNoteList } from '@containers/UserNoteList';
+import { DashboardHeader } from '@containers/DashboardHeader';
+import PaginationMenu from '@components/PaginationMenu';
 
-import { getNotes } from 'actions/userNotes.actions';
+import { getNotes } from '@actions/userNotes.actions';
 
 import { APP_NAME } from '@constants';
 

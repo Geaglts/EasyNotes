@@ -3,23 +3,23 @@ import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 
-import InputForm from 'components/InputForm';
-import Button from 'components/Button';
-import Toast from 'components/Toast';
-import { Loading } from 'components/Loading';
-import { Layout } from 'containers/Layout/Layout';
+import InputForm from '@components/InputForm';
+import Button from '@components/Button';
+import Toast from '@components/Toast';
+import { Loading } from '@components/Loading';
+import { Layout } from '@containers/Layout/Layout';
 
-import loginLightImage from 'assets/images/login.svg';
-import loginDarkImage from 'assets/images/login__dark.svg';
+import loginLightImage from '@assets/images/login.svg';
+import loginDarkImage from '@assets/images/login__dark.svg';
 
 import { Context } from '../Context';
 
 import { BROWSER_REMEMBER_USER_NAME, APP_NAME } from '@constants';
-import { browserStorage } from 'storage';
-import validate from 'utils/validate';
-import useformError from 'hooks/useFormError';
-import { loginSchema } from 'schemas/login.schema';
-import { isEmpty } from 'utils/isFunctions';
+import { browserStorage } from '@storage';
+import validate from '@utils/validate';
+import useformError from '@hooks/useFormError';
+import { loginSchema } from '@schemas/login.schema';
+import { isEmpty } from '@utils/isFunctions';
 
 import '@styles/pages/Login.scss';
 
@@ -28,7 +28,9 @@ const Login = () => {
   const rememberUserCheckboxRef = useRef(null);
   const { darkTheme, changeUserStatus, hasUser } = useContext(Context);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState(browserStorage.get(BROWSER_REMEMBER_USER_NAME) || '');
+  const [email, setEmail] = useState(
+    browserStorage.get(BROWSER_REMEMBER_USER_NAME) || ''
+  );
   const navigate = useNavigate();
   const { formErrors, addErrors } = useformError();
 
@@ -49,7 +51,10 @@ const Login = () => {
     try {
       setLoading(true);
       const formData = new FormData(form.current);
-      const data = { email: formData.get('email').trim(), password: formData.get('password') };
+      const data = {
+        email: formData.get('email').trim(),
+        password: formData.get('password'),
+      };
       const validatedData = await validate({ schema: loginSchema, data });
       if (!validatedData.approved) {
         addErrors([{ message: validatedData.message, type: 'danger' }]);
@@ -124,7 +129,13 @@ const Login = () => {
                 autoComplete="off"
                 required
               />
-              <InputForm labelName="Contraseña:" name="password" placeholder="contraseña" isPassword required />
+              <InputForm
+                labelName="Contraseña:"
+                name="password"
+                placeholder="contraseña"
+                isPassword
+                required
+              />
               <div className="Login__Form--RememberUser">
                 <input
                   ref={rememberUserCheckboxRef}
@@ -146,7 +157,10 @@ const Login = () => {
           </div>
         </section>
         <section className="Login__Right">
-          <img src={darkTheme ? loginDarkImage : loginLightImage} alt="login easy notes" />
+          <img
+            src={darkTheme ? loginDarkImage : loginLightImage}
+            alt="login easy notes"
+          />
         </section>
       </div>
       <Toast messages={formErrors} />

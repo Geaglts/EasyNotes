@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
 
-import Modal from 'components/Modal';
-import { SimpleInput } from 'components/Input';
-import Button from 'components/Button';
+import Modal from '@components/Modal';
+import { SimpleInput } from '@components/Input';
+import Button from '@components/Button';
 
-import FormControl from 'utils/classes/FormControl';
+import FormControl from '@utils/classes/FormControl';
 
 import styles from '@styles/Containers/CheckNotePin.module.scss';
 
@@ -37,7 +37,9 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
       hasAuthorization = inputValue === decrypedPin;
     } else {
       try {
-        const { data } = await axios.post('/api/v1/users/password-validation', { password: inputValue });
+        const { data } = await axios.post('/api/v1/users/password-validation', {
+          password: inputValue,
+        });
         hasAuthorization = data;
       } catch {}
     }
@@ -56,12 +58,18 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
   return (
     <>
       {children(showValidation)}
-      <Modal title={`Verificación  de ${forgotPin ? 'Contraseña' : 'PIN'}`} active={visibility} changeStatus={changeVisibility}>
+      <Modal
+        title={`Verificación  de ${forgotPin ? 'Contraseña' : 'PIN'}`}
+        active={visibility}
+        changeStatus={changeVisibility}
+      >
         <div className={styles.Container}>
           <SimpleInput
             type={forgotPin ? 'password' : 'text'}
             ref={pinInput}
-            placeholder={`Ingresa ${forgotPin ? 'tu Contraseña' : 'el PIN de tu Nota'}`}
+            placeholder={`Ingresa ${
+              forgotPin ? 'tu Contraseña' : 'el PIN de tu Nota'
+            }`}
           />
           <Button label="Abrir" onClick={verifyPin} classNames={[styles.Button]} />
           <button className={styles.ButtonForgotPin} onClick={toggleFotgotPin}>

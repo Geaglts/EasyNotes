@@ -13,8 +13,8 @@ import '../styles/Components/Note.scss';
 
 import { removeNote } from '../redux/actions/userNotes.actions';
 
-import UserUpdateNoteForm from 'containers/UserUpdateNoteForm';
-import CheckNotePin from 'containers/CheckNotePin';
+import UserUpdateNoteForm from '@containers/UserUpdateNoteForm';
+import CheckNotePin from '@containers/CheckNotePin';
 
 import { Context } from '../Context';
 import Button, { ConfirmButton } from './Button';
@@ -22,8 +22,8 @@ import Modal from './Modal';
 
 import { noteStorage } from '../storage';
 
-import capitalize from 'utils/capitalize';
-import FormControl from 'utils/classes/FormControl';
+import capitalize from '@utils/capitalize';
+import FormControl from '@utils/classes/FormControl';
 
 function Note({ content, title, _id, onRemoveNote }) {
   const { darkTheme } = useContext(Context);

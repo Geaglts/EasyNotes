@@ -5,7 +5,7 @@ import {
   getNotesWithCustomAttributess,
   getManyNotesById,
 } from '@api/notes.api';
-import filterByName from 'utils/filters/byName';
+import filterByName from '@utils/filters/byName';
 
 const ROUTE_NOTE_V1 = '/api/v1/notes';
 

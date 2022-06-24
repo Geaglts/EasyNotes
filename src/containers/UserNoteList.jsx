@@ -4,19 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import '@styles/Containers/UserNoteList.scss';
 
-import { UserNote } from 'components/Note';
-import SearchInput from 'components/SearchInput';
+import { UserNote } from '@components/Note';
+import SearchInput from '@components/SearchInput';
 import {
   MultiSelect,
   MultiSelectOption,
   MultiSelectSearchBar,
   MultiSelectOptions,
-} from 'components/MultiSelect';
+} from '@components/MultiSelect';
 
-import { getCategories } from 'actions/categories.actions';
-import { filterLocal, fillGlobalNotes } from 'actions/userNotes.actions';
+import { getCategories } from '@actions/categories.actions';
+import { filterLocal, fillGlobalNotes } from '@actions/userNotes.actions';
 
-import FormControl from 'utils/classes/FormControl';
+import FormControl from '@utils/classes/FormControl';
 
 const filterNotes =
   (noteSearched = '') =>
