@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 
-import {
-  StatCard,
-  StatCardTitle,
-  StatCardContent,
-  CardButton,
-} from '@components/Card/Card';
+import { CardButton } from '@components/Card/Card';
 import Modal from '@components/Modal';
 
 import { UserNewNoteForm } from './UserNewNoteForm';
@@ -15,7 +9,6 @@ import CategoryForm from './CategoryForm';
 import '@styles/Containers/DashboardHeader.scss';
 
 export const DashboardHeader = () => {
-  const userNotes = useSelector((store) => store.userNotesReducer);
   const [modalState, setModalState] = useState(false);
   const [mNewCategory, setMNewCategory] = useState(false);
 
@@ -33,22 +26,16 @@ export const DashboardHeader = () => {
 
   return (
     <section className="DashboardHeader">
-      {/* <StatCard>
-        <StatCardTitle label="Notas creadas:" />
-        <StatCardContent
-          label={userNotes.loading ? 0 : userNotes.pagination.totalItems}
-        />
-      </StatCard> */}
       <CardButton label="Nueva Categoria" onClick={showMNewCategory} />
       <CardButton label="Nueva nota" onClick={showAddNewNote} />
-      <Modal
-        active={modalState}
-        changeStatus={showAddNewNote}
-        title="Agregar una nueva nota"
-      >
+      <Modal active={modalState} changeStatus={showAddNewNote} title="Nueva nota">
         <UserNewNoteForm afterCreate={afterCreateNote} />
       </Modal>
-      <Modal active={mNewCategory} changeStatus={showMNewCategory} fullScreen>
+      <Modal
+        active={mNewCategory}
+        changeStatus={showMNewCategory}
+        title="Nueva categoría"
+      >
         <CategoryForm afterSubmit={showMNewCategory} />
       </Modal>
     </section>

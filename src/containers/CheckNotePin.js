@@ -65,7 +65,7 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
       >
         <div className={styles.Container}>
           <SimpleInput
-            type={forgotPin ? 'password' : 'text'}
+            type={'password'}
             ref={pinInput}
             placeholder={`Ingresa ${
               forgotPin ? 'tu Contraseña' : 'el PIN de tu Nota'

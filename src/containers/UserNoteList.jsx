@@ -37,7 +37,6 @@ const filterCategories = (categoryName) => (category) => {
 };
 
 export const UserNoteList = ({ children, notes }) => {
-  const [noteSearched, setNoteSearched] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchedCategory, setSearchedCategory] = useState('');
   const [noteList, setNoteList] = useState(notes);
@@ -67,10 +66,6 @@ export const UserNoteList = ({ children, notes }) => {
     }
     return () => setNoteList([]);
   }, [selectedCategories]);
-
-  const onChangeNoteSearched = (e) => {
-    setNoteSearched(e.target.value);
-  };
 
   const onCheckCategory = (categoryId) => (evt) => {
     if (selectedCategories.includes(categoryId)) {

@@ -37,7 +37,6 @@ const CategoryForm = ({ afterSubmit }) => {
 
   return (
     <div className="CategoryForm">
-      <h2 className="CategoryForm_Title">Nueva categoria</h2>
       <form ref={form} className="CategoryForm_Form">
         <SimpleInput placeholder="nombre de la categoria" name="name" />
         <SimpleTextArea
