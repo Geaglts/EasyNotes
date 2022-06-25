@@ -123,6 +123,10 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
     dispatch(removeNote(id));
   };
 
+  const copyContent = () => {
+    navigator.clipboard.writeText(decryptContent.value?.replace(/--ignore--/gm, ''));
+  };
+
   return (
     <>
       <div className={`UserNote ${theme}`}>
@@ -158,6 +162,7 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
                   ) : (
                     <AiOutlineEye onClick={showValidation(onShowContent)} />
                   )}
+                  <AiOutlineCopy size={23} onClick={copyContent} />
                   <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
                   <BiRefresh
                     onClick={showValidation(toggleUpdateNoteModal)}
@@ -167,7 +172,6 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
               );
             }}
           </CheckNotePin>
-          {/* update the note */}
         </div>
         <UserUpdateNoteForm
           show={updateNoteModal}
