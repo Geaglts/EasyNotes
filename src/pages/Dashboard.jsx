@@ -15,7 +15,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const notes = useSelector((state) => state.userNotesReducer.userNotes);
-  const loading = useSelector((state) => state.userNotesReducer.loading);
   const pagination = useSelector((state) => state.userNotesReducer.pagination);
 
   useEffect(() => {
@@ -36,15 +35,13 @@ const Dashboard = () => {
         <title>{APP_NAME} | Inicio</title>
       </Helmet>
       <DashboardHeader />
-      {!loading && (
-        <UserNoteList notes={notes}>
-          <PaginationMenu next={nextPage} previous={previouspage}>
-            <p>
-              {page} de {pagination.totalPages}
-            </p>
-          </PaginationMenu>
-        </UserNoteList>
-      )}
+      <UserNoteList notes={notes}>
+        <PaginationMenu next={nextPage} previous={previouspage}>
+          <p>
+            {page} de {pagination.totalPages || '-'}
+          </p>
+        </PaginationMenu>
+      </UserNoteList>
     </Layout>
   );
 };

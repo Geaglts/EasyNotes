@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import '@styles/Containers/UserNoteList.scss';
 
+import UserNoteSkeleton from '@components/skeletons/UserNote';
 import { UserNote } from '@components/Note';
 import SearchInput from '@components/SearchInput';
 import {
@@ -43,6 +44,7 @@ export const UserNoteList = ({ children, notes }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
+  const loadingNotes = useSelector((state) => state.userNotesReducer.loading);
   const { userNotes, filtered: filteredNotes } = useSelector(
     (state) => state.userNotesReducer
   );
@@ -139,9 +141,13 @@ export const UserNoteList = ({ children, notes }) => {
         </div>
         <div className="UserNoteList_Features">{children}</div>
         <div className="UserNoteList_NoteList">
-          {(filteredNotes || userNotes).map((note) => (
-            <UserNote {...note} key={note.id} />
-          ))}
+          {loadingNotes
+            ? new Array(3)
+                .fill(0)
+                .map((_, index) => (
+                  <UserNoteSkeleton key={`UserNoteList-skeleton-${index}`} />
+                ))
+            : userNotes.map((note) => <UserNote {...note} key={note.id} />)}
         </div>
       </div>
     </>
