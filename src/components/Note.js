@@ -202,19 +202,23 @@ const NoteMultiline = ({ text, hide = () => {} }) => {
     navigator.clipboard.writeText(content);
   };
 
-  return lines.map((line, index) =>
-    line.length > 0 ? (
+  return lines.map((line, index) => {
+    const ignoreLine = line.includes('--ignore--');
+
+    return line.length > 0 ? (
       <p key={`NoteMultiline-${index}`} className="NoteMultiline">
-        {line}
-        <AiOutlineCopy
-          className="NoteMultiline__CopyButton"
-          onClick={copyToClipboard(line, index)}
-        />
+        {line.replace('--ignore--', '')}
+        {!ignoreLine && (
+          <AiOutlineCopy
+            className="NoteMultiline__CopyButton"
+            onClick={copyToClipboard(line, index)}
+          />
+        )}
       </p>
     ) : (
       <br key={`NoteMultiline-${index}`} />
-    )
-  );
+    );
+  });
 };
 
 const deleteButtonStyles = (darkMode) => {
