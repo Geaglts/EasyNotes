@@ -124,7 +124,9 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
   };
 
   const copyContent = () => {
-    navigator.clipboard.writeText(decryptContent.value?.replace(/--ignore--/gm, ''));
+    navigator.clipboard.writeText(
+      decryptContent.value ? decryptContent.value.replace(/--ignore--/gm, '') : ''
+    );
   };
 
   return (

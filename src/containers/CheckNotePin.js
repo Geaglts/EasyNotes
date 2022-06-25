@@ -45,7 +45,7 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
     }
     if (hasAuthorization) {
       changeVisibility();
-      toggleFotgotPin();
+      //toggleFotgotPin();
       callback.run();
     } else {
       setShowError(true);
@@ -63,7 +63,7 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
         active={visibility}
         changeStatus={changeVisibility}
       >
-        <div className={styles.Container}>
+        <form className={styles.Container} onSubmit={verifyPin}>
           <SimpleInput
             type={'password'}
             ref={pinInput}
@@ -72,11 +72,15 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
             }`}
           />
           <Button label="Abrir" onClick={verifyPin} classNames={[styles.Button]} />
-          <button className={styles.ButtonForgotPin} onClick={toggleFotgotPin}>
+          <button
+            type="button"
+            className={styles.ButtonForgotPin}
+            onClick={toggleFotgotPin}
+          >
             Desbloquear {forgotPin ? 'con PIN' : 'con Contraseña'}
           </button>
           {showError && <p className={styles.Error}>Este pin es incorrecto</p>}
-        </div>
+        </form>
       </Modal>
     </>
   );
