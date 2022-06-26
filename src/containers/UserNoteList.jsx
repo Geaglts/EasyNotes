@@ -147,7 +147,9 @@ export const UserNoteList = ({ children, notes }) => {
                 .map((_, index) => (
                   <UserNoteSkeleton key={`UserNoteList-skeleton-${index}`} />
                 ))
-            : userNotes.map((note) => <UserNote {...note} key={note.id} />)}
+            : (filteredNotes || userNotes).map((note) => (
+                <UserNote {...note} key={note.id} />
+              ))}
         </div>
       </div>
     </>
