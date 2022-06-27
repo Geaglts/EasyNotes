@@ -1,5 +1,5 @@
 $spacing: 10px;
 
-@mixin scale-spacing($scale) {
-  $spacing: calc($spacing * $scale);
+@function scale-spacing($scale: 1) {
+  @return calc($spacing * $scale);
 }

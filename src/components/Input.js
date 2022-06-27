@@ -6,20 +6,28 @@ import '../styles/Components/Input.scss';
 
 export const SimpleInput = forwardRef(({ classes, ...rest }, ref) => {
   const { theme } = useContext(Context);
-  return <input className={`SimpleInput ${theme}${!classes ? '' : ' ' + classes.join(' ')}`} ref={ref} {...rest} />;
+  return (
+    <input
+      className={`SimpleInput ${theme}${!classes ? '' : ' ' + classes.join(' ')}`}
+      ref={ref}
+      {...rest}
+    />
+  );
 });
 
 export const SimpleTextArea = ({ classes, ...rest }) => {
   const { theme } = useContext(Context);
-  const classname = `SimpleTextArea ${theme}${!classes ? '' : ' ' + classes.join(' ')}`;
+  const classname = `SimpleTextArea ${theme}${
+    !classes ? '' : ' ' + classes.join(' ')
+  }`;
   return <textarea className={classname} {...rest}></textarea>;
 };
 
 function Input(props) {
   const { darkTheme } = useContext(Context);
-  const { Icon, ...rest } = props;
+  const { Icon, classNames = [], ...rest } = props;
   return (
-    <div className={`Input ${darkTheme ? 'InputDark' : ''}`}>
+    <div className={`Input ${darkTheme ? 'InputDark' : ''} ${classNames.join(' ')}`}>
       <div className="Input__Icon">{Icon || <MdSentimentVeryDissatisfied />}</div>
       <textarea className="Input__TextArea" {...rest}></textarea>
     </div>

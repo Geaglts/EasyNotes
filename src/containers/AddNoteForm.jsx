@@ -1,11 +1,10 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import { connect } from 'react-redux';
-import { MdSpa, MdSort } from 'react-icons/md';
-import '@styles/Containers/AddNoteForm.scss';
+import { MdSpa, MdSort, MdContentCopy } from 'react-icons/md';
+import { IoIosAdd } from 'react-icons/io';
 
 import Button from '@components/Button';
 import Input from '@components/Input';
-import TextArea from '@components/TextArea';
 import Toast from '@components/Toast';
 
 import { Context } from '@context';
@@ -13,18 +12,17 @@ import { addNote } from '@actions/notes.actions';
 import useFormError from '@hooks/useFormError';
 
 import { noteStorage } from '@storage';
-import { isEmpty } from '@utils/isFunctions';
 
 // Validations
 import validate from '@utils/validate';
 import { newNoteSchema } from '@schemas/newNote.schema';
 
+import styles from '@styles/Containers/AddNoteForm.module.scss';
+
 function AddNoteForm({ onAddTodo }) {
-  const { darkTheme } = useContext(Context);
+  const { theme } = useContext(Context);
   const { formErrors, addErrors } = useFormError();
   const form = useRef(null);
-
-  const themeClass = darkTheme ? 'AddNoteFormDark' : '';
 
   const handleCopy = () => {
     const formData = new FormData(form.current);
@@ -32,11 +30,7 @@ function AddNoteForm({ onAddTodo }) {
       title: formData.get('title'),
       content: formData.get('content'),
     };
-    if (isEmpty(title) || isEmpty(content)) {
-      alert('No hay nada que copiar');
-    } else {
-      noteStorage.copy(values);
-    }
+    noteStorage.copy(`${title}\n${content}`);
   };
 
   const onSubmitForm = async (event) => {
@@ -58,50 +52,38 @@ function AddNoteForm({ onAddTodo }) {
       <form
         ref={form}
         onSubmit={onSubmitForm}
-        className={`AddNoteForm ${themeClass}`}
+        className={`${styles.container} ${styles[theme]}`}
       >
-        <div className="AddNoteForm__Title">
+        <div className={styles.form_container}>
           <Input
             name="title"
             Icon={<MdSpa />}
             placeholder="¿Cuál es el nombre de tu nota?"
+            classNames={[styles.title_input]}
           />
+          <Input name="content" Icon={<MdSort />} placeholder="..." rows={5} />
+        </div>
+        <div className={styles.bottom_buttons}>
           <Button
             type="submit"
-            label="Agregar nota"
-            style={AddNoteButtonStyles(darkTheme)}
-          />
-        </div>
-        <TextArea
-          name="content"
-          Icon={<MdSort />}
-          placeholder="Creo que..."
-          rows={5}
-        />
-        <div className="AddNoteForm__CopyButton--container">
-          <Button onClick={handleCopy} label="Copiar" />
+            classNames={[styles.add_note_button]}
+            title="Agregar nota"
+          >
+            <IoIosAdd />
+          </Button>
+          <Button
+            onClick={handleCopy}
+            classNames={[styles.copy_button]}
+            title="Copiar nota"
+          >
+            <MdContentCopy />
+          </Button>
         </div>
       </form>
       <Toast messages={formErrors} />
     </>
   );
 }
-
-// JS Styles
-const AddNoteButtonStyles = (darkTheme) => {
-  if (darkTheme) {
-    return {
-      backgroundColor: '#141414',
-      color: '#FFDF75',
-      border: '1px solid #ffdf75',
-    };
-  } else {
-    return {
-      color: '#475DED',
-      backgroundColor: '#FFDF75',
-    };
-  }
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {

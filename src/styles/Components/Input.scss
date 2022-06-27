@@ -1,9 +1,10 @@
 @import '../global';
+@import '../vars';
 
 .Input {
   display: flex;
-  height: 40px;
-  width: 350px;
+  min-height: 40px;
+  width: 100%;
   background-color: rgba($primary, 0.1);
   border: $border;
   border-radius: $radius;
@@ -13,8 +14,9 @@
     width: 35px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     border-right: $border;
+    padding-top: $spacing;
 
     svg {
       font-size: 14pt;
@@ -24,7 +26,7 @@
   &__TextArea {
     @include InputStyles();
     resize: none;
-    padding-top: 7px;
+    padding: $spacing 0 0 $spacing;
 
     &::placeholder {
       color: $placeholder-color;
