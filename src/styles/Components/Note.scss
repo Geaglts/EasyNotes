@@ -60,7 +60,6 @@
   display: grid;
   place-items: center;
   row-gap: 16px;
-  width: 320px;
 
   &-icon {
     $size: 70px;
@@ -90,6 +89,7 @@
 
   &-description {
     font-size: $font-size-md;
+    color: $white;
     text-align: center;
   }
 
@@ -103,7 +103,9 @@
     font-family: $font-secondary;
     border-radius: 4px;
     font-weight: 700;
+    transition: all 250ms ease-out;
     &:hover {
+      transition: all 150ms ease-in;
       background-color: rgba($warning, 0.2);
       color: $warning;
     }

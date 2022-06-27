@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import '../styles/Components/Note.scss';
 
 import { removeNote } from '../redux/actions/userNotes.actions';
+import { removeNote as removeFastNote } from '../redux/actions/notes.actions';
 
 import UserUpdateNoteForm from '@containers/UserUpdateNoteForm';
 import CheckNotePin from '@containers/CheckNotePin';
@@ -38,7 +39,7 @@ function Note({ content, title, _id, onRemoveNote }) {
   };
 
   const handleCopy = () => {
-    noteStorage.copy({ title, content });
+    noteStorage.copy(`${title}\n${content}`);
   };
 
   return (
@@ -48,11 +49,13 @@ function Note({ content, title, _id, onRemoveNote }) {
         <div className="Note__Header--buttons">
           <Button
             label="Eliminar"
+            title="Eliminar"
             onClick={handleConfirmRemoveModal}
             style={deleteButtonStyles(darkTheme)}
           />
           <Button
             label="Copiar"
+            title="Copiar"
             onClick={handleCopy}
             style={copyButtonStyles(darkTheme)}
           />
@@ -256,7 +259,7 @@ const copyButtonStyles = (darkMode) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onRemoveNote(id) {
-      dispatch(removeNote(id));
+      dispatch(removeFastNote(id));
     },
   };
 };
