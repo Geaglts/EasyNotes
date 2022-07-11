@@ -10,7 +10,8 @@ import { addNote } from '@actions/userNotes.actions';
 
 import FormControl from '@utils/classes/FormControl';
 
-import '@styles/Containers/UserNewNoteForm.scss';
+import styles from '@styles/Containers/UserNewNoteForm.scss';
+
 import Button from '@components/Button';
 
 export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
@@ -56,12 +57,13 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
     <>
       {categoriesView && (
         <div className="CategoriesNewNoteForm">
-          <AiOutlineCloseCircle
-            title="Cerrar"
-            size={25}
-            className="icon"
+          <div
+            className="UserNewNoteForm-CategoryInput CategoriesNewNoteForm-Close"
             onClick={toggleCategories}
-          />
+          >
+            <p>Cerrar</p>
+            <AiOutlineCloseCircle title="Cerrar" size={25} className="icon" />
+          </div>
           <div className="CategoriesNewNoteForm_Container">
             {categories.map(({ name, description, id }) => {
               const isSelected = selectedCategories.includes(id);
@@ -80,12 +82,10 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
         </div>
       )}
       <form className="UserNewNoteForm" ref={form} onSubmit={createNewNote}>
-        <BsFolderSymlink
-          title="Enlazar con categoría"
-          size={25}
-          className="icon"
-          onClick={toggleCategories}
-        />
+        <div onClick={toggleCategories} className="UserNewNoteForm-CategoryInput">
+          <BsFolderSymlink title="Enlazar con categoría" size={25} />
+          <p>Agregar categoría (opcional)</p>
+        </div>
         <SimpleInput
           type="text"
           placeholder="Titulo de la nota"
