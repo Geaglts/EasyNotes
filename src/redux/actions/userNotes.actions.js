@@ -4,6 +4,7 @@ import {
   getNotesWithPagination,
   getNotesWithCustomAttributess,
   getManyNotesById,
+  getNotesByCategories,
 } from '@api/notes.api';
 import filterByName from '@utils/filters/byName';
 
@@ -95,4 +96,23 @@ export const fillGlobalNotes =
       type: USER_NOTES_TYPES.USER_NOTES_FILL_GLOBAL_NOTES,
       payload: clear ? [] : notes,
     });
+  };
+
+export const filterByCategory =
+  (categories = []) =>
+  async (dispatch) => {
+    try {
+      const notes = await getNotesByCategories(`[${categories.join(',')}]`);
+      if (categories.length === 0) {
+        dispatch({
+          type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
+          payload: null,
+        });
+        return;
+      }
+      dispatch({
+        type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
+        payload: notes,
+      });
+    } catch (error) {}
   };

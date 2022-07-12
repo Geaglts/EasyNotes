@@ -14,6 +14,7 @@ import { APP_NAME } from '@constants';
 const Dashboard = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const filteredNotes = useSelector((state) => state.userNotesReducer.filtered);
   const notes = useSelector((state) => state.userNotesReducer.userNotes);
   const pagination = useSelector((state) => state.userNotesReducer.pagination);
 
@@ -36,11 +37,13 @@ const Dashboard = () => {
       </Helmet>
       <DashboardHeader />
       <UserNoteList notes={notes}>
-        <PaginationMenu next={nextPage} previous={previouspage}>
-          <p>
-            {page} de {pagination.totalPages || '-'}
-          </p>
-        </PaginationMenu>
+        {!filteredNotes && (
+          <PaginationMenu next={nextPage} previous={previouspage}>
+            <p>
+              {page} de {pagination.totalPages || '-'}
+            </p>
+          </PaginationMenu>
+        )}
       </UserNoteList>
     </Layout>
   );

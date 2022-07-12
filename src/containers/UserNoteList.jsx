@@ -15,7 +15,11 @@ import {
 } from '@components/MultiSelect';
 
 import { getCategories } from '@actions/categories.actions';
-import { filterLocal, fillGlobalNotes } from '@actions/userNotes.actions';
+import {
+  filterLocal,
+  fillGlobalNotes,
+  filterByCategory,
+} from '@actions/userNotes.actions';
 
 import FormControl from '@utils/classes/FormControl';
 
@@ -53,6 +57,10 @@ export const UserNoteList = ({ children, notes }) => {
     dispatch(getCategories());
     return () => {};
   }, []);
+
+  useEffect(() => {
+    dispatch(filterByCategory(selectedCategories));
+  }, [selectedCategories]);
 
   useEffect(() => {
     if (selectedCategories.length > 0) {
