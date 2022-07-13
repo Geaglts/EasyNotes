@@ -55,6 +55,6 @@ export const addCategoriesToNote = async (noteId, category = []) => {
     });
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
