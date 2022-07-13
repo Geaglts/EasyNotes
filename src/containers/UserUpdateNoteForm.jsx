@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import FormControl from '@utils/classes/FormControl';
 
@@ -8,12 +8,16 @@ import { SimpleInput, SimpleTextArea } from '@components/Input';
 import Button from '@components/Button';
 import Toast from '@components/Toast';
 
+import CategoryMenu from '@fragments/UserUpdateNoteForm/CategoryMenu';
+
 import { updateNote } from '@actions/userNotes.actions';
 
 import useError from '@hooks/useError';
 
 import validate from '@utils/validate';
 import { updateNoteSchema } from '@schemas/user.schema';
+
+import styles from '@styles/Containers/UserUpdateNoteForm.module.scss';
 
 const UserUpdateNoteForm = ({
   show,
@@ -22,8 +26,12 @@ const UserUpdateNoteForm = ({
   pin,
   decryptTitle,
   decryptedContent,
+  categories,
   noteId,
 }) => {
+  const categoryList = useSelector((state) => state.categories.categories);
+  const [showCategories, setShowCategories] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(categories);
   const updateForm = useRef(null);
   const dispatch = useDispatch();
   const { error, showError } = useError();
@@ -44,8 +52,36 @@ const UserUpdateNoteForm = ({
     }
   };
 
+  const handleSelectCategories = (id) => {
+    const isOnThelist = selectedCategory.some((category) => category.id === id);
+    if (isOnThelist) {
+      const filterCategories = selectedCategory.filter(
+        (category) => category.id !== id
+      );
+      setSelectedCategory(filterCategories);
+    } else {
+      setSelectedCategory([...selectedCategory, { id }]);
+    }
+  };
+
   return (
     <Modal active={show} changeStatus={toggleShow} title={`${title}`}>
+      {showCategories && (
+        <CategoryMenu
+          categories={categoryList}
+          selectedCategory={selectedCategory}
+          onChange={handleSelectCategories}
+          onClose={() => setShowCategories(false)}
+        />
+      )}
+      <button
+        className={styles.category_manage}
+        onClick={() => {
+          setShowCategories(true);
+        }}
+      >
+        Cambiar categorias
+      </button>
       <form
         className="UserNote_UpdateModal"
         ref={updateForm}

@@ -189,6 +189,7 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
           title={decryptTitle}
           pin={pin && FormControl.decryptData({ pin }).pin}
           noteId={id}
+          categories={categories}
         />
       </div>
     </>

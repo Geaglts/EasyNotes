@@ -246,8 +246,8 @@
     }
 
     &-submit {
-      background-color: $primary;
-      color: $color-dark;
+      background-color: $primary !important;
+      color: $color-dark !important;
       justify-self: center;
       border-radius: 4px;
 
