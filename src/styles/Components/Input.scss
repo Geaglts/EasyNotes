@@ -52,6 +52,23 @@
   }
 }
 
+.SimpleInput_Container {
+  position: relative;
+}
+
+.SimpleInput_Password-icon {
+  position: absolute;
+  color: $color-gray;
+  font-size: $font-size-md;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
 .SimpleInput {
   &.dark {
     background-color: $color-dark;
@@ -68,6 +85,7 @@
   padding: 0 12px;
   font-family: $font-secondary;
   font-size: 12pt;
+  width: 100%;
 
   &.title {
     font-size: 11pt;

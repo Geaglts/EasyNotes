@@ -1,19 +1,48 @@
-import React, { useContext, forwardRef } from 'react';
-import { Context } from '../Context';
+import React, { useContext, useState, forwardRef } from 'react';
 import { MdSentimentVeryDissatisfied } from 'react-icons/md';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { Context } from '../Context';
 
 import '../styles/Components/Input.scss';
 
-export const SimpleInput = forwardRef(({ classes, ...rest }, ref) => {
-  const { theme } = useContext(Context);
-  return (
-    <input
-      className={`SimpleInput ${theme}${!classes ? '' : ' ' + classes.join(' ')}`}
-      ref={ref}
-      {...rest}
-    />
-  );
-});
+export const SimpleInput = forwardRef(
+  ({ classes, isPassword = false, ...rest }, ref) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const { theme } = useContext(Context);
+
+    const handleTogglePasswordIcon = () => {
+      setShowPassword(!showPassword);
+    };
+
+    return (
+      <div className="SimpleInput_Container">
+        <input
+          className={`SimpleInput ${theme}${
+            !classes ? '' : ' ' + classes.join(' ')
+          }`}
+          ref={ref}
+          {...rest}
+          type={showPassword ? 'text' : 'password'}
+        />
+        {isPassword && (
+          <div className="SimpleInput_Password-icon">
+            {showPassword ? (
+              <AiOutlineEyeInvisible
+                onClick={handleTogglePasswordIcon}
+                title="Ocultar contraseña"
+              />
+            ) : (
+              <AiOutlineEye
+                onClick={handleTogglePasswordIcon}
+                title="Mostrar contraseña"
+              />
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
 
 export const SimpleTextArea = ({ classes, ...rest }) => {
   const { theme } = useContext(Context);

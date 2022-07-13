@@ -70,6 +70,7 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
             placeholder={`Ingresa ${
               forgotPin ? 'tu Contraseña' : 'el PIN de tu Nota'
             }`}
+            isPassword={true}
           />
           <Button label="Abrir" onClick={verifyPin} classNames={[styles.Button]} />
           <button
