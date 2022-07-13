@@ -78,7 +78,7 @@ const CheckNotePin = ({ pin, children, visibility, changeVisibility }) => {
             className={styles.ButtonForgotPin}
             onClick={toggleFotgotPin}
           >
-            Desbloquear {forgotPin ? 'con PIN' : 'con Contraseña'}
+            Verificación {forgotPin ? 'con PIN' : 'con Contraseña'}
           </button>
           {showError && <p className={styles.Error}>Este pin es incorrecto</p>}
         </form>

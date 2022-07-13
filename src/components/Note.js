@@ -168,7 +168,10 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
                     <AiOutlineEye onClick={showValidation(onShowContent)} />
                   )}
                   <AiOutlineCopy size={23} onClick={copyContent} />
-                  <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
+                  <ConfirmButton
+                    onConfirm={showValidation(onDeleteNote)}
+                    Icon={AiOutlineDelete}
+                  />
                   <BiRefresh
                     onClick={showValidation(toggleUpdateNoteModal)}
                     title="Actualizar nota"
