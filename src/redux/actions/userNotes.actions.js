@@ -5,6 +5,7 @@ import {
   getNotesWithCustomAttributess,
   getManyNotesById,
   getNotesByCategories,
+  addCategoriesToNote,
 } from '@api/notes.api';
 import filterByName from '@utils/filters/byName';
 
@@ -47,18 +48,20 @@ export const removeNote = (noteId) => async (dispatch) => {
   }
 };
 
-export const updateNote = (updatedNoteValues, id) => async (dispatch) => {
-  try {
-    dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
-    await axios.patch(`${ROUTE_NOTE_V1}/${id}`, updatedNoteValues);
-    dispatch(getNotes());
-  } catch (error) {
-    dispatch({
-      type: USER_NOTES_TYPES.USER_NOTES_ERROR,
-      payload: '🚧: ' + 'No se pudo actualizar',
-    });
-  }
-};
+export const updateNote =
+  (updatedNoteValues, id, categories) => async (dispatch) => {
+    try {
+      dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
+      await axios.patch(`${ROUTE_NOTE_V1}/${id}`, updatedNoteValues);
+      await addCategoriesToNote(id, categories);
+      dispatch(getNotes());
+    } catch (error) {
+      dispatch({
+        type: USER_NOTES_TYPES.USER_NOTES_ERROR,
+        payload: '🚧: ' + 'No se pudo actualizar',
+      });
+    }
+  };
 
 export const filterLocal = (input) => async (dispatch, getState) => {
   if (!input) {

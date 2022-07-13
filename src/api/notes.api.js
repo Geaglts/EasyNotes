@@ -46,3 +46,15 @@ export const getNotesByCategories = async (categories = '[]') => {
     return false;
   }
 };
+
+export const addCategoriesToNote = async (noteId, category = []) => {
+  try {
+    const response = await axios.post(endPoints.notes.addCategories, {
+      note: noteId,
+      category,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

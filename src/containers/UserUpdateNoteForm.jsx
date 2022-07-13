@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import FormControl from '@utils/classes/FormControl';
@@ -36,6 +36,10 @@ const UserUpdateNoteForm = ({
   const dispatch = useDispatch();
   const { error, showError } = useError();
 
+  useEffect(() => {
+    return () => {};
+  }, []);
+
   const onUpdateNote = async (evt) => {
     evt.preventDefault();
     const updateFormControl = new FormControl(updateForm.current);
@@ -44,8 +48,10 @@ const UserUpdateNoteForm = ({
       data: updateFormControl.values,
     });
     if (validationStatus.approved) {
+      // Get only the ids of the categories
+      const selectedCategories = selectedCategory.map((category) => category.id);
       const values = updateFormControl.encryptData;
-      dispatch(updateNote(values, noteId));
+      dispatch(updateNote(values, noteId, selectedCategories));
       toggleShow();
     } else {
       showError({ message: validationStatus.message, type: 'danger' });

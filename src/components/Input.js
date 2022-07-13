@@ -22,7 +22,7 @@ export const SimpleInput = forwardRef(
           }`}
           ref={ref}
           {...rest}
-          type={showPassword ? 'text' : 'password'}
+          type={isPassword ? (showPassword ? 'text' : 'password') : rest.type}
         />
         {isPassword && (
           <div className="SimpleInput_Password-icon">
