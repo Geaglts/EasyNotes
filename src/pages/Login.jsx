@@ -8,9 +8,11 @@ import Button from 'components/Button';
 import Toast from 'components/Toast';
 import { Loading } from 'components/Loading';
 import { Layout } from 'containers/Layout/Layout';
+import LoginWith from 'components/LoginWith';
 
 import loginLightImage from 'assets/images/login.svg';
 import loginDarkImage from 'assets/images/login__dark.svg';
+import googleIcon from '@icons/google-icon.svg';
 
 import { Context } from '../Context';
 
@@ -28,7 +30,9 @@ const Login = () => {
   const rememberUserCheckboxRef = useRef(null);
   const { darkTheme, changeUserStatus, hasUser } = useContext(Context);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState(browserStorage.get(BROWSER_REMEMBER_USER_NAME) || '');
+  const [email, setEmail] = useState(
+    browserStorage.get(BROWSER_REMEMBER_USER_NAME) || ''
+  );
   const navigate = useNavigate();
   const { formErrors, addErrors } = useformError();
 
@@ -49,7 +53,10 @@ const Login = () => {
     try {
       setLoading(true);
       const formData = new FormData(form.current);
-      const data = { email: formData.get('email').trim(), password: formData.get('password') };
+      const data = {
+        email: formData.get('email').trim(),
+        password: formData.get('password'),
+      };
       const validatedData = await validate({ schema: loginSchema, data });
       if (!validatedData.approved) {
         addErrors([{ message: validatedData.message, type: 'danger' }]);
@@ -124,7 +131,13 @@ const Login = () => {
                 autoComplete="off"
                 required
               />
-              <InputForm labelName="Contraseña:" name="password" placeholder="contraseña" isPassword required />
+              <InputForm
+                labelName="Contraseña:"
+                name="password"
+                placeholder="contraseña"
+                isPassword
+                required
+              />
               <div className="Login__Form--RememberUser">
                 <input
                   ref={rememberUserCheckboxRef}
@@ -135,7 +148,12 @@ const Login = () => {
                 />
                 <label htmlFor="remember-user">Recordar Usuario</label>
               </div>
-              <Button label="Iniciar sesion" type="submit" />
+              <Button label="Iniciar sesión" type="submit" />
+              <LoginWith
+                to={`${process.env.API_URL}/auth/google`}
+                provider="google"
+                providerLogo={googleIcon}
+              />
               <Link to="/register" className="register-link">
                 Quiero registrarme
               </Link>
@@ -146,7 +164,10 @@ const Login = () => {
           </div>
         </section>
         <section className="Login__Right">
-          <img src={darkTheme ? loginDarkImage : loginLightImage} alt="login easy notes" />
+          <img
+            src={darkTheme ? loginDarkImage : loginLightImage}
+            alt="login easy notes"
+          />
         </section>
       </div>
       <Toast messages={formErrors} />

@@ -6,6 +6,7 @@ const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
 const Login = lazy(() => import('pages/Login'));
 const Register = lazy(() => import('pages/Register'));
+const Auth = lazy(() => import('pages/Auth'));
 const EmailSended = lazy(() => import('pages/EmailSended'));
 const ActivateAccount = lazy(() => import('pages/ActivateAccount'));
 const RecoveryPassword = lazy(() => import('pages/RecoveryPassword'));
@@ -33,6 +34,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/categories" element={<Categories />} />
           </Route>
+          <Route path="/auth" element={<Auth />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

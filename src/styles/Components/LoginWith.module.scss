@@ -1,0 +1,37 @@
+@use '../global' as *;
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  border: 2px solid $gray;
+  padding: 8px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 250ms ease-in;
+
+  &:hover {
+    transition: all 150ms ease-out;
+    transform: scale(1.01);
+
+    .provider {
+      color: $primary;
+    }
+  }
+}
+
+.providerLogo {
+  width: 25px;
+  height: 25px;
+}
+
+.provider {
+  text-decoration: none;
+  font-size: 14pt;
+  color: $color-gray;
+
+  &:hover {
+    transform: none;
+  }
+}
