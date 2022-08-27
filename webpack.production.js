@@ -78,7 +78,8 @@ module.exports = {
     new WebpackPwaManifestPlugin({
       name: "Hriiapa' | Administra tus notas de manera segura | Administra tus notas de manera segura",
       short_name: "Hriiapa'",
-      description: "Hriaapa' es un sistema preocupado por tu seguridad que te ayuda a crear y administrar notas de manera segura.",
+      description:
+        "Hriaapa' es un sistema preocupado por tu seguridad que te ayuda a crear y administrar notas de manera segura.",
       background_color: '#ffffff',
       theme_color: '#5789ff',
       start_url: '/',
