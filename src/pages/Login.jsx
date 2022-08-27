@@ -3,29 +3,18 @@ import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 
-<<<<<<< HEAD
-import InputForm from 'components/InputForm';
-import Button from 'components/Button';
-import Toast from 'components/Toast';
-import { Loading } from 'components/Loading';
-import { Layout } from 'containers/Layout/Layout';
-import LoginWith from 'components/LoginWith';
-
-import loginLightImage from 'assets/images/login.svg';
-import loginDarkImage from 'assets/images/login__dark.svg';
-import googleIcon from '@icons/google-icon.svg';
-=======
 import InputForm from '@components/InputForm';
 import Button from '@components/Button';
 import Toast from '@components/Toast';
 import { Loading } from '@components/Loading';
 import { Layout } from '@containers/Layout/Layout';
+import LoginWith from '@components/LoginWith';
 
 import loginLightImage from '@assets/images/login.svg';
 import loginDarkImage from '@assets/images/login__dark.svg';
->>>>>>> 2944326c6c38bbef8659606c4a8a80178eead6f3
+import googleIcon from '@icons/google-icon.svg';
 
-import { Context } from '../Context';
+import { Context } from '@context';
 
 import { BROWSER_REMEMBER_USER_NAME, APP_NAME } from '@constants';
 import { browserStorage } from '@storage';
