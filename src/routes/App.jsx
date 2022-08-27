@@ -15,7 +15,7 @@ const Categories = lazy(() => import('pages/users/Categories'));
 
 import UserRoutes from './UserRoute';
 
-import { Menu } from 'containers/Menu';
+import { Menu } from '@containers/Menu';
 
 function App() {
   return (

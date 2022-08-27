@@ -12,9 +12,10 @@ import { useDispatch } from 'react-redux';
 import '../styles/Components/Note.scss';
 
 import { removeNote } from '../redux/actions/userNotes.actions';
+import { removeNote as removeFastNote } from '../redux/actions/notes.actions';
 
-import UserUpdateNoteForm from 'containers/UserUpdateNoteForm';
-import CheckNotePin from 'containers/CheckNotePin';
+import UserUpdateNoteForm from '@containers/UserUpdateNoteForm';
+import CheckNotePin from '@containers/CheckNotePin';
 
 import { Context } from '../Context';
 import Button, { ConfirmButton } from './Button';
@@ -22,8 +23,8 @@ import Modal from './Modal';
 
 import { noteStorage } from '../storage';
 
-import capitalize from 'utils/capitalize';
-import FormControl from 'utils/classes/FormControl';
+import capitalize from '@utils/capitalize';
+import FormControl from '@utils/classes/FormControl';
 
 function Note({ content, title, _id, onRemoveNote }) {
   const { darkTheme } = useContext(Context);
@@ -38,7 +39,7 @@ function Note({ content, title, _id, onRemoveNote }) {
   };
 
   const handleCopy = () => {
-    noteStorage.copy({ title, content });
+    noteStorage.copy(`${title}\n${content}`);
   };
 
   return (
@@ -48,11 +49,13 @@ function Note({ content, title, _id, onRemoveNote }) {
         <div className="Note__Header--buttons">
           <Button
             label="Eliminar"
+            title="Eliminar"
             onClick={handleConfirmRemoveModal}
             style={deleteButtonStyles(darkTheme)}
           />
           <Button
             label="Copiar"
+            title="Copiar"
             onClick={handleCopy}
             style={copyButtonStyles(darkTheme)}
           />
@@ -123,6 +126,12 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
     dispatch(removeNote(id));
   };
 
+  const copyContent = () => {
+    navigator.clipboard.writeText(
+      decryptContent.value ? decryptContent.value.replace(/--ignore--/gm, '') : ''
+    );
+  };
+
   return (
     <>
       <div className={`UserNote ${theme}`}>
@@ -158,7 +167,11 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
                   ) : (
                     <AiOutlineEye onClick={showValidation(onShowContent)} />
                   )}
-                  <ConfirmButton onConfirm={onDeleteNote} Icon={AiOutlineDelete} />
+                  <AiOutlineCopy size={23} onClick={copyContent} />
+                  <ConfirmButton
+                    onConfirm={showValidation(onDeleteNote)}
+                    Icon={AiOutlineDelete}
+                  />
                   <BiRefresh
                     onClick={showValidation(toggleUpdateNoteModal)}
                     title="Actualizar nota"
@@ -167,7 +180,6 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
               );
             }}
           </CheckNotePin>
-          {/* update the note */}
         </div>
         <UserUpdateNoteForm
           show={updateNoteModal}
@@ -177,6 +189,7 @@ export const UserNote = ({ id, title, content, categories, pin }) => {
           title={decryptTitle}
           pin={pin && FormControl.decryptData({ pin }).pin}
           noteId={id}
+          categories={categories}
         />
       </div>
     </>
@@ -202,19 +215,23 @@ const NoteMultiline = ({ text, hide = () => {} }) => {
     navigator.clipboard.writeText(content);
   };
 
-  return lines.map((line, index) =>
-    line.length > 0 ? (
+  return lines.map((line, index) => {
+    const ignoreLine = line.includes('--ignore--');
+
+    return line.length > 0 ? (
       <p key={`NoteMultiline-${index}`} className="NoteMultiline">
-        {line}
-        <AiOutlineCopy
-          className="NoteMultiline__CopyButton"
-          onClick={copyToClipboard(line, index)}
-        />
+        {line.replace('--ignore--', '')}
+        {!ignoreLine && (
+          <AiOutlineCopy
+            className="NoteMultiline__CopyButton"
+            onClick={copyToClipboard(line, index)}
+          />
+        )}
       </p>
     ) : (
       <br key={`NoteMultiline-${index}`} />
-    )
-  );
+    );
+  });
 };
 
 const deleteButtonStyles = (darkMode) => {
@@ -246,7 +263,7 @@ const copyButtonStyles = (darkMode) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onRemoveNote(id) {
-      dispatch(removeNote(id));
+      dispatch(removeFastNote(id));
     },
   };
 };

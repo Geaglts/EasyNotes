@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import '@styles/Components/MultiSelect/MultiSelectOptions.scss';
 
-import { Context } from 'context';
+import { Context } from '@context';
 
 const MultiSelectOptions = ({ children, handleShowedContent }) => {
   const { theme } = useContext(Context);

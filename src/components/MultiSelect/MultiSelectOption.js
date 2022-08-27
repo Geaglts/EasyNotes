@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import '@styles/Components/MultiSelect/MultiSelectOption.scss';
 
-import { Context } from 'context';
+import { Context } from '@context';
 
 const MultiSelectOption = ({ id, children, currentSelected = [], handleChange }) => {
   const [isChecked, setIsChecked] = useState(currentSelected.includes(id));

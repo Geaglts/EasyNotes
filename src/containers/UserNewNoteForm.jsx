@@ -4,14 +4,15 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
-import { SimpleInput, SimpleTextArea } from 'components/Input';
+import { SimpleInput, SimpleTextArea } from '@components/Input';
 
-import { addNote } from 'actions/userNotes.actions';
+import { addNote } from '@actions/userNotes.actions';
 
-import FormControl from 'utils/classes/FormControl';
+import FormControl from '@utils/classes/FormControl';
 
 import '@styles/Containers/UserNewNoteForm.scss';
-import Button from 'components/Button';
+
+import Button from '@components/Button';
 
 export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   const dispatch = useDispatch();
@@ -43,7 +44,9 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
 
   const toggleSelectedCategories = (id) => () => {
     if (selectedCategories.includes(id)) {
-      const filteredCategories = selectedCategories.filter((idCategory) => idCategory !== id);
+      const filteredCategories = selectedCategories.filter(
+        (idCategory) => idCategory !== id
+      );
       setSelectedCategories(filteredCategories);
     } else {
       setSelectedCategories([...selectedCategories, id]);
@@ -54,13 +57,23 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
     <>
       {categoriesView && (
         <div className="CategoriesNewNoteForm">
-          <AiOutlineCloseCircle title="Cerrar" size={25} className="icon" onClick={toggleCategories} />
+          <div
+            className="UserNewNoteForm-CategoryInput CategoriesNewNoteForm-Close"
+            onClick={toggleCategories}
+          >
+            <p>Cerrar</p>
+            <AiOutlineCloseCircle title="Cerrar" size={25} className="icon" />
+          </div>
           <div className="CategoriesNewNoteForm_Container">
             {categories.map(({ name, description, id }) => {
               const isSelected = selectedCategories.includes(id);
               const parsedCategory = FormControl.decryptData({ name, description });
               return (
-                <p className={`Category ${isSelected} noselect`} key={id} onClick={toggleSelectedCategories(id)}>
+                <p
+                  className={`Category ${isSelected} noselect`}
+                  key={id}
+                  onClick={toggleSelectedCategories(id)}
+                >
                   {parsedCategory.name}
                 </p>
               );
@@ -69,10 +82,28 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
         </div>
       )}
       <form className="UserNewNoteForm" ref={form} onSubmit={createNewNote}>
-        <BsFolderSymlink title="Enlazar con categoría" size={25} className="icon" onClick={toggleCategories} />
-        <SimpleInput type="text" placeholder="Titulo de la nota" classes={['title']} name="title" />
-        <SimpleInput type="text" autoComplete="off" placeholder="Codigo secreto (No Obligatorio)" classes={['pin']} name="pin" />
-        <SimpleTextArea placeholder="Contenido..." name="content" classes={['unnf_sta']} />
+        <div onClick={toggleCategories} className="UserNewNoteForm-CategoryInput">
+          <BsFolderSymlink title="Enlazar con categoría" size={25} />
+          <p>Agregar categoría (opcional)</p>
+        </div>
+        <SimpleInput
+          type="text"
+          placeholder="Titulo de la nota"
+          classes={['title']}
+          name="title"
+        />
+        <SimpleInput
+          type="text"
+          autoComplete="off"
+          placeholder="Codigo secreto (No Obligatorio)"
+          classes={['pin']}
+          name="pin"
+        />
+        <SimpleTextArea
+          placeholder="Contenido..."
+          name="content"
+          classes={['unnf_sta']}
+        />
         <Button label="Crear" type="submit" />
       </form>
     </>

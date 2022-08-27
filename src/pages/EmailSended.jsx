@@ -7,9 +7,9 @@ import { Helmet } from 'react-helmet';
 import { Context } from '../Context';
 
 import { APP_NAME } from '@constants';
-import storage, { STORAGE } from 'utils/storage';
-import Toast from 'components/Toast';
-import useFormError from 'hooks/useFormError';
+import storage, { STORAGE } from '@utils/storage';
+import Toast from '@components/Toast';
+import useFormError from '@hooks/useFormError';
 
 import '@styles/pages/EmailSended.scss';
 
@@ -28,7 +28,9 @@ const EmailSended = () => {
       navigate('/');
     }
     storage(STORAGE.TEMP_EMAIL).remove();
-    addErrors([{ message: 'Te hemos enviado el correo nuevamente 🌞', type: 'success' }]);
+    addErrors([
+      { message: 'Te hemos enviado el correo nuevamente 🌞', type: 'success' },
+    ]);
   };
 
   return (
@@ -38,7 +40,10 @@ const EmailSended = () => {
       </Helmet>
       <div className={`EmailSended${themeClass}`}>
         <MdEmail className="EmailSended__Icon" />
-        <p className="EmailSended__DescriptionLabel">Te hemos enviado un correo de confirmación, por favor revisa tu bandeja de entrada.</p>
+        <p className="EmailSended__DescriptionLabel">
+          Te hemos enviado un correo de confirmación, por favor revisa tu bandeja de
+          entrada.
+        </p>
         <Link className="EmailSended__Link" to="/">
           Ir al inicio
         </Link>

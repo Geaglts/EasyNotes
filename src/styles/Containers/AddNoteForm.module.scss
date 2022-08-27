@@ -1,0 +1,63 @@
+@import '../global';
+@import '../vars';
+
+@mixin button($label) {
+  background-color: $primary;
+  color: $white;
+  display: flex;
+  align-items: center;
+  font-family: $font-secondary;
+  padding: $spacing;
+  width: auto;
+  text-rendering: optimizeLegibility;
+
+  svg {
+    font-size: $font-size-md;
+  }
+
+  &::after {
+    content: $label;
+    margin-left: scale-spacing(0.5);
+  }
+
+  &:hover {
+    transform: scale(1.01);
+  }
+}
+
+.container {
+  border: 2px solid $primary;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 1em;
+  box-shadow: $shadow;
+}
+
+.form_container {
+  .title_input {
+    height: 45px;
+    margin-bottom: $spacing;
+  }
+}
+
+.bottom_buttons {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: $spacing;
+}
+
+.add_note_button {
+  @include button('Agregar nota');
+}
+
+.copy_button {
+  @include button('Copiar');
+}
+
+@media (max-width: 720px) {
+  button::after {
+    content: '' !important;
+    margin-left: scale-spacing(0) !important;
+  }
+}

@@ -20,3 +20,13 @@
     background-position: 769px 0;
   }
 }
+
+@keyframes skeleton-slide-to-right {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0 50%;
+  }
+}

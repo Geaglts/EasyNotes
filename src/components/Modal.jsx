@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { AiFillCloseSquare, AiOutlineCloseCircle } from 'react-icons/ai';
-import '@styles/Containers/Modal.scss';
+import { AiFillCloseSquare } from 'react-icons/ai';
+
+import styles from '@styles/Components/Modal.module.scss';
 
 import { Context } from '../Context';
 
-const Modal = ({ children, active = false, changeStatus = () => {}, fullScreen = false, title }) => {
+const Modal = ({ children, active = false, changeStatus = () => {}, title }) => {
   const { theme } = useContext(Context);
 
   useEffect(() => {
@@ -30,26 +31,15 @@ const Modal = ({ children, active = false, changeStatus = () => {}, fullScreen =
 
   if (!active) return null;
 
-  if (fullScreen) {
-    return (
-      <section className="FullScreen_Modal">
-        <div className="FullScreen_Modal_Content">
-          <button className="FullScreen_Modal-Close" onClick={changeStatus}>
-            <AiOutlineCloseCircle className="FullScreen_Modal-Close-Icon" />
-            Cancelar [esc]
-          </button>
-          {children}
-        </div>
-      </section>
-    );
-  }
-
   return createPortal(
-    <div className={`Modal ${theme}`} onClick={closeModalOnClickOutside}>
-      <div className="Modal__Content">
-        <div className="Modal__Content_Header">
-          {title && <h2 className="Modal__Content_Header_Title">{title}</h2>}
-          <AiFillCloseSquare className="Modal__Content_Header--Close" onClick={changeStatus} />
+    <div
+      className={`${styles.container} ${styles[theme]}`}
+      onClick={closeModalOnClickOutside}
+    >
+      <div className={styles.content}>
+        <div className={styles.header}>
+          {title && <h2 className={styles.title}>{title}</h2>}
+          <AiFillCloseSquare className={styles.close_icon} onClick={changeStatus} />
         </div>
         {children}
       </div>

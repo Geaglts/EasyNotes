@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { Context } from 'context';
+import { Context } from '@context';
 import { Helmet } from 'react-helmet';
 import { APP_NAME } from '@constants';
 
-import AddNoteForm from 'containers/AddNoteForm';
-import NoteList from 'containers/NoteList';
+import AddNoteForm from '@containers/AddNoteForm';
+import NoteList from '@containers/NoteList';
 
 import '@styles/pages/FreeNotes.scss';
 
@@ -20,7 +20,10 @@ function FreeNotes() {
       <main className={`freeNotes__container ${themeClass}`}>
         <section className="mainForm__container">
           <h1>Crea tus notas fácil y rápido.</h1>
-          <p>Escribe lo que gustes, y si cierras el navegador no te preocupes, tus notas estarán en aquí hasta que tú decidas eliminarlas.</p>
+          <p>
+            Escribe lo que gustes, y si cierras el navegador no te preocupes, tus
+            notas estarán en aquí hasta que tú decidas eliminarlas.
+          </p>
           <AddNoteForm />
         </section>
         <section className="freenotes__mainlist">
