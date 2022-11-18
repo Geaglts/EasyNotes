@@ -12,3 +12,4 @@ tareitas
 .env
 
 pnpm-lock.yaml
+.vscode
