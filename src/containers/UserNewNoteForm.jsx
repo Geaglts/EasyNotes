@@ -57,12 +57,11 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
     <>
       {categoriesView && (
         <div className="CategoriesNewNoteForm">
-          <div
-            className="UserNewNoteForm-CategoryInput CategoriesNewNoteForm-Close"
-            onClick={toggleCategories}
-          >
-            <p>Cerrar</p>
-            <AiOutlineCloseCircle title="Cerrar" size={25} className="icon" />
+          <div className="UserNewNoteForm-HeaderButtons" onClick={toggleCategories}>
+            <div className="UserNewNoteForm-CategoryInput CategoriesNewNoteForm-Close">
+              <p>Cerrar</p>
+              <AiOutlineCloseCircle title="Cerrar" size={25} className="icon" />
+            </div>
           </div>
           <div className="CategoriesNewNoteForm_Container">
             {categories.map(({ name, description, id }) => {

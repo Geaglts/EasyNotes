@@ -27,10 +27,9 @@
   left: 0;
   top: 0;
   row-gap: 4px;
+  z-index: 1;
 
   &-Close {
-    justify-content: end;
-    margin-bottom: $spacing;
     column-gap: scale-spacing(0.5);
   }
 
@@ -67,6 +66,12 @@
   grid-template-rows: auto auto auto auto auto;
   gap: 8px;
 
+  &-HeaderButtons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
   &-CategoryInput {
     display: flex;
     align-items: center;
@@ -83,7 +88,7 @@
 
     &:hover {
       transition-duration: 0.5s;
-      color: $primary;
+      color: $warning;
     }
   }
 
