@@ -1,4 +1,4 @@
-import FormControl from 'utils/classes/FormControl';
+import FormControl from '@utils/classes/FormControl';
 
 const parsedText = (text) => text.toLowerCase().trim().replace(/\ /g, '');
 

@@ -3,25 +3,25 @@ import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 
-import InputForm from 'components/InputForm';
-import Button from 'components/Button';
-import Toast from 'components/Toast';
-import { Loading } from 'components/Loading';
-import { Layout } from 'containers/Layout/Layout';
-import LoginWith from 'components/LoginWith';
+import InputForm from '@components/InputForm';
+import Button from '@components/Button';
+import Toast from '@components/Toast';
+import { Loading } from '@components/Loading';
+import { Layout } from '@containers/Layout/Layout';
+import LoginWith from '@components/LoginWith';
 
-import loginLightImage from 'assets/images/login.svg';
-import loginDarkImage from 'assets/images/login__dark.svg';
+import loginLightImage from '@assets/images/login.svg';
+import loginDarkImage from '@assets/images/login__dark.svg';
 import googleIcon from '@icons/google-icon.svg';
 
-import { Context } from '../Context';
+import { Context } from '@context';
 
 import { BROWSER_REMEMBER_USER_NAME, APP_NAME } from '@constants';
-import { browserStorage } from 'storage';
-import validate from 'utils/validate';
-import useformError from 'hooks/useFormError';
-import { loginSchema } from 'schemas/login.schema';
-import { isEmpty } from 'utils/isFunctions';
+import { browserStorage } from '@storage';
+import validate from '@utils/validate';
+import useformError from '@hooks/useFormError';
+import { loginSchema } from '@schemas/login.schema';
+import { isEmpty } from '@utils/isFunctions';
 
 import '@styles/pages/Login.scss';
 

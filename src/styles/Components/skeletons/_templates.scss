@@ -1,0 +1,13 @@
+@mixin skeleton-draw-figure($width, $height) {
+  width: $width;
+  height: $height;
+  border-radius: 4px;
+  background: rgb(224, 224, 224);
+  background: linear-gradient(
+    90deg,
+    rgba(224, 224, 224, 1) 0%,
+    rgba(190, 190, 190, 1) 100%
+  );
+  background-size: 200% 200%;
+  animation: 3s ease-in-out skeleton-slide-to-right infinite;
+}

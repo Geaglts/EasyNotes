@@ -2,9 +2,16 @@ import React, { useState, useContext } from 'react';
 import { BsGearFill } from 'react-icons/bs';
 import '@styles/Components/MultiSelect/MultiSelect.scss';
 
-import { Context } from 'context';
+import { Context } from '@context';
 
-const MultiSelect = ({ title = '', children, items = 0, cleanSelection = () => {}, cb, onClickConfig = () => {} }) => {
+const MultiSelect = ({
+  title = '',
+  children,
+  items = 0,
+  cleanSelection = () => {},
+  cb,
+  onClickConfig = () => {},
+}) => {
   const [isShowed, setIsShowed] = useState(false);
   const { theme } = useContext(Context);
 

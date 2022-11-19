@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Context from 'context';
+import Context from '@context';
 import Axios from 'axios';
 
-import App from 'routes/App';
+import App from '@routes/App';
 import ReduxProvider from './redux/ReduxProvider';
 
 import { GlobalStyle } from './globalStyles';

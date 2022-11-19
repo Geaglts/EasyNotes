@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SimpleTextArea, SimpleInput } from 'components/Input';
-import FormControl from 'utils/classes/FormControl';
-import Button from 'components/Button';
+import { SimpleTextArea, SimpleInput } from '@components/Input';
+import FormControl from '@utils/classes/FormControl';
+import Button from '@components/Button';
 
-import { addCategory } from 'actions/categories.actions';
+import { addCategory } from '@actions/categories.actions';
 
-import validate from 'utils/validate';
-import { addCategorySchema } from 'schemas/category.schema';
+import validate from '@utils/validate';
+import { addCategorySchema } from '@schemas/category.schema';
 
 import '@styles/Containers/CategoryForm.scss';
 
@@ -37,10 +37,13 @@ const CategoryForm = ({ afterSubmit }) => {
 
   return (
     <div className="CategoryForm">
-      <h2 className="CategoryForm_Title">Nueva categoria</h2>
       <form ref={form} className="CategoryForm_Form">
         <SimpleInput placeholder="nombre de la categoria" name="name" />
-        <SimpleTextArea placeholder="descripcion de la categoria" name="description" classes={['CategoryForm_Form_TextArea']} />
+        <SimpleTextArea
+          placeholder="descripcion de la categoria"
+          name="description"
+          classes={['CategoryForm_Form_TextArea']}
+        />
         <Button label="Agregar" onClick={onAddCategory} disabled={uiLoading} />
       </form>
     </div>

@@ -1,7 +1,14 @@
 import React, { useContext } from 'react';
-import { Container, StatTitle, StatContent, CardButtonLabel, CardTitle as BasicCardTitle, CardSubTitle as BasicCardSubtitle } from './styles';
+import {
+  Container,
+  StatTitle,
+  StatContent,
+  CardButtonLabel,
+  CardTitle as BasicCardTitle,
+  CardSubTitle as BasicCardSubtitle,
+} from './styles';
 
-import { Context } from 'context';
+import { Context } from '@context';
 
 export const CardContainer = ({ children, ...props }) => {
   const { theme } = useContext(Context);

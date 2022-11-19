@@ -1,0 +1,19 @@
+@import '../global';
+@import '../vars';
+
+.category_manage {
+  border: none;
+  background-color: transparent;
+  text-align: start;
+  font-size: $font-size-sm;
+  font-family: $font-secondary;
+  font-weight: bold;
+  color: $color-gray;
+  transition: all 350ms ease;
+  margin-bottom: $spacing;
+
+  &:hover {
+    color: $primary;
+    transition: all 250ms ease;
+  }
+}

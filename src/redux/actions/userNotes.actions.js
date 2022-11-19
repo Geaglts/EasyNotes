@@ -4,8 +4,10 @@ import {
   getNotesWithPagination,
   getNotesWithCustomAttributess,
   getManyNotesById,
+  getNotesByCategories,
+  addCategoriesToNote,
 } from '@api/notes.api';
-import filterByName from 'utils/filters/byName';
+import filterByName from '@utils/filters/byName';
 
 const ROUTE_NOTE_V1 = '/api/v1/notes';
 
@@ -46,18 +48,20 @@ export const removeNote = (noteId) => async (dispatch) => {
   }
 };
 
-export const updateNote = (updatedNoteValues, id) => async (dispatch) => {
-  try {
-    dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
-    await axios.patch(`${ROUTE_NOTE_V1}/${id}`, updatedNoteValues);
-    dispatch(getNotes());
-  } catch (error) {
-    dispatch({
-      type: USER_NOTES_TYPES.USER_NOTES_ERROR,
-      payload: '🚧: ' + 'No se pudo actualizar',
-    });
-  }
-};
+export const updateNote =
+  (updatedNoteValues, id, categories) => async (dispatch) => {
+    try {
+      dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
+      await axios.patch(`${ROUTE_NOTE_V1}/${id}`, updatedNoteValues);
+      await addCategoriesToNote(id, categories);
+      dispatch(getNotes());
+    } catch (error) {
+      dispatch({
+        type: USER_NOTES_TYPES.USER_NOTES_ERROR,
+        payload: '🚧: ' + 'No se pudo actualizar',
+      });
+    }
+  };
 
 export const filterLocal = (input) => async (dispatch, getState) => {
   if (!input) {
@@ -95,4 +99,23 @@ export const fillGlobalNotes =
       type: USER_NOTES_TYPES.USER_NOTES_FILL_GLOBAL_NOTES,
       payload: clear ? [] : notes,
     });
+  };
+
+export const filterByCategory =
+  (categories = []) =>
+  async (dispatch) => {
+    try {
+      const notes = await getNotesByCategories(`[${categories.join(',')}]`);
+      if (categories.length === 0) {
+        dispatch({
+          type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
+          payload: null,
+        });
+        return;
+      }
+      dispatch({
+        type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
+        payload: notes,
+      });
+    } catch (error) {}
   };

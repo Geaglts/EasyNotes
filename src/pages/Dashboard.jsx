@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-import { Layout } from 'containers/Layout/Layout';
-import { UserNoteList } from 'containers/UserNoteList';
-import { DashboardHeader } from 'containers/DashboardHeader';
-import PaginationMenu from 'components/PaginationMenu';
+import { Layout } from '@containers/Layout/Layout';
+import { UserNoteList } from '@containers/UserNoteList';
+import { DashboardHeader } from '@containers/DashboardHeader';
+import PaginationMenu from '@components/PaginationMenu';
 
-import { getNotes } from 'actions/userNotes.actions';
+import { getNotes } from '@actions/userNotes.actions';
 
 import { APP_NAME } from '@constants';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const filteredNotes = useSelector((state) => state.userNotesReducer.filtered);
   const notes = useSelector((state) => state.userNotesReducer.userNotes);
-  const loading = useSelector((state) => state.userNotesReducer.loading);
   const pagination = useSelector((state) => state.userNotesReducer.pagination);
 
   useEffect(() => {
@@ -36,15 +36,15 @@ const Dashboard = () => {
         <title>{APP_NAME} | Inicio</title>
       </Helmet>
       <DashboardHeader />
-      {!loading && (
-        <UserNoteList notes={notes}>
+      <UserNoteList notes={notes}>
+        {!filteredNotes && (
           <PaginationMenu next={nextPage} previous={previouspage}>
             <p>
-              {page} de {pagination.totalPages}
+              {page} de {pagination.totalPages || '-'}
             </p>
           </PaginationMenu>
-        </UserNoteList>
-      )}
+        )}
+      </UserNoteList>
     </Layout>
   );
 };

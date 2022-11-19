@@ -1,21 +1,21 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-const FreeNotes = lazy(() => import('pages/FreeNotes'));
-const Home = lazy(() => import('pages/Home'));
-const NotFound = lazy(() => import('pages/NotFound'));
-const Login = lazy(() => import('pages/Login'));
-const Register = lazy(() => import('pages/Register'));
-const Auth = lazy(() => import('pages/Auth'));
-const EmailSended = lazy(() => import('pages/EmailSended'));
-const ActivateAccount = lazy(() => import('pages/ActivateAccount'));
-const RecoveryPassword = lazy(() => import('pages/RecoveryPassword'));
-const Dashboard = lazy(() => import('pages/Dashboard'));
-const Categories = lazy(() => import('pages/users/Categories'));
+const FreeNotes = lazy(() => import('@pages/FreeNotes'));
+const Home = lazy(() => import('@pages/Home'));
+const NotFound = lazy(() => import('@pages/NotFound'));
+const Login = lazy(() => import('@pages/Login'));
+const Register = lazy(() => import('@pages/Register'));
+const Auth = lazy(() => import('@pages/Auth'));
+const EmailSended = lazy(() => import('@pages/EmailSended'));
+const ActivateAccount = lazy(() => import('@pages/ActivateAccount'));
+const RecoveryPassword = lazy(() => import('@pages/RecoveryPassword'));
+const Dashboard = lazy(() => import('@pages/Dashboard'));
+const Categories = lazy(() => import('@pages/users/Categories'));
 
 import UserRoutes from './UserRoute';
 
-import { Menu } from 'containers/Menu';
+import { Menu } from '@containers/Menu';
 
 function App() {
   return (

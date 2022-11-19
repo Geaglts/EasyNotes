@@ -1,4 +1,5 @@
 import axios from 'axios';
+import endPoints from './endPoints';
 
 export const getNotesWithPagination = async ({ page = 1, limit = 16 }) => {
   try {
@@ -31,5 +32,29 @@ export const getManyNotesById = async (ids = []) => {
   } catch (error) {
     //console.log(error);
     return false;
+  }
+};
+
+export const getNotesByCategories = async (categories = '[]') => {
+  try {
+    const response = await axios.get(
+      endPoints.notes.notesWithQueries(`?categories=${categories}`)
+    );
+    return response.data;
+  } catch (error) {
+    //console.log(error);
+    return false;
+  }
+};
+
+export const addCategoriesToNote = async (noteId, category = []) => {
+  try {
+    const response = await axios.post(endPoints.notes.addCategories, {
+      note: noteId,
+      category,
+    });
+    return response.data;
+  } catch (error) {
+    // console.log(error);
   }
 };
