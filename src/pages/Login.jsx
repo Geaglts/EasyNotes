@@ -111,7 +111,7 @@ const Login = () => {
   if (hasUser) return <Navigate to="/dashboard" />;
 
   return (
-    <>
+    <div className={`Login_Container_${themeClass.trim()}`}>
       <Helmet>
         <title>{APP_NAME} | Inicio de sesión</title>
       </Helmet>
@@ -171,7 +171,7 @@ const Login = () => {
         </section>
       </div>
       <Toast messages={formErrors} />
-    </>
+    </div>
   );
 };
 

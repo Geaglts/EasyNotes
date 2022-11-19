@@ -1,5 +1,11 @@
 @import '../global.scss';
 
+.Login_Container {
+  &_dark {
+    background-color: $dark;
+  }
+}
+
 .Login {
   display: grid;
   height: calc(100vh - 60px);
