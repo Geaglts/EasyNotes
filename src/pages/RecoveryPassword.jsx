@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { BiSend } from 'react-icons/bi';
 import Axios from 'axios';

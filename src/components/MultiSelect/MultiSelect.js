@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { BsGearFill } from 'react-icons/bs';
 import '@styles/Components/MultiSelect/MultiSelect.scss';
 

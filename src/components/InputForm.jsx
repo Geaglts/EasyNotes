@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '@styles/Components/InputForm.scss';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 

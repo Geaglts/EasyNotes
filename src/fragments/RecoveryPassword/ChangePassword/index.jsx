@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Content, Form, Button, Error } from './styles';
 import Axios from 'axios';

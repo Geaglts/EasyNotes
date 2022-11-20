@@ -1,4 +1,3 @@
-import React from 'react';
 import '@styles/Components/Toast.scss';
 
 export const TOAST_TYPES = {

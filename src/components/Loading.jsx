@@ -1,4 +1,3 @@
-import React from 'react';
 import '@styles/Components/Loading.scss';
 
 export const Loading = () => {

@@ -1,7 +1,6 @@
-import React from 'react';
-import { render } from 'react-dom';
-import Context from '@context';
+import { createRoot } from 'react-dom/client';
 import Axios from 'axios';
+import Context from '@context';
 
 import App from '@routes/App';
 import ReduxProvider from './redux/ReduxProvider';
@@ -11,12 +10,13 @@ import '@styles/index.scss';
 
 Axios.defaults.baseURL = process.env.API_URL;
 
-render(
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(
   <Context.Provider>
     <ReduxProvider>
       <GlobalStyle />
       <App />
     </ReduxProvider>
-  </Context.Provider>,
-  document.getElementById('app')
+  </Context.Provider>
 );

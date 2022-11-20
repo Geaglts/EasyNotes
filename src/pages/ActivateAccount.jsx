@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useSearchParams, Navigate, Link } from 'react-router-dom';
 import Axios from 'axios';
 import { BsCheckCircle } from 'react-icons/bs';

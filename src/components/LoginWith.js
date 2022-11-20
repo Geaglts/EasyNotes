@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '@styles/Components/LoginWith.module.scss';
 
 const LoginWith = ({ to, provider, providerLogo }) => {

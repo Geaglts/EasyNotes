@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { connect } from 'react-redux';
 import { MdSpa, MdSort, MdContentCopy } from 'react-icons/md';
 import { IoIosAdd } from 'react-icons/io';

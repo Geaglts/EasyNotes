@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { CardButton } from '@components/Card/Card';
 import Modal from '@components/Modal';

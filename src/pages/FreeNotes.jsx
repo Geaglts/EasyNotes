@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Context } from '@context';
 import { Helmet } from 'react-helmet';
 import { APP_NAME } from '@constants';

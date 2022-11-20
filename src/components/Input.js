@@ -1,4 +1,4 @@
-import React, { useContext, useState, forwardRef } from 'react';
+import { useContext, useState, forwardRef } from 'react';
 import { MdSentimentVeryDissatisfied } from 'react-icons/md';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Context } from '../Context';

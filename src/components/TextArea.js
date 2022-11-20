@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Context } from '../Context';
 import { MdSentimentVeryDissatisfied } from 'react-icons/md';
 import '../styles/Components/TextArea.scss';

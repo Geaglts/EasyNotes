@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';

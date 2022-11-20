@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { allNotes } from '../redux/actions/notes.actions';

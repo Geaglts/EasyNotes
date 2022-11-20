@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from '@utils/classnames';
 
 import styles from '@styles/fragments/UserUpdateNoteForm/CategoryMenu.module.scss';
