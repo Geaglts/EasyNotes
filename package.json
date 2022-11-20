@@ -10,14 +10,20 @@
   "keywords": [],
   "author": "Miguel Angel Toledo Santiago <geaglts@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9",
+    "yarn": ">=1",
+    "pnpm": ">=7"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
     "axios": "^0.24.0",
     "crypto-js": "^4.1.1",
     "prop-types": "^15.8.1",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-cookie": "^4.1.1",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.6.0",
     "react-redux": "^7.2.9",
