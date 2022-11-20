@@ -27,7 +27,7 @@ const Dashboard = () => {
   };
 
   const previouspage = () => {
-    dispatch(getNotes(pagination.prev));
+    dispatch(getNotes(pagination.previous));
   };
 
   return (
