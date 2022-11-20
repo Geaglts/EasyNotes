@@ -12,12 +12,13 @@ import { addNote } from '@actions/userNotes.actions';
 
 import useFormError from '@hooks/useFormError';
 
+import classnames from '@utils/classnames';
 import FormControl from '@utils/classes/FormControl';
 import validate from '@utils/validate';
 import { TOAST_TYPES } from '@components/Toast';
 import { newNoteSchema } from '@schemas/newNote.schema';
 
-import '@styles/Containers/UserNewNoteForm.scss';
+import styles from '@styles/Containers/UserNewNoteForm.module.scss';
 
 export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   const dispatch = useDispatch();
@@ -27,11 +28,9 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   const form = useRef(null);
   const { formErrors, addErrors } = useFormError();
 
-  const getCategories = React.useCallback(() => {
-    async () => {
-      const { data } = await axios.get('/api/v1/categories');
-      setCategories(data.body);
-    };
+  const getCategories = React.useCallback(async () => {
+    const { data } = await axios.get('/api/v1/categories');
+    setCategories(data.body);
   }, []);
 
   useEffect(() => {
@@ -75,20 +74,20 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   return (
     <>
       {categoriesView && (
-        <div className="CategoriesNewNoteForm">
-          <div className="UserNewNoteForm-HeaderButtons" onClick={toggleCategories}>
-            <div className="UserNewNoteForm-CategoryInput CategoriesNewNoteForm-Close">
+        <div className={styles.categoriesContainer}>
+          <div className={styles.headerButtons}>
+            <button className={styles.closeButton} onClick={toggleCategories}>
               <p>Cerrar</p>
               <AiOutlineCloseCircle title="Cerrar" size={25} className="icon" />
-            </div>
+            </button>
           </div>
-          <div className="CategoriesNewNoteForm_Container">
+          <div className={styles.categories}>
             {categories.map(({ name, description, id }) => {
               const isSelected = selectedCategories.includes(id);
               const parsedCategory = FormControl.decryptData({ name, description });
               return (
                 <p
-                  className={`Category ${isSelected} noselect`}
+                  className={classnames(styles.category, styles[isSelected])}
                   key={id}
                   onClick={toggleSelectedCategories(id)}
                 >
@@ -99,30 +98,30 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
           </div>
         </div>
       )}
-      <form className="UserNewNoteForm" ref={form} onSubmit={createNewNote}>
-        <div onClick={toggleCategories} className="UserNewNoteForm-CategoryInput">
-          <BsFolderSymlink title="Enlazar con categoría" size={25} />
-          <p>Agregar categoría (opcional)</p>
+      <form className={styles.formContainer} ref={form} onSubmit={createNewNote}>
+        <div>
+          <button
+            type="button"
+            onClick={toggleCategories}
+            className={styles.showCategoryButton}
+          >
+            <BsFolderSymlink title="Enlazar con categoría" size={25} />
+            <p>Agregar categoría (opcional)</p>
+          </button>
         </div>
-        <SimpleInput
-          type="text"
-          placeholder="Titulo de la nota"
-          classes={['title']}
-          name="title"
-        />
+        <SimpleInput type="text" placeholder="Titulo de la nota" name="title" />
         <SimpleInput
           type="text"
           autoComplete="off"
           placeholder="Codigo secreto (No Obligatorio)"
-          classes={['pin']}
           name="pin"
         />
         <SimpleTextArea
           placeholder="Contenido..."
           name="content"
-          classes={['unnf_sta']}
+          classes={[styles.contentTextArea]}
         />
-        <Button label="Crear" type="submit" />
+        <Button label="Crear" type="submit" classNames={[styles.formButtonSubmit]} />
       </form>
       <Toast messages={formErrors} />
     </>

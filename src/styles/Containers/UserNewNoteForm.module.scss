@@ -1,0 +1,129 @@
+@import '../global.scss';
+@import '../vars';
+@import '../animations';
+
+.textIconButton {
+  font-family: $font-secondary;
+  font-size: $font-size-sm;
+  font-weight: bold;
+  margin-left: scale-spacing(0.5);
+}
+
+.categoriesContainer {
+  position: absolute;
+  background-color: $color-light-dark;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  top: 0;
+  row-gap: scale-spacing(0.5);
+  z-index: 1;
+
+  .headerButtons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    .closeButton {
+      background-color: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      color: $color-gray;
+      cursor: pointer;
+      transition: all 350ms ease;
+      margin-bottom: $spacing;
+
+      p {
+        margin-right: scale-spacing(0.5);
+        @extend .textIconButton;
+      }
+
+      &:hover {
+        transition: all 250ms ease;
+        color: $warning;
+      }
+    }
+  }
+
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing;
+
+    .category {
+      display: block;
+      text-align: center;
+      font-family: $font-secondary;
+      background-color: rgba($color-gray, 0.2);
+      color: $color-gray;
+      font-size: $font-size-md;
+      font-weight: 600;
+      padding: scale-spacing(1) scale-spacing(2);
+      border-radius: $spacing;
+      text-transform: capitalize;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .true {
+      color: $primary;
+      background-color: rgba($primary, 0.2);
+    }
+  }
+}
+
+.formContainer {
+  margin-top: 8px;
+  display: grid;
+  grid-template-rows: auto auto auto auto auto;
+  row-gap: scale-spacing(1);
+
+  .showCategoryButton {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    color: $color-gray;
+    transition: all 350ms ease;
+
+    p {
+      @extend .textIconButton;
+    }
+
+    &:hover {
+      transition: all 250ms ease;
+      color: $primary;
+    }
+  }
+
+  .contentTextArea {
+    height: 200px;
+  }
+
+  .formButtonSubmit {
+    justify-self: center;
+    align-self: flex-end;
+    background-color: $primary;
+    color: $color-dark;
+    font-family: $font-secondary;
+    font-weight: 700;
+    margin-top: $spacing;
+  }
+}
+
+@media (max-height: 750px) {
+  .formContainer {
+    row-gap: scale-spacing(1);
+    .contentTextArea {
+      height: 140px;
+    }
+  }
+}

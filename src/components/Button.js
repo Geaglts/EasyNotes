@@ -1,16 +1,12 @@
 import React from 'react';
 import { GiSandsOfTime } from 'react-icons/gi';
+import classnames from '@utils/classnames';
 import '../styles/Components/Button.scss';
 
 function Button({ label, children, classNames = [], ...rest }) {
   const content = label || children;
-
   return (
-    <button
-      type="button"
-      className={`${classNames && classNames.join(' ') + ' '}Button`}
-      {...rest}
-    >
+    <button type="button" className={classnames(...classNames, 'Button')} {...rest}>
       {content}
     </button>
   );
