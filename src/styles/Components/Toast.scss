@@ -1,4 +1,5 @@
 @use '../animations';
+@use '../vars' as *;
 @import '../global.scss';
 
 @mixin toast-message-color($color: #475ded) {
@@ -8,10 +9,9 @@
 }
 
 .Toast {
-  $position: 20px;
-  position: absolute;
-  left: $position;
-  top: $position * 4;
+  position: fixed;
+  left: scale-spacing(2);
+  top: scale-spacing(2);
   display: grid;
   row-gap: 16px;
 
@@ -24,6 +24,7 @@
     font-family: $font-secondary;
     font-weight: lighter;
     animation: slide-to-right 300ms ease-out;
+    text-align: center;
 
     &.info {
       @include toast-message-color($primary);

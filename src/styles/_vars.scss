@@ -1,4 +1,4 @@
-$spacing: 10px;
+$spacing: 8px;
 
 @function scale-spacing($scale: 1) {
   @return calc($spacing * $scale);

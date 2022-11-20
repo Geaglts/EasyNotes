@@ -5,14 +5,19 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 import { SimpleInput, SimpleTextArea } from '@components/Input';
+import Button from '@components/Button';
+import Toast from '@components/Toast';
 
 import { addNote } from '@actions/userNotes.actions';
 
+import useFormError from '@hooks/useFormError';
+
 import FormControl from '@utils/classes/FormControl';
+import validate from '@utils/validate';
+import { TOAST_TYPES } from '@components/Toast';
+import { newNoteSchema } from '@schemas/newNote.schema';
 
 import '@styles/Containers/UserNewNoteForm.scss';
-
-import Button from '@components/Button';
 
 export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   const dispatch = useDispatch();
@@ -20,11 +25,14 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const form = useRef(null);
+  const { formErrors, addErrors } = useFormError();
 
-  const getCategories = async () => {
-    const { data } = await axios.get('/api/v1/categories');
-    setCategories(data.body);
-  };
+  const getCategories = React.useCallback(() => {
+    async () => {
+      const { data } = await axios.get('/api/v1/categories');
+      setCategories(data.body);
+    };
+  }, []);
 
   useEffect(() => {
     getCategories();
@@ -33,7 +41,18 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
 
   const createNewNote = async (e) => {
     e.preventDefault();
-    const { encryptData } = new FormControl(form.current);
+    const { encryptData, values } = new FormControl(form.current);
+    const validationResult = await validate({
+      schema: newNoteSchema,
+      data: values,
+    });
+    if (!validationResult.approved) {
+      const errors = [
+        { message: validationResult.message, type: TOAST_TYPES.DANGER },
+      ];
+      addErrors(errors);
+      return;
+    }
     dispatch(addNote(encryptData, selectedCategories));
     afterCreate();
   };
@@ -105,6 +124,7 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
         />
         <Button label="Crear" type="submit" />
       </form>
+      <Toast messages={formErrors} />
     </>
   );
 };

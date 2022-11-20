@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
@@ -13,21 +13,21 @@ import { APP_NAME } from '@constants';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
   const filteredNotes = useSelector((state) => state.userNotesReducer.filtered);
   const notes = useSelector((state) => state.userNotesReducer.userNotes);
   const pagination = useSelector((state) => state.userNotesReducer.pagination);
 
   useEffect(() => {
-    dispatch(getNotes(page));
-  }, [page]);
+    dispatch(getNotes(pagination.page));
+    return () => {};
+  }, [pagination.page]);
 
   const nextPage = () => {
-    setPage(pagination.next);
+    dispatch(getNotes(pagination.next));
   };
 
   const previouspage = () => {
-    setPage(pagination.previous);
+    dispatch(getNotes(pagination.prev));
   };
 
   return (
@@ -40,7 +40,7 @@ const Dashboard = () => {
         {!filteredNotes && (
           <PaginationMenu next={nextPage} previous={previouspage}>
             <p>
-              {page} de {pagination.totalPages || '-'}
+              {pagination.page} de {pagination.totalPages || '1'}
             </p>
           </PaginationMenu>
         )}

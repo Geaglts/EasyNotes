@@ -1,6 +1,13 @@
 import React from 'react';
 import '@styles/Components/Toast.scss';
 
+export const TOAST_TYPES = {
+  INFO: 'info',
+  WARNING: 'warning',
+  DANGER: 'danger',
+  SUCCESS: 'success',
+};
+
 const Toast = ({ messages }) => {
   return (
     <div className="Toast">
@@ -11,6 +18,10 @@ const Toast = ({ messages }) => {
       ))}
     </div>
   );
+};
+
+Toast.defaultProps = {
+  messages: [],
 };
 
 export default Toast;

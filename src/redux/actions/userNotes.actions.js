@@ -23,38 +23,41 @@ export const getNotes =
     }
   };
 
-export const addNote = (noteData, category) => async (dispatch) => {
+export const addNote = (noteData, category) => async (dispatch, getStore) => {
   try {
+    const { page } = getStore().userNotesReducer.pagination;
     dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
     const { data } = await axios.post(ROUTE_NOTE_V1, noteData);
     if (category.length > 0) {
       await axios.post('/api/v1/categories/note', { note: data.body.id, category });
     }
     dispatch({ type: USER_NOTES_TYPES.USER_NOTES_ADD });
-    dispatch(getNotes());
+    dispatch(getNotes(page));
   } catch (error) {
     dispatch({ type: USER_NOTES_TYPES.USER_NOTES_ERROR, payload: '🚧: ' + error });
   }
 };
 
-export const removeNote = (noteId) => async (dispatch) => {
+export const removeNote = (noteId) => async (dispatch, store) => {
   try {
+    const { page } = store().userNotesReducer.pagination;
     dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
     await axios.delete(`${ROUTE_NOTE_V1}/${noteId}`);
     dispatch({ type: USER_NOTES_TYPES.USER_NOTES_REMOVE });
-    dispatch(getNotes());
+    dispatch(getNotes(page));
   } catch (error) {
     dispatch({ type: USER_NOTES_TYPES.USER_NOTES_ERROR, payload: '🚧: ' + error });
   }
 };
 
 export const updateNote =
-  (updatedNoteValues, id, categories) => async (dispatch) => {
+  (updatedNoteValues, id, categories) => async (dispatch, getStore) => {
     try {
+      const { page } = getStore().userNotesReducer.pagination;
       dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
       await axios.patch(`${ROUTE_NOTE_V1}/${id}`, updatedNoteValues);
       await addCategoriesToNote(id, categories);
-      dispatch(getNotes());
+      dispatch(getNotes(page));
     } catch (error) {
       dispatch({
         type: USER_NOTES_TYPES.USER_NOTES_ERROR,

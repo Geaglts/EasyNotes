@@ -22,7 +22,7 @@ const PaginationMenu = ({ children, previous = () => {}, next = () => {} }) => {
         />
       )}
       {children}
-      {page !== totalPages && (
+      {page !== (totalPages ? totalPages : 1) && (
         <img
           src={arrowRight}
           alt="Página siguiente"
