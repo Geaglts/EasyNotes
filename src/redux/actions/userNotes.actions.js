@@ -108,6 +108,7 @@ export const filterByCategory =
   (categories = []) =>
   async (dispatch) => {
     try {
+      dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
       const notes = await getNotesByCategories(`[${categories.join(',')}]`);
       if (categories.length === 0) {
         dispatch({
@@ -116,7 +117,6 @@ export const filterByCategory =
         });
         return;
       }
-      dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
       dispatch({
         type: USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL,
         payload: notes,
