@@ -49,7 +49,9 @@ const UserUpdateNoteForm = ({
     });
     if (validationStatus.approved) {
       // Get only the ids of the categories
-      const selectedCategories = selectedCategory.map((category) => category.id);
+      const selectedCategories = await selectedCategory.map(
+        (category) => category.id
+      );
       const values = updateFormControl.encryptData;
       dispatch(updateNote(values, noteId, selectedCategories));
       toggleShow();

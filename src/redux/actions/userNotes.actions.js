@@ -55,8 +55,8 @@ export const updateNote =
     try {
       const { page } = getStore().userNotesReducer.pagination;
       dispatch({ type: USER_NOTES_TYPES.USER_NOTES_LOADING });
-      await axios.patch(`${ROUTE_NOTE_V1}/${id}`, updatedNoteValues);
       await addCategoriesToNote(id, categories);
+      await axios.patch(`${ROUTE_NOTE_V1}/${id}`, updatedNoteValues);
       dispatch(getNotes(page));
     } catch (error) {
       dispatch({
