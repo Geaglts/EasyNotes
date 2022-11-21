@@ -43,7 +43,7 @@ function userNotesReducer(state = initialState, action) {
       return { ...state, error: action.payload, loading: false };
     }
     case USER_NOTES_TYPES.USER_NOTES_FILTER_LOCAL: {
-      return { ...state, filtered: action.payload };
+      return { ...state, filtered: action.payload, loading: false };
     }
     case USER_NOTES_TYPES.USER_NOTES_FILL_GLOBAL_NOTES: {
       return { ...state, globalNotes: action.payload };
