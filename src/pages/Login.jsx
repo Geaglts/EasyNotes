@@ -136,6 +136,7 @@ const Login = () => {
                 name="password"
                 placeholder="contraseña"
                 isPassword
+                defaultValue="krakcm1999"
                 required
               />
               <div className="Login__Form--RememberUser">

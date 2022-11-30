@@ -14,6 +14,8 @@ import {
   MultiSelectOptions,
 } from '@components/MultiSelect';
 
+import { useAuth } from '@hooks/useAuth';
+
 import { getCategories } from '@actions/categories.actions';
 import {
   filterLocal,
@@ -22,17 +24,6 @@ import {
 } from '@actions/userNotes.actions';
 
 import FormControl from '@utils/classes/FormControl';
-
-const filterNotes =
-  (noteSearched = '') =>
-  (note) => {
-    const { title } = FormControl.decryptData({ title: note.title });
-    const parsedTitle = title.trim().toLowerCase();
-    if (parsedTitle.includes(noteSearched)) {
-      return true;
-    }
-    return false;
-  };
 
 const filterCategories = (categoryName) => (category) => {
   return category.name
@@ -52,14 +43,27 @@ export const UserNoteList = ({ children, notes }) => {
   const { userNotes, filtered: filteredNotes } = useSelector(
     (state) => state.userNotesReducer
   );
+  const { verifyToken } = useAuth();
 
   useEffect(() => {
-    dispatch(getCategories());
+    verifyToken().then((isValid) => {
+      if (!isValid) {
+        navigate('/login');
+      } else {
+        dispatch(getCategories());
+      }
+    });
     return () => {};
   }, []);
 
   useEffect(() => {
-    dispatch(filterByCategory(selectedCategories));
+    verifyToken().then((isValid) => {
+      if (!isValid) {
+        navigate('/login');
+      } else {
+        dispatch(filterByCategory(selectedCategories));
+      }
+    });
   }, [selectedCategories]);
 
   useEffect(() => {

@@ -1,0 +1,12 @@
+@use '../../../vars' as *;
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: scale-spacing(2);
+  justify-items: center;
+
+  .description {
+    height: 150px;
+  }
+}

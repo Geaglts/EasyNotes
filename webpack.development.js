@@ -35,7 +35,7 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    port: 3000,
+    port: 3001,
     historyApiFallback: true,
     open: false,
     allowedHosts: ['localhost', 'wsl'],

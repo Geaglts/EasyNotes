@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiFillDelete } from 'react-icons/ai';
@@ -11,6 +11,10 @@ import { Loading } from '@components/Loading';
 import Button from '@components/Button';
 import { APP_NAME } from '@constants';
 
+import UpdateCategoryModal from './components/UpdateCategoryModal';
+
+import { useAuth } from '@hooks/useAuth';
+
 import { Context } from '@context';
 import { removeCategory, getCategories } from '@actions/categories.actions';
 
@@ -18,23 +22,47 @@ import '@styles/pages/Categories.scss';
 
 const Categories = () => {
   const { theme } = useContext(Context);
+  const [updateModalStatus, setUpdateModalStatus] = useState({ isActive: false });
+  const [categoryToUpdate, setCategoryToUpdate] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const uiIsLoading = useSelector((state) => state.ui.loading);
   const categoryList = useSelector((state) => state.categories.categories);
+  const { verifyToken } = useAuth();
 
   useEffect(() => {
-    if (categoryList.length === 0) {
-      dispatch(getCategories());
-    }
+    verifyToken().then((isValid) => {
+      if (!isValid) {
+        navigate('/login');
+      } else {
+        if (categoryList.length === 0) {
+          dispatch(getCategories());
+        }
+      }
+    });
   }, []);
 
   const onDeleteCategory = (categoryId) => () => {
     dispatch(removeCategory(categoryId));
   };
 
+  const onClickUpdateCategory = (category) => {
+    if (!category) return;
+    setUpdateModalStatus({
+      ...updateModalStatus,
+      isActive: true,
+    });
+    setCategoryToUpdate(category);
+  };
+
   const onGoBack = () => {
-    navigate(-1);
+    verifyToken().then((isValid) => {
+      if (!isValid) {
+        navigate('/login');
+      } else {
+        navigate(-1);
+      }
+    });
   };
 
   if (uiIsLoading) {
@@ -71,11 +99,24 @@ const Categories = () => {
                   Icon={AiFillDelete}
                   onConfirm={onDeleteCategory(category.id)}
                 />
+                <button onClick={() => onClickUpdateCategory(category)}>
+                  actualizar
+                </button>
               </div>
             </CardContainer>
           );
         })}
       </div>
+      <UpdateCategoryModal
+        active={updateModalStatus.isActive}
+        onClose={() =>
+          setUpdateModalStatus({
+            ...updateModalStatus,
+            isActive: false,
+          })
+        }
+        category={categoryToUpdate}
+      />
     </Layout>
   );
 };

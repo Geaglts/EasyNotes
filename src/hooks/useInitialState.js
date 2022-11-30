@@ -32,9 +32,14 @@ function useInitialState() {
     setState({ ...state, hasUser: !state.hasUser, token });
   };
 
+  const logout = async () => {
+    await userStorage.removeSession();
+    setState({ ...state, hasUser: null, token: null });
+  };
+
   const theme = state.darkTheme ? 'dark' : 'light';
 
-  return { ...state, changeTheme, changeUserStatus, theme };
+  return { ...state, changeTheme, changeUserStatus, theme, logout };
 }
 
 export default useInitialState;

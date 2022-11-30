@@ -76,6 +76,15 @@ export const userStorage = {
       return false;
     }
   },
+  removeSession() {
+    try {
+      window.localStorage.removeItem(USER_TOKEN);
+      window.localStorage.removeItem(USER_LOGGED);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  },
 };
 
 export const browserStorage = {

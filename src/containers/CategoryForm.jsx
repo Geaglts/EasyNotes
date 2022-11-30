@@ -1,11 +1,14 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { SimpleTextArea, SimpleInput } from '@components/Input';
 import FormControl from '@utils/classes/FormControl';
 import Button from '@components/Button';
 
 import { addCategory } from '@actions/categories.actions';
+
+import { useAuth } from '@hooks/useAuth';
 
 import validate from '@utils/validate';
 import { addCategorySchema } from '@schemas/category.schema';
@@ -14,12 +17,19 @@ import '@styles/Containers/CategoryForm.scss';
 
 const CategoryForm = ({ afterSubmit }) => {
   const form = useRef();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const uiError = useSelector((state) => state.ui.error);
   const uiLoading = useSelector((state) => state.ui.loading);
   const [error, setError] = useState({});
+  const { verifyToken } = useAuth();
 
   const onAddCategory = async () => {
+    const isValid = await verifyToken();
+    if (!isValid) {
+      navigate('/login');
+      return;
+    }
     const { encryptData, formData } = new FormControl(form.current);
     const validation = await validate({ schema: addCategorySchema, data: formData });
     if (validation.error) {

@@ -1,6 +1,7 @@
 import { useContext, useState, forwardRef } from 'react';
 import { MdSentimentVeryDissatisfied } from 'react-icons/md';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 import { Context } from '../Context';
 import classnames from '@utils/classnames';
 
@@ -60,5 +61,10 @@ function Input(props) {
     </div>
   );
 }
+
+SimpleInput.propTypes = {
+  classes: PropTypes.arrayOf(PropTypes.string),
+  isPassword: PropTypes.bool,
+};
 
 export default Input;

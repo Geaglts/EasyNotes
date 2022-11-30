@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
+import { Context } from '@context';
 import { userStorage } from '@storage';
 
 export const useAuth = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLogged, setIsLogged] = useState(null);
+  const { logout } = useContext(Context);
+  const [isLogged, setIsLogged] = useState();
 
   const verifyToken = async () => {
     const token = userStorage.getToken();
@@ -17,19 +18,16 @@ export const useAuth = () => {
       if (data.isValid) {
         axios.defaults.headers.common['authorization'] = `Bearer ${token}`;
         setIsLogged(true);
+        return true;
       } else {
         setIsLogged(false);
+        await logout();
+        return false;
       }
-    } else {
-      setIsLogged(false);
     }
-    setIsLoading(false);
+    setIsLogged(false);
+    return false;
   };
 
-  useEffect(() => {
-    verifyToken();
-    return () => {};
-  }, []);
-
-  return { isLoading, isLogged };
+  return { isLogged, verifyToken };
 };

@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import FormControl from '@utils/classes/FormControl';
 
@@ -13,6 +14,7 @@ import CategoryMenu from '@fragments/UserUpdateNoteForm/CategoryMenu';
 import { updateNote } from '@actions/userNotes.actions';
 
 import useError from '@hooks/useError';
+import { useAuth } from '@hooks/useAuth';
 
 import validate from '@utils/validate';
 import { updateNoteSchema } from '@schemas/user.schema';
@@ -29,19 +31,22 @@ const UserUpdateNoteForm = ({
   categories,
   noteId,
 }) => {
+  const navigate = useNavigate();
   const categoryList = useSelector((state) => state.categories.categories);
   const [showCategories, setShowCategories] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(categories);
   const updateForm = useRef(null);
   const dispatch = useDispatch();
   const { error, showError } = useError();
-
-  useEffect(() => {
-    return () => {};
-  }, []);
+  const { verifyToken } = useAuth();
 
   const onUpdateNote = async (evt) => {
     evt.preventDefault();
+    const isValid = await verifyToken();
+    if (!isValid) {
+      navigate('/login');
+      return;
+    }
     const updateFormControl = new FormControl(updateForm.current);
     const validationStatus = await validate({
       schema: updateNoteSchema,

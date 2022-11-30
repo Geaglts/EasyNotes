@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useSearchParams, Navigate, Link } from 'react-router-dom';
+import { useSearchParams, Navigate, Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import { BsCheckCircle } from 'react-icons/bs';
 import { BiLogInCircle } from 'react-icons/bi';
@@ -13,19 +13,25 @@ import { Context } from '@context';
 import '@styles/pages/ActivateAccount.scss';
 
 const ActivateAccount = () => {
+  const navigate = useNavigate();
   const { theme } = useContext(Context);
   const [params] = useSearchParams();
   const [errorCode, setErrorCode] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const activateAccount = async () => {
-    setErrorCode(null);
-    const URL = `${process.env.API_URL}/auth/activate`;
-    const token = params.get('token');
-    const { data } = await Axios.post(URL, { token });
-    setLoading(false);
-    if (data.errorCode) {
-      setErrorCode(data.errorCode);
+    try {
+      setErrorCode(null);
+      const URL = `${process.env.API_URL}/auth/activate`;
+      const token = params.get('token');
+      if (!token) return navigate('/');
+      const { data } = await Axios.post(URL, { token });
+      setLoading(false);
+      if (data.errorCode) {
+        setErrorCode(data.errorCode);
+      }
+    } catch {
+      navigate('/');
     }
   };
 

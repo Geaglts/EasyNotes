@@ -11,7 +11,7 @@ const EmailSended = lazy(() => import('@pages/EmailSended'));
 const ActivateAccount = lazy(() => import('@pages/ActivateAccount'));
 const RecoveryPassword = lazy(() => import('@pages/RecoveryPassword'));
 const Dashboard = lazy(() => import('@pages/Dashboard'));
-const Categories = lazy(() => import('@pages/users/Categories'));
+const Categories = lazy(() => import('@pages/users/Categories/Categories'));
 
 import UserRoutes from './UserRoute';
 

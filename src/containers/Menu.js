@@ -12,7 +12,7 @@ import { Toggle } from '../components/Toggle';
 function Menu() {
   const navigate = useNavigate();
   const [fullMenu, setFullMenu] = useState(false);
-  const { darkTheme, changeTheme, hasUser, changeUserStatus } = useContext(Context);
+  const { darkTheme, changeTheme, hasUser, logout } = useContext(Context);
 
   const theme = darkTheme ? ' dark' : ' white';
 
@@ -20,8 +20,8 @@ function Menu() {
     setFullMenu(!fullMenu);
   };
 
-  const onLogout = () => {
-    changeUserStatus();
+  const onLogout = async () => {
+    await logout();
     setFullMenu(false);
     navigate('/');
   };

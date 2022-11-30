@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { BsFolderSymlink } from 'react-icons/bs';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
@@ -18,15 +19,19 @@ import validate from '@utils/validate';
 import { TOAST_TYPES } from '@components/Toast';
 import { newNoteSchema } from '@schemas/newNote.schema';
 
+import { useAuth } from '@hooks/useAuth';
+
 import styles from '@styles/Containers/UserNewNoteForm.module.scss';
 
 export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [categoriesView, setCategoriesView] = useState(false);
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const form = useRef(null);
   const { formErrors, addErrors } = useFormError();
+  const { verifyToken } = useAuth();
 
   const getCategories = React.useCallback(async () => {
     const { data } = await axios.get('/api/v1/categories');
@@ -34,12 +39,23 @@ export const UserNewNoteForm = ({ afterCreate = () => {} }) => {
   }, []);
 
   useEffect(() => {
-    getCategories();
+    verifyToken().then((isValid) => {
+      if (!isValid) {
+        navigate('/login');
+      } else {
+        getCategories();
+      }
+    });
     return () => {};
   }, []);
 
   const createNewNote = async (e) => {
     e.preventDefault();
+    const isValid = await verifyToken();
+    if (!isValid) {
+      navigate('/login');
+      return;
+    }
     const { encryptData, values } = new FormControl(form.current);
     const validationResult = await validate({
       schema: newNoteSchema,
