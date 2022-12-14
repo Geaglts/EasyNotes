@@ -1,11 +1,13 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Modal from '@components/Modal';
 
 import { SimpleInput, SimpleTextArea } from '@components/Input';
 import Button from '@components/Button';
 
 import { updateCategory } from '@api/categories';
+import { getCategories } from '@actions/categories.actions';
 import FormControl from '@utils/classes/FormControl';
 
 import styles from '@styles/pages/users/categories/UpdateCategoryModal.module.scss';
@@ -16,12 +18,15 @@ import styles from '@styles/pages/users/categories/UpdateCategoryModal.module.sc
  */
 function UpdateCategoryModal(props) {
   const formRef = useRef(null);
+  const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const { encryptData } = new FormControl(formRef.current);
-    const response = await updateCategory(props.category.id, encryptData);
-    console.log(response);
+    await updateCategory(props.category.id, encryptData);
+    dispatch(getCategories());
+    formRef.current.reset();
+    props.onClose();
   };
 
   if (!props.category) return null;
@@ -44,7 +49,11 @@ function UpdateCategoryModal(props) {
           name="description"
           defaultValue={props.category.description}
         />
-        <Button type={'submit'} label={'Actualizar'} />
+        <Button
+          classNames={[styles.submitButton]}
+          type={'submit'}
+          label={'Actualizar'}
+        />
       </form>
     </Modal>
   );

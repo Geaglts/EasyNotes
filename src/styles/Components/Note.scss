@@ -269,6 +269,12 @@
   overflow-wrap: break-word;
   word-break: break-all;
   gap: 8px;
+  color: $color-gray;
+  margin-bottom: 4px;
+
+  &:hover {
+    transform: none;
+  }
 
   &__CopyButton {
     $size: 25px;

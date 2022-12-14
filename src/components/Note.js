@@ -25,6 +25,7 @@ import { noteStorage } from '../storage';
 
 import capitalize from '@utils/capitalize';
 import FormControl from '@utils/classes/FormControl';
+import { isUrl } from '@utils/isFunctions';
 
 function Note({ content, title, _id, onRemoveNote }) {
   const { darkTheme } = useContext(Context);
@@ -201,36 +202,55 @@ const NoteMultiline = ({ text, hide = () => {} }) => {
 
   if (!lines) {
     return (
-      <p key={`NoteMultiline-${index}`} className="NoteMultiline">
-        @Vacio@
+      <p className="NoteMultiline">
+        <span>🍟</span>
         <AiOutlineCopy className="NoteMultiline__CopyButton" />
       </p>
     );
   }
 
-  const copyToClipboard = (content, index) => () => {
-    if (lines.length - 1 === index) {
-      hide();
-    }
+  const copyToClipboard = (content) => () => {
     navigator.clipboard.writeText(content);
   };
 
   return lines.map((line, index) => {
     const ignoreLine = line.includes('--ignore--');
 
-    return line.length > 0 ? (
-      <p key={`NoteMultiline-${index}`} className="NoteMultiline">
-        {line.replace('--ignore--', '')}
-        {!ignoreLine && (
-          <AiOutlineCopy
-            className="NoteMultiline__CopyButton"
-            onClick={copyToClipboard(line, index)}
-          />
-        )}
-      </p>
-    ) : (
-      <br key={`NoteMultiline-${index}`} />
-    );
+    if (line.length > 0) {
+      if (!ignoreLine) {
+        if (isUrl(line)) {
+          return (
+            <p key={`NoteMultiline-${index}`} className="NoteMultiline">
+              <a href={line} target={'_blank'} className="NoteMultiline">
+                {line}
+              </a>
+              <AiOutlineCopy
+                className="NoteMultiline__CopyButton"
+                onClick={copyToClipboard(line)}
+              />
+            </p>
+          );
+        }
+        return (
+          <p key={`NoteMultiline-${index}`} className="NoteMultiline">
+            {line.replace('--ignore--', '')}
+            {!ignoreLine && (
+              <AiOutlineCopy
+                className="NoteMultiline__CopyButton"
+                onClick={copyToClipboard(line)}
+              />
+            )}
+          </p>
+        );
+      }
+      return (
+        <p key={`NoteMultiline-${index}`} className="NoteMultiline">
+          {line.replace('--ignore--', '')}
+        </p>
+      );
+    } else {
+      return <br key={`NoteMultiline-${index}`} />;
+    }
   });
 };
 

@@ -1,4 +1,5 @@
 @use '../../../vars' as *;
+@use '../../../global' as *;
 
 .container {
   display: grid;
@@ -9,4 +10,10 @@
   .description {
     height: 150px;
   }
+}
+
+.submitButton {
+  background-color: $primary;
+  color: $light-gray;
+  font-weight: bolder;
 }

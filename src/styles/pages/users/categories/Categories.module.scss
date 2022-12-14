@@ -1,0 +1,49 @@
+@use '../../../vars' as *;
+@import '../../../global.scss';
+
+// containers
+.categoriesContainer {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 12px;
+  padding-bottom: 12px;
+}
+
+.bottomButtons {
+  display: flex;
+  align-items: center;
+  gap: scale-spacing(0.5);
+  margin-top: $spacing;
+}
+
+// texts
+.title {
+  font-size: 22pt;
+  color: $primary;
+}
+
+// buttons
+.goBack {
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  color: $color-gray;
+  box-shadow: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.updateButton {
+  border: none;
+  background-color: transparent;
+  font-size: $font-size-lg;
+  display: grid;
+  place-items: center;
+
+  svg {
+    color: $color-gray;
+  }
+}

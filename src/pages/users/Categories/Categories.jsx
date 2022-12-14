@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiFillDelete } from 'react-icons/ai';
+import { BiRefresh } from 'react-icons/bi';
 import { Helmet } from 'react-helmet';
 
 import { Layout } from '@containers/Layout/Layout';
@@ -18,7 +19,7 @@ import { useAuth } from '@hooks/useAuth';
 import { Context } from '@context';
 import { removeCategory, getCategories } from '@actions/categories.actions';
 
-import '@styles/pages/Categories.scss';
+import styles from '@styles/pages/users/categories/Categories.module.scss';
 
 const Categories = () => {
   const { theme } = useContext(Context);
@@ -78,13 +79,9 @@ const Categories = () => {
       <Helmet>
         <title>{APP_NAME} | Mis categorías</title>
       </Helmet>
-      <Button
-        label="Regresar"
-        classNames={['Categories-GoBackButton']}
-        onClick={onGoBack}
-      />
-      <h2 className={`Categories-${theme}-Title`}>Categories</h2>
-      <div className={`Categories-${theme}-List ${theme}`}>
+      <Button label="Regresar" classNames={[styles.goBack]} onClick={onGoBack} />
+      <h2 className={styles.title}>Categories</h2>
+      <div className={styles.categoriesContainer}>
         {categoryList.map((category) => {
           return (
             <CardContainer
@@ -94,13 +91,16 @@ const Categories = () => {
             >
               <CardTitle label={category.name} />
               <CardSubtitle label={category.description} />
-              <div className="Categories-CardMenuBottom">
+              <div className={styles.bottomButtons}>
                 <ConfirmButton
                   Icon={AiFillDelete}
                   onConfirm={onDeleteCategory(category.id)}
                 />
-                <button onClick={() => onClickUpdateCategory(category)}>
-                  actualizar
+                <button
+                  className={styles.updateButton}
+                  onClick={() => onClickUpdateCategory(category)}
+                >
+                  <BiRefresh />
                 </button>
               </div>
             </CardContainer>

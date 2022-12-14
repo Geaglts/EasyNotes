@@ -6,6 +6,7 @@ import '@styles/Containers/UserNoteList.scss';
 
 import UserNoteSkeleton from '@components/skeletons/UserNote';
 import { UserNote } from '@components/Note';
+// import UserNote from '@components/UserNote';
 import SearchInput from '@components/SearchInput';
 import {
   MultiSelect,

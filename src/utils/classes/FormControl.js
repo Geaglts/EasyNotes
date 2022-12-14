@@ -24,7 +24,10 @@ class FormControl extends FormData {
     const encryptedData = {};
     for (let key of keys) {
       if (this.values[key].length !== 0) {
-        encryptedData[key] = CryptoJS.AES.encrypt(this.values[key], process.env.NOTE_SECRET).toString();
+        encryptedData[key] = CryptoJS.AES.encrypt(
+          this.values[key],
+          process.env.NOTE_SECRET
+        ).toString();
       } else {
         encryptedData[key] = null;
       }
@@ -36,11 +39,26 @@ class FormControl extends FormData {
     return CryptoJS.AES.encrypt(value, process.env.NOTE_SECRET).toString();
   }
 
+  static decryptValue(value) {
+    try {
+      const decrypted = CryptoJS.AES.decrypt(value, process.env.NOTE_SECRET);
+      return decrypted.toString(CryptoJS.enc.Utf8);
+    } catch {
+      return value;
+    }
+  }
+
   static decryptData(values) {
     const keys = Object.keys(values);
     const decryptedData = {};
     for (let key of keys) {
-      decryptedData[key] = CryptoJS.AES.decrypt(values[key], process.env.NOTE_SECRET).toString(CryptoJS.enc.Utf8);
+      const value = values[key];
+      const decryptedValue = CryptoJS.AES.decrypt(value, process.env.NOTE_SECRET);
+      if (decryptedValue.sigBytes > 0) {
+        decryptedData[key] = decryptedValue.toString(CryptoJS.enc.Utf8);
+      } else {
+        decryptedData[key] = values[key];
+      }
     }
     return decryptedData;
   }
